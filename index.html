@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level One - Proposal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .page {
+            width: 8.5in;
+            height: 11in;
+            margin: 20px auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            page-break-after: always;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .editable {
+            background-color: #fffff0;
+            padding: 2px 4px;
+            border-radius: 2px;
+            min-width: 50px;
+            display: inline-block;
+        }
+
+        .problem-list li.editable,
+        .solution-list li.editable {
+            display: block;
+        }
+
+        /* Page 1 - Cover */
+        .page-1 {
+            background: white;
+            color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            padding: 0;
+        }
+
+        .cover-top-section {
+            background: white;
+            padding: 60px 60px 30px 60px;
+            height: 50%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .logo-placeholder {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #000;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .company-name {
+            font-size: 28px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .proposal-title {
+            font-size: 38px;
+            font-weight: bold;
+            line-height: 1.3;
+            margin: 0 0 20px 0;
+            color: #000;
+        }
+
+        .proposal-subtitle {
+            font-size: 14px;
+            color: #000;
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+
+        .cover-image-container {
+            height: 50%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .cover-image {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Content Pages */
+        .content-page {
+            padding: 50px 55px 55px 55px;
+        }
+
+        .page-header {
+            font-size: 28px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #000;
+            padding-bottom: 12px;
+        }
+
+        .letter-content {
+            font-size: 12px;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .letter-content p {
+            margin-bottom: 10px;
+        }
+
+        .problem-list, .solution-list, .systems-list {
+            list-style: none;
+            margin: 18px 0;
+        }
+
+        .problem-list li, .solution-list li {
+            padding: 14px;
+            margin-bottom: 10px;
+            background: #f9f9f9;
+            border-left: 3px solid #000;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        .systems-list li {
+            padding: 12px;
+            margin-bottom: 9px;
+            background: #f9f9f9;
+            border-left: 3px solid #000;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        .problem-list li strong, .solution-list li strong {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        .systems-list li strong {
+            font-size: 12px;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .closing-statement {
+            margin-top: 20px;
+            padding: 16px;
+            background: #f5f5f5;
+            border-left: 3px solid #000;
+            font-style: italic;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .signature-line {
+            margin-top: 25px;
+            font-size: 12px;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            margin-top: 30px;
+            padding: 20px 0;
+        }
+
+        .timeline-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-step {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 0.6s ease-out forwards;
+        }
+
+        .timeline-step:nth-child(1) { animation-delay: 0s; }
+        .timeline-step:nth-child(2) { animation-delay: 1s; }
+        .timeline-step:nth-child(3) { animation-delay: 2s; }
+        .timeline-step:nth-child(4) { animation-delay: 3s; }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .timeline-circle {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: white;
+            border: 4px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .timeline-circle::before {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #666;
+            opacity: 0.2;
+        }
+
+        .timeline-icon {
+            font-size: 36px;
+            color: #333;
+        }
+
+        .timeline-connector-line {
+            position: absolute;
+            top: 75px;
+            left: 10%;
+            right: 10%;
+            height: 3px;
+            background: #333;
+            z-index: -1;
+        }
+
+        .timeline-content {
+            text-align: center;
+            max-width: 130px;
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 6px;
+            font-size: 11px;
+        }
+
+        .timeline-desc {
+            font-size: 10px;
+            line-height: 1.4;
+            color: #666;
+        }
+
+        /* Investment Page */
+        .quote-table {
+            width: 100%;
+            margin: 25px 0;
+            border-collapse: collapse;
+            font-size: 11px;
+        }
+
+        .quote-table thead {
+            background: #f9f9f9;
+        }
+
+        .quote-table th {
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+            border-bottom: 2px solid #ddd;
+            font-size: 12px;
+        }
+
+        .quote-table th:nth-child(2),
+        .quote-table th:nth-child(3),
+        .quote-table th:nth-child(4) {
+            text-align: right;
+        }
+
+        .quote-table td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .quote-table td:nth-child(2),
+        .quote-table td:nth-child(3),
+        .quote-table td:nth-child(4) {
+            text-align: right;
+        }
+
+        .quote-table tbody tr:hover {
+            background: #fafafa;
+        }
+
+        .total-section {
+            margin-top: 15px;
+            text-align: right;
+            font-size: 12px;
+            padding-top: 15px;
+            border-top: 2px solid #ddd;
+        }
+
+        .total-line {
+            padding: 8px 0;
+        }
+
+        .total-line.final {
+            font-size: 16px;
+            font-weight: bold;
+            color: #000;
+            border-top: 2px solid #000;
+            padding-top: 12px;
+            margin-top: 8px;
+        }
+
+        .notes-section {
+            background: #f5f5f5;
+            padding: 18px;
+            border-left: 3px solid #000;
+            margin: 20px 0;
+            font-size: 11px;
+            line-height: 1.7;
+        }
+
+        .notes-section p {
+            margin-bottom: 8px;
+        }
+
+        /* Terms and Service Agreement */
+        .terms-content {
+            font-size: 11px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .terms-content h3 {
+            font-size: 14px;
+            margin: 18px 0 10px 0;
+            color: #000;
+        }
+
+        .terms-content p {
+            margin-bottom: 10px;
+            text-align: justify;
+        }
+
+        .signature-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 35px;
+        }
+
+        .signature-box {
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 18px;
+        }
+
+        .signature-box h4 {
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .signature-pad {
+            width: 100%;
+            height: 120px;
+            border: 2px dashed #ccc;
+            border-radius: 4px;
+            cursor: crosshair;
+            background: white;
+            margin-bottom: 8px;
+        }
+
+        .signature-controls {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .btn {
+            padding: 6px 14px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+
+        .btn-clear {
+            background: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-clear:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-upload {
+            background: #000;
+            color: white;
+        }
+
+        .btn-upload:hover {
+            background: #333;
+        }
+
+        .signature-date {
+            font-size: 11px;
+            color: #666;
+            margin-top: 8px;
+        }
+
+        .download-section {
+            margin-top: 30px;
+            text-align: center;
+            padding: 25px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .btn-download {
+            background: #000;
+            color: white;
+            padding: 12px 35px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-download:hover:not(:disabled) {
+            background: #333;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-download:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .download-note {
+            margin-top: 12px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+            .page {
+                margin: 0;
+                box-shadow: none;
+            }
+            .download-section {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Page 1: Cover -->
+    <div class="page page-1">
+        <div class="cover-top-section">
+            <div class="logo-section">
+                <div class="logo-placeholder">L1</div>
+                <div class="company-name">Level One</div>
+            </div>
+            
+            <div>
+                <h1 class="proposal-title editable" id="proposalTitle">Inbound Lead Automation System for 1SecondCopy</h1>
+                <p class="proposal-subtitle">
+                    This document contains all the necessary information regarding our proposed solution, 
+                    including detailed scope of work, timeline, and investment details. We look forward 
+                    to partnering with you on this project.
+                </p>
+            </div>
+        </div>
+
+        <div class="cover-image-container">
+            <img src="https://github.com/level-one-ai/Proposal-System/blob/main/t0b6ybjnz5rmr0cw02ebxf13cc.png?raw=true" alt="Cover Image" class="cover-image">
+        </div>
+    </div>
+
+    <!-- Page 2: Statement -->
+    <div class="page content-page">
+        <h2 class="page-header editable" id="statementHeader">Time-Consuming Manual Lead Processing</h2>
+        
+        <div class="letter-content">
+            <p>Dear <span class="editable" id="clientName">Client</span>,</p>
+            
+            <p style="margin-top: 15px;">
+                I wanted to reach out regarding the challenges your team is currently facing with lead management. 
+                Based on our recent discussions, I understand you're experiencing several operational inefficiencies 
+                that are impacting your team's productivity and growth potential.
+            </p>
+        </div>
+
+        <ul class="problem-list">
+            <li class="editable" id="problem1">Manual data entry consuming significant staff time and resources</li>
+            <li class="editable" id="problem2">Delayed response times to inbound leads affecting conversion rates</li>
+            <li class="editable" id="problem3">Inconsistent lead qualification and follow-up processes</li>
+            <li class="editable" id="problem4">Limited visibility into lead pipeline and performance metrics</li>
+        </ul>
+
+        <div class="letter-content" style="margin-top: 25px;">
+            <p>
+                The following pages include additional details that cover the full scope of the project we 
+                discussed earlier, including investment costs. If you have any questions, please don't hesitate 
+                to reach out to me at <strong>dean@levelone.digital</strong>.
+            </p>
+            
+            <p class="signature-line" style="margin-top: 30px;">
+                Thanks,<br>
+                <strong>Dean</strong>
+            </p>
+        </div>
+    </div>
+
+    <!-- Page 3: Problem Details -->
+    <div class="page content-page">
+        <h2 class="page-header editable" id="problemHeader">End-to-End Automated Lead Workflow</h2>
+        
+        <ul class="problem-list">
+            <li>
+                <strong class="editable" id="detailProblem1Title">Manual Lead Data Entry</strong>
+                <span class="editable" id="detailProblem1Desc">Your team currently spends hours each day manually entering lead information from various sources into your CRM system, leading to errors, delays, and reduced productivity.</span>
+            </li>
+            <li>
+                <strong class="editable" id="detailProblem2Title">Slow Response Times</strong>
+                <span class="editable" id="detailProblem2Desc">Leads wait too long for initial responses, significantly reducing conversion rates. Industry studies show that responding within 5 minutes increases conversion by 400%.</span>
+            </li>
+            <li>
+                <strong class="editable" id="detailProblem3Title">Inconsistent Lead Qualification</strong>
+                <span class="editable" id="detailProblem3Desc">Without automated scoring and qualification, high-value leads may not receive appropriate priority, while low-quality leads consume valuable sales time.</span>
+            </li>
+            <li>
+                <strong class="editable" id="detailProblem4Title">Limited Analytics and Reporting</strong>
+                <span class="editable" id="detailProblem4Desc">Manual processes make it difficult to track key metrics, identify bottlenecks, and make data-driven decisions to optimize your lead generation efforts.</span>
+            </li>
+        </ul>
+
+        <div class="closing-statement">
+            I consider this reasonably straightforward and am confident I can do an outstanding job here for you. 
+            If I wasn't, I wouldn't have put together this proposal.
+        </div>
+    </div>
+
+    <!-- Page 4: Solution -->
+    <div class="page content-page">
+        <h2 class="page-header">Our Solution</h2>
+
+        <ul class="solution-list">
+            <li>
+                <strong class="editable" id="solution1Title">Automated Lead Capture & Entry</strong>
+                <span class="editable" id="solution1Desc">Integrate all lead sources directly with your CRM, eliminating manual data entry entirely.</span>
+            </li>
+            <li>
+                <strong class="editable" id="solution2Title">Instant Response System</strong>
+                <span class="editable" id="solution2Desc">Automated acknowledgment and qualification emails sent within seconds of lead capture.</span>
+            </li>
+            <li>
+                <strong class="editable" id="solution3Title">Smart Lead Scoring</strong>
+                <span class="editable" id="solution3Desc">AI-powered qualification system that prioritizes leads based on conversion probability.</span>
+            </li>
+            <li>
+                <strong class="editable" id="solution4Title">Real-Time Dashboard</strong>
+                <span class="editable" id="solution4Desc">Comprehensive analytics providing actionable insights into your lead pipeline performance.</span>
+            </li>
+        </ul>
+
+        <div class="closing-statement" style="margin-top: 40px;">
+            This comprehensive solution will transform your lead management process, saving time, improving response rates, 
+            and ultimately driving higher conversion rates for your business.
+        </div>
+    </div>
+
+    <!-- Page 5: Timeline -->
+    <div class="page content-page">
+        <h2 class="page-header">Project Timeline</h2>
+
+        <div class="timeline-section">
+            <div class="timeline-container">
+                <div class="timeline-connector-line"></div>
+                
+                <div class="timeline-step">
+                    <div class="timeline-circle">
+                        <div class="timeline-icon">1</div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date editable" id="timeline1Date">May 15-16, 2026</div>
+                        <div class="timeline-desc editable" id="timeline1Desc">Project kickoff and requirements gathering</div>
+                    </div>
+                </div>
+
+                <div class="timeline-step">
+                    <div class="timeline-circle">
+                        <div class="timeline-icon">2</div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date editable" id="timeline2Date">May 19-23, 2026</div>
+                        <div class="timeline-desc editable" id="timeline2Desc">System architecture design and integration setup</div>
+                    </div>
+                </div>
+
+                <div class="timeline-step">
+                    <div class="timeline-circle">
+                        <div class="timeline-icon">3</div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date editable" id="timeline3Date">May 26-30, 2026</div>
+                        <div class="timeline-desc editable" id="timeline3Desc">Automation workflow development and testing</div>
+                    </div>
+                </div>
+
+                <div class="timeline-step">
+                    <div class="timeline-circle">
+                        <div class="timeline-icon">4</div>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-date editable" id="timeline4Date">June 2-6, 2026</div>
+                        <div class="timeline-desc editable" id="timeline4Desc">Final deployment, training, and handover</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="letter-content" style="margin-top: 60px;">
+            <p>
+                We've structured this timeline to ensure smooth project execution while maintaining flexibility 
+                for your team's availability. Each phase includes built-in review points to ensure we're meeting 
+                your expectations and requirements.
+            </p>
+        </div>
+    </div>
+
+    <!-- Page 6: Related Systems -->
+    <div class="page content-page">
+        <h2 class="page-header">Related Systems & Capabilities</h2>
+        
+        <div class="letter-content">
+            <p>
+                In addition to the lead automation system proposed above, Level One offers a comprehensive 
+                suite of automation solutions that can further streamline your operations:
+            </p>
+        </div>
+
+        <ul class="systems-list">
+            <li>
+                <strong>Lead Sourcing and Cold Outreach System</strong><br>
+                <span class="editable" id="system1Desc">Automated prospecting, enrichment, and personalized outreach campaigns that scale your business development efforts.</span>
+            </li>
+            <li>
+                <strong>Client Onboarding System</strong><br>
+                <span class="editable" id="system2Desc">Streamlined onboarding workflows that reduce time-to-value and improve client satisfaction through automated document collection, welcome sequences, and task management.</span>
+            </li>
+            <li>
+                <strong>Data Entry Integration</strong><br>
+                <span class="editable" id="system3Desc">Connect disparate systems and eliminate manual data transfer between platforms, ensuring data consistency across your tech stack.</span>
+            </li>
+            <li>
+                <strong>Contract Creation and Auto-Reply System</strong><br>
+                <span class="editable" id="system4Desc">Generate customized contracts from templates and automate responses to common client inquiries, freeing up your team for high-value interactions.</span>
+            </li>
+            <li>
+                <strong>Customer Support Automation</strong><br>
+                <span class="editable" id="system5Desc">AI-powered chatbots and ticket routing systems that provide instant responses and ensure inquiries reach the right team member.</span>
+            </li>
+            <li>
+                <strong>Reporting and Analytics Dashboard</strong><br>
+                <span class="editable" id="system6Desc">Custom dashboards that aggregate data from multiple sources, providing real-time insights into your business performance.</span>
+            </li>
+        </ul>
+
+        <div class="closing-statement">
+            These systems can be implemented individually or as part of a comprehensive automation strategy. 
+            We're happy to discuss how any of these solutions might benefit your specific business needs.
+        </div>
+    </div>
+
+    <!-- Page 7: Investment -->
+    <div class="page content-page">
+        <h2 class="page-header">Investment Required</h2>
+        
+        <div class="notes-section">
+            <p>
+                <strong>Payment Structure:</strong> This is a multi-step package with a 10% deposit required to begin work. 
+                The remaining balance will be paid dependent on milestone completion and final delivery.
+            </p>
+            <p>
+                <strong>"Delivery"</strong> is defined as the fulfillment of the scope conditions outlined in the previous pages, 
+                and your payment is only due upon full satisfaction with the project.
+            </p>
+        </div>
+
+        <div style="margin: 30px 0;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h3 style="font-size: 16px; font-weight: bold; margin: 0;">LEVEL ONE IMPLEMENTATION FEE</h3>
+                <div style="display: flex; gap: 80px; font-size: 12px; font-weight: bold;">
+                    <span style="width: 80px; text-align: right;">PRICE</span>
+                    <span style="width: 50px; text-align: center;">QTY</span>
+                    <span style="width: 100px; text-align: right;">SUBTOTAL</span>
+                </div>
+            </div>
+
+            <div style="background: #f9f9f9; padding: 15px; border-left: 3px solid #000; margin-bottom: 10px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 12px; flex: 1;" class="editable" id="item1Name">Lead Automation System - Core Development</span>
+                    <div style="display: flex; gap: 80px; font-size: 12px;">
+                        <span style="width: 80px; text-align: right;" class="editable" id="item1Price">$5,500</span>
+                        <span style="width: 50px; text-align: center;" class="editable" id="item1Qty">1</span>
+                        <span style="width: 100px; text-align: right; font-weight: bold;" class="editable" id="item1Subtotal">$5,500</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: #f9f9f9; padding: 15px; border-left: 3px solid #000; margin-bottom: 10px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 12px; flex: 1;" class="editable" id="item2Name">CRM Integration & Setup</span>
+                    <div style="display: flex; gap: 80px; font-size: 12px;">
+                        <span style="width: 80px; text-align: right;" class="editable" id="item2Price">$1,800</span>
+                        <span style="width: 50px; text-align: center;" class="editable" id="item2Qty">1</span>
+                        <span style="width: 100px; text-align: right; font-weight: bold;" class="editable" id="item2Subtotal">$1,800</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: #f9f9f9; padding: 15px; border-left: 3px solid #000; margin-bottom: 10px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 12px; flex: 1;" class="editable" id="item3Name">Training & Documentation</span>
+                    <div style="display: flex; gap: 80px; font-size: 12px;">
+                        <span style="width: 80px; text-align: right;" class="editable" id="item3Price">$700</span>
+                        <span style="width: 50px; text-align: center;" class="editable" id="item3Qty">1</span>
+                        <span style="width: 100px; text-align: right; font-weight: bold;" class="editable" id="item3Subtotal">$700</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: #f9f9f9; padding: 15px; border-left: 3px solid #000; margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 12px; flex: 1;" class="editable" id="item4Name">30-Day Post-Launch Support</span>
+                    <div style="display: flex; gap: 80px; font-size: 12px;">
+                        <span style="width: 80px; text-align: right;" class="editable" id="item4Price">$500</span>
+                        <span style="width: 50px; text-align: center;" class="editable" id="item4Qty">1</span>
+                        <span style="width: 100px; text-align: right; font-weight: bold;" class="editable" id="item4Subtotal">$500</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: right; margin-bottom: 20px; padding-right: 0;">
+                <div style="display: flex; justify-content: flex-end; gap: 20px; padding: 8px 0; font-size: 12px;">
+                    <span>Subtotal</span>
+                    <span style="width: 100px; text-align: right;" class="editable" id="implementationSubtotal">$8,500</span>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 20px; padding: 8px 0; font-size: 12px; background: #f5f5f5; padding-right: 0;">
+                    <span>Deposit (10%)</span>
+                    <span style="width: 100px; text-align: right; font-weight: bold;" class="editable" id="depositAmount">$850</span>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 20px; padding: 12px 0; font-size: 14px; font-weight: bold;">
+                    <span>Total Due Now</span>
+                    <span style="width: 100px; text-align: right;" class="editable" id="totalDueNow">$850</span>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; margin-top: 40px; padding-top: 30px; border-top: 2px solid #ddd;">
+                <h3 style="font-size: 16px; font-weight: bold; margin: 0;">PLATFORM OR SOFTWARE FEES</h3>
+                <div style="display: flex; gap: 80px; font-size: 12px; font-weight: bold;">
+                    <span style="width: 80px; text-align: right;">PRICE</span>
+                    <span style="width: 50px; text-align: center;">QTY</span>
+                    <span style="width: 100px; text-align: right;">SUBTOTAL</span>
+                </div>
+            </div>
+
+            <div style="background: #f9f9f9; padding: 15px; border-left: 3px solid #000; margin-bottom: 10px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 12px; flex: 1;" class="editable" id="platform1Name">Make.com, monthly</span>
+                    <div style="display: flex; gap: 80px; font-size: 12px;">
+                        <span style="width: 80px; text-align: right;" class="editable" id="platform1Price">$30.00</span>
+                        <span style="width: 50px; text-align: center;" class="editable" id="platform1Qty">1</span>
+                        <span style="width: 100px; text-align: right;" class="editable" id="platform1Subtotal">$30.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: #f9f9f9; padding: 15px; border-left: 3px solid #000; margin-bottom: 20px;">
+                <div style="font-size: 11px; color: #666; font-style: italic;">
+                    <span class="editable" id="platform1Note">Monthly subscription to Make.com for automation workflows</span>
+                </div>
+            </div>
+
+            <div style="text-align: right; margin-bottom: 20px;">
+                <div style="display: flex; justify-content: flex-end; gap: 20px; padding: 8px 0; font-size: 12px;">
+                    <span>Subtotal</span>
+                    <span style="width: 100px; text-align: right;" class="editable" id="platformSubtotal">$30.00</span>
+                </div>
+                <div style="display: flex; justify-content: flex-end; gap: 20px; padding: 12px 0; font-size: 13px; font-weight: bold; border-top: 2px solid #000; margin-top: 8px; padding-top: 12px;">
+                    <span>Total</span>
+                    <span style="width: 100px; text-align: right;" class="editable" id="platformTotal">$30.00</span>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px; padding-top: 30px; border-top: 3px solid #000;">
+                <div style="text-align: right;">
+                    <div style="display: flex; justify-content: flex-end; gap: 20px; padding: 12px 0; font-size: 16px; font-weight: bold;">
+                        <span>Balance Due Upon Completion:</span>
+                        <span style="width: 100px; text-align: right;" class="editable" id="balanceDue">$7,650</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 8: Terms & Conditions -->
+    <div class="page content-page">
+        <h2 class="page-header">Terms & Conditions</h2>
+        
+        <div class="terms-content">
+            <p>
+                This agreement is entered into between <strong>Level One</strong> ("Service Provider") and 
+                <strong><span class="editable" id="termsClientName">Client Name</span></strong> ("Client") 
+                for the services described in this proposal.
+            </p>
+
+            <h3>1. Scope of Work</h3>
+            <p>
+                Level One agrees to fulfill the proposal of work according to the description laid out in the 
+                previous pages of this document. Any changes to the scope of work must be agreed upon in writing 
+                by both parties and may result in adjusted timelines and costs.
+            </p>
+
+            <h3>2. Payment Terms</h3>
+            <p>
+                A 10% deposit is required to commence work. The remaining balance will be paid according to 
+                milestone completion as outlined in the project timeline. Final payment is due upon delivery 
+                and client satisfaction with the completed project.
+            </p>
+
+            <h3>3. Timeline</h3>
+            <p>
+                The Service Provider will make reasonable efforts to adhere to the timeline outlined in this proposal. 
+                Delays caused by client unavailability, delayed feedback, or changes in scope may result in 
+                adjusted timelines.
+            </p>
+
+            <h3>4. Client Responsibilities</h3>
+            <p>
+                The Client agrees to provide timely access to necessary systems, information, and feedback required 
+                for project completion. The Client is responsible for the accuracy of information provided and 
+                maintaining appropriate backups of their data.
+            </p>
+
+            <h3>5. Acceptance and Signatures</h3>
+            <p>
+                By signing below, both parties agree to the terms outlined in this proposal and commit to 
+                fulfilling their respective obligations.
+            </p>
+        </div>
+
+        <div class="signature-section">
+            <div class="signature-box">
+                <h4>Level One (Service Provider)</h4>
+                <canvas class="signature-pad" id="providerSignature" width="280" height="120"></canvas>
+                <div class="signature-controls">
+                    <button class="btn btn-clear" onclick="clearSignature('providerSignature', 'providerDate')">Clear</button>
+                    <label class="btn btn-upload">
+                        Upload
+                        <input type="file" accept="image/*" style="display: none;" onchange="uploadSignature(event, 'providerSignature', 'providerDate')">
+                    </label>
+                </div>
+                <div class="signature-date" id="providerDate">Date: Not signed</div>
+            </div>
+
+            <div class="signature-box">
+                <h4>Client</h4>
+                <canvas class="signature-pad" id="clientSignature" width="280" height="120"></canvas>
+                <div class="signature-controls">
+                    <button class="btn btn-clear" onclick="clearSignature('clientSignature', 'clientDate')">Clear</button>
+                    <label class="btn btn-upload">
+                        Upload
+                        <input type="file" accept="image/*" style="display: none;" onchange="uploadSignature(event, 'clientSignature', 'clientDate')">
+                    </label>
+                </div>
+                <div class="signature-date" id="clientDate">Date: Not signed</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 9: Service Agreement (Part 1) -->
+    <div class="page content-page">
+        <h2 class="page-header">Service Agreement</h2>
+        
+        <div class="terms-content">
+            <p>
+                This Service Agreement ("Agreement") is made effective as of the date of last signature below 
+                between Level One and <strong><span class="editable" id="agreementClientName">Client Name</span></strong>.
+            </p>
+
+            <h3>1. Services</h3>
+            <p>
+                The Service Provider agrees to provide web design and automation services as described in this proposal. 
+                Services will be performed in a professional and workmanlike manner in accordance with industry standards.
+            </p>
+
+            <h3>2. Intellectual Property</h3>
+            <p>
+                Upon full payment, all custom work products created specifically for this project will become the 
+                property of the Client. The Service Provider retains rights to any pre-existing materials, frameworks, 
+                or tools used in the delivery of services. The Service Provider may showcase the completed work in 
+                portfolios and marketing materials unless otherwise agreed in writing.
+            </p>
+
+            <h3>3. Confidentiality</h3>
+            <p>
+                Both parties agree to maintain confidentiality of any proprietary or sensitive information shared 
+                during the course of this project. This obligation survives the termination of this Agreement. 
+                Neither party shall disclose confidential information to third parties without prior written consent, 
+                except as required by law.
+            </p>
+
+            <h3>4. Warranties and Disclaimers</h3>
+            <p>
+                The Service Provider warrants that services will be performed with reasonable care and skill and that 
+                all deliverables will be free from material defects for a period of 30 days following delivery. 
+                However, the Service Provider makes no warranties regarding third-party integrations, services, 
+                or platforms beyond its control. The Client acknowledges that automation systems depend on external 
+                platforms and APIs which may change without notice.
+            </p>
+
+            <h3>5. Limitation of Liability</h3>
+            <p>
+                The Service Provider's total liability under this Agreement shall not exceed the total amount 
+                paid by the Client for the services. Neither party shall be liable for indirect, incidental, 
+                consequential, or punitive damages, including but not limited to loss of profits, data, or business 
+                opportunities, even if advised of the possibility of such damages.
+            </p>
+
+            <h3>6. Support and Maintenance</h3>
+            <p>
+                The Service Provider will provide support as outlined in the scope of work. Post-launch support 
+                periods are specified in the investment section. Additional support or maintenance beyond the agreed 
+                scope may be provided at the Service Provider's standard hourly rates or through a separate 
+                maintenance agreement.
+            </p>
+        </div>
+    </div>
+
+    <!-- Page 10: Service Agreement (Part 2) & Signatures -->
+    <div class="page content-page">
+        <div class="terms-content" style="margin-top: 0;">
+            <h3>7. Termination</h3>
+            <p>
+                Either party may terminate this Agreement with written notice if the other party breaches any 
+                material term and fails to remedy such breach within 15 days of written notice. Upon termination, 
+                the Client shall pay for all services rendered to date, including any work in progress, calculated 
+                on a pro-rata basis. The Service Provider will deliver all completed work and source files upon 
+                receipt of payment for services rendered.
+            </p>
+
+            <h3>8. Force Majeure</h3>
+            <p>
+                Neither party shall be liable for any failure or delay in performance due to circumstances beyond 
+                their reasonable control, including but not limited to acts of God, natural disasters, war, 
+                terrorism, labor disputes, government actions, or technical failures of third-party services. 
+                The affected party shall notify the other party promptly and make reasonable efforts to minimize 
+                the impact of such circumstances.
+            </p>
+
+            <h3>9. Dispute Resolution</h3>
+            <p>
+                Any disputes arising from this Agreement shall first be attempted to be resolved through good 
+                faith negotiation between the parties. If negotiation fails within 30 days, the parties agree 
+                to pursue mediation before resorting to litigation. If mediation is unsuccessful, disputes shall 
+                be resolved through binding arbitration in accordance with applicable law, with the prevailing 
+                party entitled to recover reasonable attorney's fees and costs.
+            </p>
+
+            <h3>10. Independent Contractor</h3>
+            <p>
+                The Service Provider is an independent contractor and not an employee, partner, or joint venturer 
+                of the Client. The Service Provider is responsible for all taxes, insurance, and other obligations 
+                related to its business operations. Nothing in this Agreement creates an employment relationship 
+                or grants the Service Provider authority to bind the Client to any obligation.
+            </p>
+
+            <h3>11. Amendments and Modifications</h3>
+            <p>
+                This Agreement may only be amended or modified by a written document signed by both parties. 
+                No oral modifications shall be valid. Any waiver of a provision must be in writing and shall 
+                not constitute a waiver of any other provision or subsequent breach.
+            </p>
+
+            <h3>12. Entire Agreement</h3>
+            <p>
+                This Agreement, together with the proposal pages and any attached exhibits, constitutes the 
+                entire agreement between the parties and supersedes all prior negotiations, understandings, 
+                and agreements, whether written or oral. If any provision of this Agreement is found to be 
+                unenforceable, the remaining provisions shall remain in full force and effect.
+            </p>
+
+            <h3>13. Governing Law</h3>
+            <p>
+                This Agreement shall be governed by and construed in accordance with the laws of the jurisdiction 
+                in which the Service Provider is located, without regard to conflict of law principles.
+            </p>
+        </div>
+
+        <div class="signature-section" style="margin-top: 25px;">
+            <div class="signature-box">
+                <h4>Level One (Service Provider)</h4>
+                <canvas class="signature-pad" id="providerSignature2" width="280" height="120"></canvas>
+                <div class="signature-controls">
+                    <button class="btn btn-clear" onclick="clearSignature('providerSignature2', 'providerDate2')">Clear</button>
+                    <label class="btn btn-upload">
+                        Upload
+                        <input type="file" accept="image/*" style="display: none;" onchange="uploadSignature(event, 'providerSignature2', 'providerDate2')">
+                    </label>
+                </div>
+                <div class="signature-date" id="providerDate2">Date: Not signed</div>
+            </div>
+
+            <div class="signature-box">
+                <h4>Client</h4>
+                <canvas class="signature-pad" id="clientSignature2" width="280" height="120"></canvas>
+                <div class="signature-controls">
+                    <button class="btn btn-clear" onclick="clearSignature('clientSignature2', 'clientDate2')">Clear</button>
+                    <label class="btn btn-upload">
+                        Upload
+                        <input type="file" accept="image/*" style="display: none;" onchange="uploadSignature(event, 'clientSignature2', 'clientDate2')">
+                    </label>
+                </div>
+                <div class="signature-date" id="clientDate2">Date: Not signed</div>
+            </div>
+        </div>
+
+        <div class="download-section">
+            <button class="btn-download" id="downloadBtn" onclick="generatePDF()" disabled>
+                Download Signed Proposal
+            </button>
+            <p class="download-note">
+                All signatures must be completed before downloading
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // URL Parameter Handling
+        function loadURLParameters() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const editableElements = document.querySelectorAll('.editable');
+            
+            editableElements.forEach(element => {
+                const paramValue = urlParams.get(element.id);
+                if (paramValue) {
+                    element.textContent = decodeURIComponent(paramValue);
+                }
+            });
+        }
+
+        // Signature Pad Functionality
+        const signaturePads = {};
+
+        function initSignaturePad(canvasId) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+            let isDrawing = false;
+            let lastX = 0;
+            let lastY = 0;
+
+            signaturePads[canvasId] = {
+                canvas: canvas,
+                ctx: ctx,
+                isEmpty: true
+            };
+
+            function getMousePos(e) {
+                const rect = canvas.getBoundingClientRect();
+                const scaleX = canvas.width / rect.width;
+                const scaleY = canvas.height / rect.height;
+                
+                return {
+                    x: (e.clientX - rect.left) * scaleX,
+                    y: (e.clientY - rect.top) * scaleY
+                };
+            }
+
+            function getTouchPos(e) {
+                const rect = canvas.getBoundingClientRect();
+                const scaleX = canvas.width / rect.width;
+                const scaleY = canvas.height / rect.height;
+                const touch = e.touches[0];
+                
+                return {
+                    x: (touch.clientX - rect.left) * scaleX,
+                    y: (touch.clientY - rect.top) * scaleY
+                };
+            }
+
+            canvas.addEventListener('mousedown', (e) => {
+                isDrawing = true;
+                const pos = getMousePos(e);
+                lastX = pos.x;
+                lastY = pos.y;
+            });
+
+            canvas.addEventListener('mousemove', (e) => {
+                if (!isDrawing) return;
+                
+                const pos = getMousePos(e);
+                ctx.beginPath();
+                ctx.moveTo(lastX, lastY);
+                ctx.lineTo(pos.x, pos.y);
+                ctx.strokeStyle = '#000';
+                ctx.lineWidth = 2;
+                ctx.lineCap = 'round';
+                ctx.stroke();
+                
+                lastX = pos.x;
+                lastY = pos.y;
+                signaturePads[canvasId].isEmpty = false;
+                updateDateAndButton(canvasId);
+            });
+
+            canvas.addEventListener('mouseup', () => {
+                isDrawing = false;
+            });
+
+            canvas.addEventListener('mouseleave', () => {
+                isDrawing = false;
+            });
+
+            // Touch events
+            canvas.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                isDrawing = true;
+                const pos = getTouchPos(e);
+                lastX = pos.x;
+                lastY = pos.y;
+            });
+
+            canvas.addEventListener('touchmove', (e) => {
+                e.preventDefault();
+                if (!isDrawing) return;
+                
+                const pos = getTouchPos(e);
+                ctx.beginPath();
+                ctx.moveTo(lastX, lastY);
+                ctx.lineTo(pos.x, pos.y);
+                ctx.strokeStyle = '#000';
+                ctx.lineWidth = 2;
+                ctx.lineCap = 'round';
+                ctx.stroke();
+                
+                lastX = pos.x;
+                lastY = pos.y;
+                signaturePads[canvasId].isEmpty = false;
+                updateDateAndButton(canvasId);
+            });
+
+            canvas.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                isDrawing = false;
+            });
+        }
+
+        function clearSignature(canvasId, dateId) {
+            const pad = signaturePads[canvasId];
+            pad.ctx.clearRect(0, 0, pad.canvas.width, pad.canvas.height);
+            pad.isEmpty = true;
+            document.getElementById(dateId).textContent = 'Date: Not signed';
+            checkAllSignatures();
+        }
+
+        function uploadSignature(event, canvasId, dateId) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const pad = signaturePads[canvasId];
+                    pad.ctx.clearRect(0, 0, pad.canvas.width, pad.canvas.height);
+                    
+                    const scale = Math.min(
+                        pad.canvas.width / img.width,
+                        pad.canvas.height / img.height
+                    );
+                    const x = (pad.canvas.width - img.width * scale) / 2;
+                    const y = (pad.canvas.height - img.height * scale) / 2;
+                    
+                    pad.ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+                    pad.isEmpty = false;
+                    updateDateAndButton(canvasId);
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function updateDateAndButton(canvasId) {
+            let dateId;
+            if (canvasId === 'providerSignature') dateId = 'providerDate';
+            else if (canvasId === 'clientSignature') dateId = 'clientDate';
+            else if (canvasId === 'providerSignature2') dateId = 'providerDate2';
+            else if (canvasId === 'clientSignature2') dateId = 'clientDate2';
+            
+            const today = new Date();
+            const dateStr = today.toLocaleDateString('en-US', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            document.getElementById(dateId).textContent = `Date: ${dateStr}`;
+            
+            checkAllSignatures();
+        }
+
+        function checkAllSignatures() {
+            const allSigned = !signaturePads['providerSignature'].isEmpty &&
+                            !signaturePads['clientSignature'].isEmpty &&
+                            !signaturePads['providerSignature2'].isEmpty &&
+                            !signaturePads['clientSignature2'].isEmpty;
+            
+            document.getElementById('downloadBtn').disabled = !allSigned;
+        }
+
+        // PDF Generation
+        async function generatePDF() {
+            const downloadBtn = document.getElementById('downloadBtn');
+            downloadBtn.disabled = true;
+            downloadBtn.textContent = 'Generating PDF...';
+
+            try {
+                // You'll need to add your PDFShift API key here
+                const API_KEY = 'YOUR_PDFSHIFT_API_KEY';
+                
+                const response = await fetch('https://api.pdfshift.io/v3/convert/pdf', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Basic ' + btoa('api:' + API_KEY)
+                    },
+                    body: JSON.stringify({
+                        source: document.documentElement.outerHTML,
+                        landscape: false,
+                        use_print: true
+                    })
+                });
+
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'Level_One_Proposal.pdf';
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    document.body.removeChild(a);
+                    
+                    downloadBtn.textContent = 'Download Signed Proposal';
+                    downloadBtn.disabled = false;
+                } else {
+                    throw new Error('PDF generation failed');
+                }
+            } catch (error) {
+                console.error('Error generating PDF:', error);
+                alert('Error generating PDF. Please ensure your PDFShift API key is configured correctly.');
+                downloadBtn.textContent = 'Download Signed Proposal';
+                downloadBtn.disabled = false;
+            }
+        }
+
+        // Initialize everything on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadURLParameters();
+            
+            initSignaturePad('providerSignature');
+            initSignaturePad('clientSignature');
+            initSignaturePad('providerSignature2');
+            initSignaturePad('clientSignature2');
+        });
+    </script>
+</body>
+</html>
