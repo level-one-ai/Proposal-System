@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Level One - Proposal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -11,10 +12,22 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-orange: #e67e22;
+            --primary-orange-glow: rgba(230, 126, 34, 0.6);
+            --dark-bg: #0a0a0a;
+            --card-bg: #141414;
+            --text-light: #ffffff;
+            --text-muted: #a0a0a0;
+            --highlight-yellow: rgba(255, 236, 153, 0.35);
+            --border-light: #333;
+        }
+
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Source Sans Pro', sans-serif;
             background: #f5f5f5;
             color: #333;
+            line-height: 1.6;
         }
 
         .page {
@@ -29,333 +42,705 @@
         }
 
         .editable {
-            background-color: #fffff0;
-            padding: 2px 4px;
+            background: linear-gradient(180deg, transparent 60%, var(--highlight-yellow) 60%);
+            padding: 0 4px;
             border-radius: 2px;
-            min-width: 50px;
-            display: inline-block;
-        }
-
-        .problem-list li.editable,
-        .solution-list li.editable {
-            display: block;
+            display: inline;
         }
 
         /* Page 1 - Cover */
         .page-1 {
-            background: white;
-            color: #000;
+            background: url('https://github.com/level-one-ai/Proposal-System/blob/main/processed-image.png?raw=true') center center / cover no-repeat;
+            color: var(--text-light);
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: space-between;
             padding: 0;
+            position: relative;
         }
 
-        .cover-top-section {
-            background: white;
-            padding: 60px 60px 30px 60px;
-            height: 50%;
+        .page-1::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.8) 100%);
+            z-index: 1;
+        }
+
+        .cover-content {
+            position: relative;
+            z-index: 2;
+            padding: 50px 60px;
+            height: 100%;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
         }
 
         .logo-section {
             display: flex;
             align-items: center;
             gap: 15px;
-            margin-bottom: 40px;
         }
 
         .logo-placeholder {
             width: 50px;
             height: 50px;
-            border: 2px solid #000;
+            border: 2px solid var(--text-light);
             border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            color: #000;
+            font-size: 18px;
+            color: var(--text-light);
             font-weight: bold;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
         }
 
         .company-name {
-            font-size: 28px;
-            font-weight: bold;
-            color: #000;
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 600;
+            color: var(--text-light);
+            letter-spacing: 1px;
+        }
+
+        .cover-center {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 85%;
+        }
+
+        .proposal-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--primary-orange);
+            margin-bottom: 15px;
+            font-weight: 600;
         }
 
         .proposal-title {
-            font-size: 38px;
-            font-weight: bold;
-            line-height: 1.3;
-            margin: 0 0 20px 0;
-            color: #000;
+            font-family: 'Playfair Display', serif;
+            font-size: 42px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 0 0 25px 0;
+            color: var(--text-light);
         }
 
         .proposal-subtitle {
-            font-size: 14px;
-            color: #000;
-            max-width: 600px;
-            line-height: 1.6;
-            margin-bottom: 0;
+            font-size: 15px;
+            color: rgba(255,255,255,0.85);
+            max-width: 520px;
+            line-height: 1.7;
+            font-weight: 300;
         }
 
-        .cover-image-container {
-            height: 50%;
-            width: 100%;
-            overflow: hidden;
+        .cover-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.2);
         }
 
-        .cover-image {
-            width: 100%;
-            height: 100%;
+        .cover-footer-item {
+            font-size: 12px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .cover-footer-item strong {
             display: block;
-            object-fit: cover;
+            color: var(--text-light);
+            font-size: 13px;
+            margin-top: 3px;
         }
 
-        /* Content Pages */
+        /* Dark Section Pages */
+        .dark-page {
+            background: var(--dark-bg);
+            color: var(--text-light);
+            padding: 50px 55px;
+        }
+
+        .dark-page .page-header {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            border: none;
+            padding-bottom: 0;
+        }
+
+        .dark-page .page-subheader {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            line-height: 1.7;
+            max-width: 90%;
+        }
+
+        .dark-page .editable {
+            background: linear-gradient(180deg, transparent 60%, rgba(255, 200, 87, 0.3) 60%);
+        }
+
+        /* Light Content Pages */
         .content-page {
-            padding: 50px 55px 55px 55px;
+            padding: 50px 55px;
         }
 
         .page-header {
-            font-size: 28px;
-            font-weight: bold;
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 600;
             color: #000;
-            margin-bottom: 25px;
-            border-bottom: 3px solid #000;
+            margin-bottom: 8px;
+            border-bottom: 2px solid #000;
             padding-bottom: 12px;
         }
 
-        .letter-content {
-            font-size: 12px;
+        .page-subheader {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        /* Bullet List Style */
+        .bullet-list {
+            list-style: disc;
+            margin: 20px 0;
+            padding-left: 25px;
+        }
+
+        .bullet-list li {
+            font-size: 13px;
             line-height: 1.7;
             margin-bottom: 12px;
+            color: #444;
+        }
+
+        /* Letter Content */
+        .letter-content {
+            font-size: 13px;
+            line-height: 1.8;
+            margin-bottom: 15px;
         }
 
         .letter-content p {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
-        .problem-list, .solution-list, .systems-list {
+        /* Problem List - Dark Theme */
+        .problem-list {
             list-style: none;
-            margin: 18px 0;
+            margin: 20px 0;
         }
 
-        .problem-list li, .solution-list li {
-            padding: 14px;
-            margin-bottom: 10px;
-            background: #f9f9f9;
-            border-left: 3px solid #000;
-            font-size: 11px;
-            line-height: 1.6;
-        }
-
-        .systems-list li {
-            padding: 12px;
-            margin-bottom: 9px;
-            background: #f9f9f9;
-            border-left: 3px solid #000;
-            font-size: 11px;
-            line-height: 1.5;
-        }
-
-        .problem-list li strong, .solution-list li strong {
-            display: block;
+        .problem-list li {
+            padding: 18px 20px;
+            margin-bottom: 12px;
+            background: var(--card-bg);
+            border-left: 3px solid var(--primary-orange);
             font-size: 13px;
-            margin-bottom: 5px;
-            color: #000;
+            line-height: 1.6;
+            border-radius: 0 8px 8px 0;
         }
 
-        .systems-list li strong {
-            font-size: 12px;
+        .problem-list li strong {
             display: block;
-            margin-bottom: 4px;
+            font-size: 14px;
+            margin-bottom: 6px;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .problem-list li span {
+            color: var(--text-muted);
+        }
+
+        /* Solution List - Dark Theme */
+        .solution-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .solution-list li {
+            padding: 18px 20px;
+            margin-bottom: 12px;
+            background: var(--card-bg);
+            border-left: 3px solid var(--primary-orange);
+            font-size: 13px;
+            line-height: 1.6;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .solution-list li strong {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 6px;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .solution-list li span {
+            color: var(--text-muted);
         }
 
         .closing-statement {
-            margin-top: 20px;
-            padding: 16px;
-            background: #f5f5f5;
-            border-left: 3px solid #000;
+            margin-top: 25px;
+            padding: 18px 20px;
+            background: rgba(230, 126, 34, 0.1);
+            border-left: 3px solid var(--primary-orange);
             font-style: italic;
-            font-size: 12px;
-            line-height: 1.6;
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--text-muted);
+            border-radius: 0 8px 8px 0;
+        }
+
+        .dark-page .closing-statement {
+            background: rgba(230, 126, 34, 0.15);
         }
 
         .signature-line {
             margin-top: 25px;
-            font-size: 12px;
+            font-size: 13px;
+            color: var(--text-light);
         }
 
-        /* Timeline Section */
+        /* Timeline Section - Hexagon Design */
         .timeline-section {
-            margin-top: 30px;
-            padding: 20px 0;
-        }
-
-        .timeline-container {
+            padding: 15px 0;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 15px;
-            position: relative;
-            padding: 20px 0;
+            flex-direction: column;
+            height: calc(100% - 100px);
         }
 
-        .timeline-step {
-            flex: 1;
+        .timeline-wrapper {
             display: flex;
             flex-direction: column;
             align-items: center;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: slideUp 0.6s ease-out forwards;
+            flex: 1;
         }
 
-        .timeline-step:nth-child(1) { animation-delay: 0s; }
-        .timeline-step:nth-child(2) { animation-delay: 1s; }
-        .timeline-step:nth-child(3) { animation-delay: 2s; }
-        .timeline-step:nth-child(4) { animation-delay: 3s; }
-
-        @keyframes slideUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .timeline-circle {
-            width: 110px;
-            height: 110px;
-            border-radius: 50%;
-            background: white;
-            border: 4px solid #333;
+        .hexagon-container {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            position: relative;
-            margin-bottom: 18px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            gap: -5px;
         }
 
-        .timeline-circle::before {
+        .hex-row {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-top: -18px;
+        }
+
+        .hex-row:first-child {
+            margin-top: 0;
+        }
+
+        .hexagon {
+            width: 100px;
+            height: 115px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hexagon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .hexagon .hex-bg {
+            fill: var(--card-bg);
+            stroke: #444;
+            stroke-width: 2;
+            transition: all 0.3s ease;
+        }
+
+        .hexagon .hex-border {
+            fill: none;
+            stroke: var(--primary-orange);
+            stroke-width: 3;
+            opacity: 0;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 8px var(--primary-orange-glow));
+        }
+
+        .hexagon:hover .hex-border,
+        .hexagon.active .hex-border {
+            opacity: 1;
+        }
+
+        .hexagon:hover .hex-bg,
+        .hexagon.active .hex-bg {
+            stroke: var(--primary-orange);
+        }
+
+        .hexagon-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--text-light);
+            pointer-events: none;
+        }
+
+        .hexagon-step {
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+
+        .hexagon-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-light);
+        }
+
+        .timeline-details {
+            width: 100%;
+            min-height: 200px;
+            margin-top: 25px;
+            text-align: center;
+            flex: 1;
+        }
+
+        .milestone-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .milestone-content.active {
+            display: block;
+        }
+
+        .milestone-placeholder {
+            color: var(--text-muted);
+            font-size: 14px;
+            font-style: italic;
+            padding: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .milestone-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary-orange);
+            margin-bottom: 8px;
+        }
+
+        .milestone-date {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .milestone-desc {
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .milestone-tasks {
+            margin-top: 12px;
+            list-style: none;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .milestone-tasks li {
+            font-size: 12px;
+            color: var(--text-muted);
+            padding: 5px 0;
+            padding-left: 18px;
+            position: relative;
+        }
+
+        .milestone-tasks li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary-orange);
+        }
+
+        .timeline-footer {
+            margin-top: auto;
+            padding: 15px 20px;
+            background: rgba(230, 126, 34, 0.1);
+            border-left: 3px solid var(--primary-orange);
+            font-size: 12px;
+            line-height: 1.7;
+            color: var(--text-muted);
+            border-radius: 0 6px 6px 0;
+            text-align: left;
+        }
+
+        /* Related Systems - Box Design with Hover */
+        .systems-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .system-box {
+            background: #fafafa;
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 18px;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .system-box::before {
             content: '';
             position: absolute;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 3px solid #666;
-            opacity: 0.2;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--primary-orange), rgba(230, 126, 34, 0.3));
+            opacity: 0.5;
+            transition: all 0.3s ease;
         }
 
-        .timeline-icon {
-            font-size: 36px;
-            color: #333;
+        .system-box:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1), -4px 0 20px rgba(230, 126, 34, 0.15);
+            border-color: var(--primary-orange);
         }
 
-        .timeline-connector-line {
-            position: absolute;
-            top: 75px;
-            left: 10%;
-            right: 10%;
-            height: 3px;
-            background: #333;
-            z-index: -1;
+        .system-box:hover::before {
+            opacity: 1;
+            width: 5px;
+            box-shadow: 0 0 15px rgba(230, 126, 34, 0.4);
         }
 
-        .timeline-content {
-            text-align: center;
-            max-width: 130px;
-        }
-
-        .timeline-date {
-            font-weight: bold;
+        .system-box h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 8px;
             color: #000;
-            margin-bottom: 6px;
-            font-size: 11px;
         }
 
-        .timeline-desc {
-            font-size: 10px;
-            line-height: 1.4;
+        .system-box p {
+            font-size: 11px;
+            line-height: 1.6;
             color: #666;
         }
 
         /* Investment Page */
-        .quote-table {
-            width: 100%;
-            margin: 25px 0;
-            border-collapse: collapse;
-            font-size: 11px;
-        }
-
-        .quote-table thead {
-            background: #f9f9f9;
-        }
-
-        .quote-table th {
-            padding: 12px;
-            text-align: left;
-            font-weight: bold;
-            border-bottom: 2px solid #ddd;
-            font-size: 12px;
-        }
-
-        .quote-table th:nth-child(2),
-        .quote-table th:nth-child(3),
-        .quote-table th:nth-child(4) {
-            text-align: right;
-        }
-
-        .quote-table td {
-            padding: 12px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .quote-table td:nth-child(2),
-        .quote-table td:nth-child(3),
-        .quote-table td:nth-child(4) {
-            text-align: right;
-        }
-
-        .quote-table tbody tr:hover {
-            background: #fafafa;
-        }
-
-        .total-section {
-            margin-top: 15px;
-            text-align: right;
-            font-size: 12px;
-            padding-top: 15px;
-            border-top: 2px solid #ddd;
-        }
-
-        .total-line {
-            padding: 8px 0;
-        }
-
-        .total-line.final {
-            font-size: 16px;
-            font-weight: bold;
-            color: #000;
-            border-top: 2px solid #000;
-            padding-top: 12px;
-            margin-top: 8px;
-        }
-
-        .notes-section {
-            background: #f5f5f5;
-            padding: 18px;
-            border-left: 3px solid #000;
+        .investment-section {
             margin: 20px 0;
-            font-size: 11px;
+        }
+
+        .payment-notes {
+            background: #f8f8f8;
+            padding: 18px 20px;
+            border-left: 3px solid #000;
+            margin-bottom: 25px;
+            font-size: 12px;
             line-height: 1.7;
         }
 
-        .notes-section p {
+        .payment-notes p {
             margin-bottom: 8px;
+        }
+
+        .payment-notes p:last-child {
+            margin-bottom: 0;
+        }
+
+        .milestone-payment-section {
+            margin-bottom: 25px;
+        }
+
+        .milestone-payment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            background: #000;
+            color: #fff;
+            margin-bottom: 0;
+        }
+
+        .milestone-payment-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .milestone-payment-header .percentage {
+            font-size: 13px;
+            color: var(--primary-orange);
+            font-weight: 600;
+        }
+
+        .milestone-subheader {
+            font-size: 11px;
+            color: #666;
+            padding: 10px 15px;
+            background: #f5f5f5;
+            border-bottom: 1px solid #e5e5e5;
+            font-style: italic;
+        }
+
+        .line-items {
+            border: 1px solid #e5e5e5;
+            border-top: none;
+        }
+
+        .line-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            font-size: 12px;
+        }
+
+        .line-item:last-child {
+            border-bottom: none;
+        }
+
+        .line-item-name {
+            flex: 1;
+            color: #333;
+        }
+
+        .line-item-price {
+            width: 90px;
+            text-align: right;
+            font-weight: 600;
+        }
+
+        .milestone-subtotal {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 15px;
+            background: #f9f9f9;
+            border: 1px solid #e5e5e5;
+            border-top: none;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        .payment-summary {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 3px solid #000;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            font-size: 13px;
+        }
+
+        .summary-row.total {
+            font-size: 16px;
+            font-weight: 700;
+            padding-top: 15px;
+            margin-top: 10px;
+            border-top: 2px solid #000;
+        }
+
+        .summary-row .label {
+            color: #333;
+        }
+
+        .summary-row .amount {
+            font-weight: 600;
+        }
+
+        /* Platform Fees Section */
+        .platform-section {
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid #ddd;
+        }
+
+        .platform-header {
+            font-family: 'Playfair Display', serif;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        .platform-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            background: #f9f9f9;
+            border-left: 3px solid #666;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+
+        .platform-note {
+            font-size: 11px;
+            color: #666;
+            font-style: italic;
+            margin-top: -4px;
+            margin-bottom: 15px;
+            padding-left: 15px;
+        }
+
+        .payment-notes-compact {
+            background: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px 15px;
+            margin-top: 15px;
+            font-size: 10px;
+            line-height: 1.5;
+            color: #555;
+        }
+
+        .payment-notes-compact p {
+            margin-bottom: 6px;
+        }
+
+        .payment-notes-compact p:last-child {
+            margin-bottom: 0;
+        }
+
+        .payment-notes-compact strong {
+            color: #333;
         }
 
         /* Terms and Service Agreement */
@@ -366,37 +751,43 @@
         }
 
         .terms-content h3 {
-            font-size: 14px;
-            margin: 18px 0 10px 0;
+            font-family: 'Playfair Display', serif;
+            font-size: 13px;
+            font-weight: 600;
+            margin: 18px 0 8px 0;
             color: #000;
         }
 
         .terms-content p {
             margin-bottom: 10px;
             text-align: justify;
+            color: #444;
         }
 
         .signature-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-top: 35px;
+            gap: 25px;
+            margin-top: 30px;
         }
 
         .signature-box {
-            border: 2px solid #ddd;
+            border: 1px solid #ddd;
             border-radius: 8px;
             padding: 18px;
+            background: #fafafa;
         }
 
         .signature-box h4 {
+            font-family: 'Playfair Display', serif;
             margin-bottom: 12px;
-            font-size: 14px;
+            font-size: 13px;
+            font-weight: 600;
         }
 
         .signature-pad {
             width: 100%;
-            height: 120px;
+            height: 100px;
             border: 2px dashed #ccc;
             border-radius: 4px;
             cursor: crosshair;
@@ -407,7 +798,7 @@
         .signature-controls {
             display: flex;
             gap: 8px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .btn {
@@ -415,8 +806,9 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 11px;
             transition: all 0.3s;
+            font-family: 'Source Sans Pro', sans-serif;
         }
 
         .btn-clear {
@@ -438,15 +830,14 @@
         }
 
         .signature-date {
-            font-size: 11px;
+            font-size: 10px;
             color: #666;
-            margin-top: 8px;
         }
 
         .download-section {
-            margin-top: 30px;
+            margin-top: 25px;
             text-align: center;
-            padding: 25px;
+            padding: 20px;
             background: #f9f9f9;
             border-radius: 8px;
         }
@@ -455,11 +846,13 @@
             background: #000;
             color: white;
             padding: 12px 35px;
-            font-size: 16px;
+            font-size: 14px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-weight: 600;
         }
 
         .btn-download:hover:not(:disabled) {
@@ -474,8 +867,8 @@
         }
 
         .download-note {
-            margin-top: 12px;
-            font-size: 12px;
+            margin-top: 10px;
+            font-size: 11px;
             color: #666;
         }
 
@@ -497,351 +890,506 @@
 
     <!-- Page 1: Cover -->
     <div class="page page-1">
-        <div class="cover-top-section">
+        <div class="cover-content">
             <div class="logo-section">
                 <div class="logo-placeholder">L1</div>
                 <div class="company-name">Level One</div>
             </div>
             
-            <div>
-                <h1 class="proposal-title editable" id="proposalTitle">Inbound Lead Automation System for 1SecondCopy</h1>
+            <div class="cover-center">
+                <div class="proposal-label">Project Proposal</div>
+                <h1 class="proposal-title" id="proposalTitle">E-Commerce Platform & Automation System for <span class="editable">Cerka</span></h1>
                 <p class="proposal-subtitle">
-                    This document contains all the necessary information regarding our proposed solution, 
-                    including detailed scope of work, timeline, and investment details. We look forward 
-                    to partnering with you on this project.
+                    This comprehensive proposal outlines our approach to building a fully automated, 
+                    AI-powered e-commerce platform. Inside, you'll find detailed scope of work, 
+                    milestone-based timelines, and transparent investment breakdowns. We look forward 
+                    to partnering with you on this transformative project.
                 </p>
             </div>
-        </div>
 
-        <div class="cover-image-container">
-            <img src="https://github.com/level-one-ai/Proposal-System/blob/main/t0b6ybjnz5rmr0cw02ebxf13cc.png?raw=true" alt="Cover Image" class="cover-image">
+            <div class="cover-footer">
+                <div class="cover-footer-item">
+                    Prepared by
+                    <strong>Dean @ Level One</strong>
+                </div>
+                <div class="cover-footer-item">
+                    Date
+                    <strong>January 2026</strong>
+                </div>
+                <div class="cover-footer-item">
+                    Contact
+                    <strong>dean@levelone.digital</strong>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Page 2: Statement -->
+    <!-- Page 2: Statement / Introduction -->
     <div class="page content-page">
-        <h2 class="page-header editable" id="statementHeader">Time-Consuming Manual Lead Processing</h2>
+        <h2 class="page-header">Understanding Your Challenges</h2>
+        <p class="page-subheader">Before we can solve a problem, we need to understand it. This section outlines the key challenges we've identified through our discussions, and why addressing them is crucial for your business growth.</p>
         
         <div class="letter-content">
-            <p>Dear <span class="editable" id="clientName">Client</span>,</p>
+            <p>Dear <span class="editable" id="clientName">Rafal</span>,</p>
             
             <p style="margin-top: 15px;">
-                I wanted to reach out regarding the challenges your team is currently facing with lead management. 
-                Based on our recent discussions, I understand you're experiencing several operational inefficiencies 
-                that are impacting your team's productivity and growth potential.
+                Thank you for taking the time to discuss your business needs with us. After our conversations, 
+                it's clear that you're facing several operational challenges that are limiting your growth potential 
+                and consuming valuable resources that could be better spent elsewhere.
+            </p>
+            
+            <p>
+                The good news? Every challenge you're facing has a solution. Modern automation and AI technologies 
+                can transform these pain points into competitive advantages. Below, we've summarized the key issues 
+                we'll be addressing together.
             </p>
         </div>
 
-        <ul class="problem-list">
-            <li class="editable" id="problem1">Manual data entry consuming significant staff time and resources</li>
-            <li class="editable" id="problem2">Delayed response times to inbound leads affecting conversion rates</li>
-            <li class="editable" id="problem3">Inconsistent lead qualification and follow-up processes</li>
-            <li class="editable" id="problem4">Limited visibility into lead pipeline and performance metrics</li>
+        <ul class="bullet-list">
+            <li><span class="editable" id="problem1">Creating product descriptions, categorizing items, and managing inventory consumes hours of staff time daily—time that could be spent on growth activities.</span></li>
+            <li><span class="editable" id="problem2">Customers frequently contact support for basic inquiries like order status and returns, overwhelming your team with repetitive tasks.</span></li>
+            <li><span class="editable" id="problem3">Without data-driven insights, you're making inventory and marketing decisions based on intuition rather than actionable intelligence.</span></li>
+            <li><span class="editable" id="problem4">Every visitor sees the same products and content, missing opportunities for personalization that drives conversions and loyalty.</span></li>
         </ul>
 
         <div class="letter-content" style="margin-top: 25px;">
             <p>
-                The following pages include additional details that cover the full scope of the project we 
-                discussed earlier, including investment costs. If you have any questions, please don't hesitate 
-                to reach out to me at <strong>dean@levelone.digital</strong>.
+                The following pages detail exactly how we'll tackle each of these challenges, the timeline 
+                for implementation, and the investment required. If you have any questions at any point, 
+                please reach out to me directly at <strong>dean@levelone.digital</strong>.
             </p>
             
             <p class="signature-line" style="margin-top: 30px;">
-                Thanks,<br>
+                Looking forward to working together,<br>
                 <strong>Dean</strong>
             </p>
         </div>
     </div>
 
-    <!-- Page 3: Problem Details -->
-    <div class="page content-page">
-        <h2 class="page-header editable" id="problemHeader">End-to-End Automated Lead Workflow</h2>
-        
+    <!-- Page 3: Problem Details (Dark Theme) -->
+    <div class="page dark-page">
+        <h2 class="page-header">The Problems We'll Solve</h2>
+        <p class="page-subheader">Each challenge below represents not just a problem, but an opportunity. By automating these processes, you'll free up resources, reduce errors, and create a foundation for scalable growth.</p>
+
         <ul class="problem-list">
             <li>
-                <strong class="editable" id="detailProblem1Title">Manual Lead Data Entry</strong>
-                <span class="editable" id="detailProblem1Desc">Your team currently spends hours each day manually entering lead information from various sources into your CRM system, leading to errors, delays, and reduced productivity.</span>
+                <strong class="editable" id="detailProblem1Title">Manual Content Creation Bottleneck</strong>
+                <span class="editable" id="detailProblem1Desc">Writing unique, SEO-optimized product descriptions for hundreds or thousands of items is time-consuming and inconsistent. AI-powered content generation will create compelling descriptions in seconds, not hours.</span>
             </li>
             <li>
-                <strong class="editable" id="detailProblem2Title">Slow Response Times</strong>
-                <span class="editable" id="detailProblem2Desc">Leads wait too long for initial responses, significantly reducing conversion rates. Industry studies show that responding within 5 minutes increases conversion by 400%.</span>
+                <strong class="editable" id="detailProblem2Title">Fraud Vulnerability</strong>
+                <span class="editable" id="detailProblem2Desc">Without real-time fraud detection, you're exposed to chargebacks and fraudulent orders. AI monitoring can analyze transaction patterns instantly and block high-risk orders before they're processed.</span>
             </li>
             <li>
-                <strong class="editable" id="detailProblem3Title">Inconsistent Lead Qualification</strong>
-                <span class="editable" id="detailProblem3Desc">Without automated scoring and qualification, high-value leads may not receive appropriate priority, while low-quality leads consume valuable sales time.</span>
+                <strong class="editable" id="detailProblem3Title">Support Team Overload</strong>
+                <span class="editable" id="detailProblem3Desc">Your team spends valuable time answering repetitive questions that could be handled automatically. An AI chatbot can resolve 80% of common inquiries 24/7, freeing your team for complex issues.</span>
             </li>
             <li>
-                <strong class="editable" id="detailProblem4Title">Limited Analytics and Reporting</strong>
-                <span class="editable" id="detailProblem4Desc">Manual processes make it difficult to track key metrics, identify bottlenecks, and make data-driven decisions to optimize your lead generation efforts.</span>
+                <strong class="editable" id="detailProblem4Title">Missed Personalization Opportunities</strong>
+                <span class="editable" id="detailProblem4Desc">Static product displays and one-size-fits-all recommendations leave conversion potential on the table. Predictive AI can deliver personalized experiences that dramatically increase engagement.</span>
             </li>
         </ul>
 
         <div class="closing-statement">
-            I consider this reasonably straightforward and am confident I can do an outstanding job here for you. 
-            If I wasn't, I wouldn't have put together this proposal.
+            These aren't just technical improvements—they're business transformations. Each solution we implement will directly impact your bottom line through reduced costs, increased conversions, and improved customer satisfaction.
         </div>
     </div>
 
-    <!-- Page 4: Solution -->
-    <div class="page content-page">
+    <!-- Page 4: Solution (Dark Theme) -->
+    <div class="page dark-page">
         <h2 class="page-header">Our Solution</h2>
+        <p class="page-subheader">We've designed a comprehensive solution that addresses each of your challenges through strategic automation and AI integration. Here's how we'll transform your operations.</p>
 
         <ul class="solution-list">
             <li>
-                <strong class="editable" id="solution1Title">Automated Lead Capture & Entry</strong>
-                <span class="editable" id="solution1Desc">Integrate all lead sources directly with your CRM, eliminating manual data entry entirely.</span>
+                <strong class="editable" id="solution0Title">Custom E-Commerce Platform</strong>
+                <span class="editable" id="solution0Desc">A fully bespoke, high-performance online store built from the ground up using modern technologies. Includes responsive design, intuitive navigation, product management, shopping cart, secure checkout, and seamless payment integration.</span>
             </li>
             <li>
-                <strong class="editable" id="solution2Title">Instant Response System</strong>
-                <span class="editable" id="solution2Desc">Automated acknowledgment and qualification emails sent within seconds of lead capture.</span>
+                <strong class="editable" id="solution1Title">AI-Powered Content Engine</strong>
+                <span class="editable" id="solution1Desc">Automatically generate SEO-optimized product descriptions, meta-tags, and marketing copy using advanced AI tools. New products go from upload to fully-described in minutes, not days.</span>
             </li>
             <li>
-                <strong class="editable" id="solution3Title">Smart Lead Scoring</strong>
-                <span class="editable" id="solution3Desc">AI-powered qualification system that prioritizes leads based on conversion probability.</span>
+                <strong class="editable" id="solution2Title">Intelligent Fraud Prevention</strong>
+                <span class="editable" id="solution2Desc">Real-time transaction monitoring using machine learning to identify and block fraudulent orders before they cost you money. Integrated seamlessly into your checkout flow.</span>
             </li>
             <li>
-                <strong class="editable" id="solution4Title">Real-Time Dashboard</strong>
-                <span class="editable" id="solution4Desc">Comprehensive analytics providing actionable insights into your lead pipeline performance.</span>
+                <strong class="editable" id="solution3Title">24/7 AI Support Agent</strong>
+                <span class="editable" id="solution3Desc">A sophisticated chatbot that handles order tracking, FAQs, and simple returns automatically. When human help is needed, it seamlessly hands off with full context.</span>
+            </li>
+            <li>
+                <strong class="editable" id="solution4Title">Predictive Personalization</strong>
+                <span class="editable" id="solution4Desc">Dynamic product recommendations, personalized search results, and demand forecasting that learns from every customer interaction to continuously improve.</span>
+            </li>
+            <li>
+                <strong class="editable" id="solution5Title">Visual Search & Dynamic Pricing</strong>
+                <span class="editable" id="solution5Desc">Allow customers to upload images to find similar products, plus automated pricing that responds to market conditions and competitor data.</span>
             </li>
         </ul>
 
-        <div class="closing-statement" style="margin-top: 40px;">
-            This comprehensive solution will transform your lead management process, saving time, improving response rates, 
-            and ultimately driving higher conversion rates for your business.
+        <div class="closing-statement">
+            This integrated approach ensures every component works together seamlessly. The result is a platform that runs smarter, responds faster, and grows with your business.
         </div>
     </div>
 
-    <!-- Page 5: Timeline -->
-    <div class="page content-page">
+    <!-- Page 5: Timeline (Dark Theme with Hexagons) -->
+    <div class="page dark-page">
         <h2 class="page-header">Project Timeline</h2>
+        <p class="page-subheader">We've structured this project into six clear milestones, each building upon the last. Click on any hexagon to see the detailed breakdown of what we'll accomplish in that phase.</p>
 
         <div class="timeline-section">
-            <div class="timeline-container">
-                <div class="timeline-connector-line"></div>
-                
-                <div class="timeline-step">
-                    <div class="timeline-circle">
-                        <div class="timeline-icon">1</div>
+            <div class="timeline-wrapper">
+                <div class="hexagon-container">
+                    <!-- Row 1: 1 hexagon -->
+                    <div class="hex-row">
+                        <div class="hexagon" data-milestone="1" onclick="showMilestone(1)">
+                            <svg viewBox="0 0 100 115">
+                                <polygon class="hex-bg" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
+                                <polygon class="hex-border" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
+                            </svg>
+                            <div class="hexagon-content">
+                                <div class="hexagon-step">Step</div>
+                                <div class="hexagon-number">1</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="timeline-content">
-                        <div class="timeline-date editable" id="timeline1Date">May 15-16, 2026</div>
-                        <div class="timeline-desc editable" id="timeline1Desc">Project kickoff and requirements gathering</div>
+                    <!-- Row 2: 2 hexagons -->
+                    <div class="hex-row">
+                        <div class="hexagon" data-milestone="2" onclick="showMilestone(2)">
+                            <svg viewBox="0 0 100 115">
+                                <polygon class="hex-bg" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
+                                <polygon class="hex-border" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
+                            </svg>
+                            <div class="hexagon-content">
+                                <div class="hexagon-step">Step</div>
+                                <div class="hexagon-number">2</div>
+                            </div>
+                        </div>
+                        <div class="hexagon" data-milestone="3" onclick="showMilestone(3)">
+                            <svg viewBox="0 0 100 115">
+                                <polygon class="hex-bg" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
+                                <polygon class="hex-border" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
+                            </svg>
+                            <div class="hexagon-content">
+                                <div class="hexagon-step">Step</div>
+                                <div class="hexagon-number">3</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Row 3: 3 hexagons -->
+                    <div class="hex-row">
+                        <div class="hexagon" data-milestone="4" onclick="showMilestone(4)">
+                            <svg viewBox="0 0 100 115">
+                                <polygon class="hex-bg" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
+                                <polygon class="hex-border" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
+                            </svg>
+                            <div class="hexagon-content">
+                                <div class="hexagon-step">Step</div>
+                                <div class="hexagon-number">4</div>
+                            </div>
+                        </div>
+                        <div class="hexagon" data-milestone="5" onclick="showMilestone(5)">
+                            <svg viewBox="0 0 100 115">
+                                <polygon class="hex-bg" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
+                                <polygon class="hex-border" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
+                            </svg>
+                            <div class="hexagon-content">
+                                <div class="hexagon-step">Step</div>
+                                <div class="hexagon-number">5</div>
+                            </div>
+                        </div>
+                        <div class="hexagon" data-milestone="6" onclick="showMilestone(6)">
+                            <svg viewBox="0 0 100 115">
+                                <polygon class="hex-bg" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
+                                <polygon class="hex-border" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
+                            </svg>
+                            <div class="hexagon-content">
+                                <div class="hexagon-step">Step</div>
+                                <div class="hexagon-number">6</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="timeline-step">
-                    <div class="timeline-circle">
-                        <div class="timeline-icon">2</div>
+                <div class="timeline-details">
+                    <p class="milestone-placeholder" id="milestone-placeholder">Click on a step above to view milestone details</p>
+                    
+                    <!-- Milestone 1 -->
+                    <div class="milestone-content" id="milestone-1">
+                        <div class="milestone-title">Core Foundation & Content Automation</div>
+                        <div class="milestone-date editable">Weeks 1-3 • May 2026</div>
+                        <div class="milestone-desc">
+                            Building the essential platform infrastructure and implementing AI-powered content generation.
+                        </div>
+                        <ul class="milestone-tasks">
+                            <li>Platform setup: domain, hosting, CDN, and core framework</li>
+                            <li>Product Information Management (PIM) database</li>
+                            <li>User authentication and secure login system</li>
+                            <li>AI content generation for product descriptions</li>
+                            <li>Automated catalog tagging using image recognition</li>
+                        </ul>
                     </div>
-                    <div class="timeline-content">
-                        <div class="timeline-date editable" id="timeline2Date">May 19-23, 2026</div>
-                        <div class="timeline-desc editable" id="timeline2Desc">System architecture design and integration setup</div>
-                    </div>
-                </div>
 
-                <div class="timeline-step">
-                    <div class="timeline-circle">
-                        <div class="timeline-icon">3</div>
+                    <!-- Milestone 2 -->
+                    <div class="milestone-content" id="milestone-2">
+                        <div class="milestone-title">Transactional MVP & Security</div>
+                        <div class="milestone-date editable">Weeks 4-6 • May-June 2026</div>
+                        <div class="milestone-desc">
+                            Enabling secure purchasing with fraud protection and intelligent search.
+                        </div>
+                        <ul class="milestone-tasks">
+                            <li>Shopping cart and multi-step checkout</li>
+                            <li>Payment gateway integration (Stripe/PayPal)</li>
+                            <li>Shipping and tax calculation</li>
+                            <li>Real-time AI fraud detection</li>
+                            <li>Smart semantic search</li>
+                        </ul>
                     </div>
-                    <div class="timeline-content">
-                        <div class="timeline-date editable" id="timeline3Date">May 26-30, 2026</div>
-                        <div class="timeline-desc editable" id="timeline3Desc">Automation workflow development and testing</div>
-                    </div>
-                </div>
 
-                <div class="timeline-step">
-                    <div class="timeline-circle">
-                        <div class="timeline-icon">4</div>
+                    <!-- Milestone 3 -->
+                    <div class="milestone-content" id="milestone-3">
+                        <div class="milestone-title">Support Automation & CX</div>
+                        <div class="milestone-date editable">Weeks 7-9 • June 2026</div>
+                        <div class="milestone-desc">
+                            Deploying 24/7 AI support and customer account features.
+                        </div>
+                        <ul class="milestone-tasks">
+                            <li>Customer account dashboard</li>
+                            <li>Order Management System backend</li>
+                            <li>AI Support Agent chatbot</li>
+                            <li>Review summarization using NLP</li>
+                        </ul>
                     </div>
-                    <div class="timeline-content">
-                        <div class="timeline-date editable" id="timeline4Date">June 2-6, 2026</div>
-                        <div class="timeline-desc editable" id="timeline4Desc">Final deployment, training, and handover</div>
+
+                    <!-- Milestone 4 -->
+                    <div class="milestone-content" id="milestone-4">
+                        <div class="milestone-title">Personalisation & Predictive Ops</div>
+                        <div class="milestone-date editable">Weeks 10-12 • June-July 2026</div>
+                        <div class="milestone-desc">
+                            Implementing data-driven personalization and analytics.
+                        </div>
+                        <ul class="milestone-tasks">
+                            <li>Loyalty program infrastructure</li>
+                            <li>Analytics dashboard</li>
+                            <li>Predictive recommendation engine</li>
+                            <li>Demand forecasting</li>
+                        </ul>
+                    </div>
+
+                    <!-- Milestone 5 -->
+                    <div class="milestone-content" id="milestone-5">
+                        <div class="milestone-title">Advanced Discovery & Growth</div>
+                        <div class="milestone-date editable">Weeks 13-15 • July 2026</div>
+                        <div class="milestone-desc">
+                            Adding sophisticated features for conversions.
+                        </div>
+                        <ul class="milestone-tasks">
+                            <li>Visual search / "Shop the Look"</li>
+                            <li>Dynamic pricing</li>
+                            <li>AI-driven A/B testing</li>
+                        </ul>
+                    </div>
+
+                    <!-- Milestone 6 -->
+                    <div class="milestone-content" id="milestone-6">
+                        <div class="milestone-title">Launch & Handover</div>
+                        <div class="milestone-date editable">Week 16 • July-August 2026</div>
+                        <div class="milestone-desc">
+                            Final deployment, training, and handover.
+                        </div>
+                        <ul class="milestone-tasks">
+                            <li>Production deployment</li>
+                            <li>Performance optimization</li>
+                            <li>Team training sessions</li>
+                            <li>Documentation and guides</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="letter-content" style="margin-top: 60px;">
-            <p>
-                We've structured this timeline to ensure smooth project execution while maintaining flexibility 
-                for your team's availability. Each phase includes built-in review points to ensure we're meeting 
-                your expectations and requirements.
-            </p>
+            <div class="timeline-footer">
+                Each milestone includes built-in review points and your approval before we proceed. This ensures you're never surprised and always in control of the project's direction. We've structured this timeline to ensure smooth project execution while maintaining flexibility for your team's availability.
+            </div>
         </div>
     </div>
 
     <!-- Page 6: Related Systems -->
     <div class="page content-page">
         <h2 class="page-header">Related Systems & Capabilities</h2>
-        
-        <div class="letter-content">
-            <p>
-                In addition to the lead automation system proposed above, Level One offers a comprehensive 
-                suite of automation solutions that can further streamline your operations:
-            </p>
+        <p class="page-subheader">Beyond this project, Level One offers a comprehensive suite of automation solutions. These systems can enhance your operations now or be added as your business grows.</p>
+
+        <div class="systems-grid">
+            <div class="system-box">
+                <h4>Lead Sourcing & Cold Outreach</h4>
+                <p class="editable" id="system1Desc">Automated prospecting, data enrichment, and personalized outreach campaigns that scale your business development without scaling your team.</p>
+            </div>
+            <div class="system-box">
+                <h4>Client Onboarding System</h4>
+                <p class="editable" id="system2Desc">Streamlined onboarding workflows with automated document collection, welcome sequences, and task management—reducing time-to-value significantly.</p>
+            </div>
+            <div class="system-box">
+                <h4>Data Entry Integration</h4>
+                <p class="editable" id="system3Desc">Connect all your systems and eliminate manual data transfer between platforms. Ensures data consistency across your entire tech stack.</p>
+            </div>
+            <div class="system-box">
+                <h4>Contract Creation & Auto-Reply</h4>
+                <p class="editable" id="system4Desc">Generate customized contracts from templates and automate responses to common inquiries, freeing your team for high-value conversations.</p>
+            </div>
+            <div class="system-box">
+                <h4>Customer Support Automation</h4>
+                <p class="editable" id="system5Desc">AI-powered chatbots and intelligent ticket routing that provide instant responses and ensure every inquiry reaches the right person.</p>
+            </div>
+            <div class="system-box">
+                <h4>Reporting & Analytics Dashboard</h4>
+                <p class="editable" id="system6Desc">Custom dashboards aggregating data from multiple sources, providing real-time insights into the metrics that matter most to your business.</p>
+            </div>
         </div>
 
-        <ul class="systems-list">
-            <li>
-                <strong>Lead Sourcing and Cold Outreach System</strong><br>
-                <span class="editable" id="system1Desc">Automated prospecting, enrichment, and personalized outreach campaigns that scale your business development efforts.</span>
-            </li>
-            <li>
-                <strong>Client Onboarding System</strong><br>
-                <span class="editable" id="system2Desc">Streamlined onboarding workflows that reduce time-to-value and improve client satisfaction through automated document collection, welcome sequences, and task management.</span>
-            </li>
-            <li>
-                <strong>Data Entry Integration</strong><br>
-                <span class="editable" id="system3Desc">Connect disparate systems and eliminate manual data transfer between platforms, ensuring data consistency across your tech stack.</span>
-            </li>
-            <li>
-                <strong>Contract Creation and Auto-Reply System</strong><br>
-                <span class="editable" id="system4Desc">Generate customized contracts from templates and automate responses to common client inquiries, freeing up your team for high-value interactions.</span>
-            </li>
-            <li>
-                <strong>Customer Support Automation</strong><br>
-                <span class="editable" id="system5Desc">AI-powered chatbots and ticket routing systems that provide instant responses and ensure inquiries reach the right team member.</span>
-            </li>
-            <li>
-                <strong>Reporting and Analytics Dashboard</strong><br>
-                <span class="editable" id="system6Desc">Custom dashboards that aggregate data from multiple sources, providing real-time insights into your business performance.</span>
-            </li>
-        </ul>
-
-        <div class="closing-statement">
-            These systems can be implemented individually or as part of a comprehensive automation strategy. 
-            We're happy to discuss how any of these solutions might benefit your specific business needs.
+        <div class="closing-statement" style="background: #f5f5f5; border-left-color: #000;">
+            These systems can be implemented individually or as part of a comprehensive automation strategy. We're happy to discuss how any of these solutions might benefit your specific business needs.
         </div>
     </div>
 
     <!-- Page 7: Investment -->
     <div class="page content-page">
-        <h2 class="page-header">Investment Required</h2>
-        
-        <div class="notes-section">
-            <p>
-                <strong>Payment Structure:</strong> This is a multi-step package with a 10% deposit required to begin work. 
-                The remaining balance will be paid dependent on milestone completion and final delivery.
-            </p>
-            <p>
-                <strong>"Delivery"</strong> is defined as the fulfillment of the scope conditions outlined in the previous pages, 
-                and your payment is only due upon full satisfaction with the project.
-            </p>
-        </div>
+        <h2 class="page-header" style="margin-bottom: 15px;">Investment Required</h2>
 
-        <div style="margin: 30px 0;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                <h3 style="font-size: 16px; font-weight: bold; margin: 0;">LEVEL ONE IMPLEMENTATION FEE</h3>
-                <div style="display: flex; gap: 80px; font-size: 12px; font-weight: bold;">
-                    <span style="width: 80px; text-align: right;">PRICE</span>
-                    <span style="width: 50px; text-align: center;">QTY</span>
-                    <span style="width: 100px; text-align: right;">SUBTOTAL</span>
+        <div class="investment-section">
+            <!-- Deposit Section -->
+            <div class="milestone-payment-section" style="margin-bottom: 12px;">
+                <div class="milestone-payment-header" style="padding: 8px 12px;">
+                    <h3 style="font-size: 12px;">DEPOSIT — Project Initiation</h3>
+                    <span class="percentage" style="font-size: 11px;">50%</span>
+                </div>
+                <div class="milestone-subheader" style="padding: 6px 12px; font-size: 10px;">Due upon agreement signing to begin Milestones 1 & 2</div>
+                <div class="line-items">
+                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
+                        <span class="line-item-name">Core Foundation, PIM & Content Automation</span>
+                        <span class="line-item-price">£4,685</span>
+                    </div>
+                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
+                        <span class="line-item-name">Transactional MVP, Security & Smart Search</span>
+                        <span class="line-item-price">£4,685</span>
+                    </div>
+                </div>
+                <div class="milestone-subtotal" style="padding: 8px 12px; font-size: 11px;">
+                    <span>Deposit Total</span>
+                    <span class="editable" id="depositAmount">£9,370</span>
                 </div>
             </div>
 
-            <div style="background: #f9f9f9; padding: 15px; border-left: 3px solid #000; margin-bottom: 10px;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-size: 12px; flex: 1;" class="editable" id="item1Name">Lead Automation System - Core Development</span>
-                    <div style="display: flex; gap: 80px; font-size: 12px;">
-                        <span style="width: 80px; text-align: right;" class="editable" id="item1Price">$5,500</span>
-                        <span style="width: 50px; text-align: center;" class="editable" id="item1Qty">1</span>
-                        <span style="width: 100px; text-align: right; font-weight: bold;" class="editable" id="item1Subtotal">$5,500</span>
+            <!-- Milestone 3 Payment -->
+            <div class="milestone-payment-section" style="margin-bottom: 12px;">
+                <div class="milestone-payment-header" style="padding: 8px 12px;">
+                    <h3 style="font-size: 12px;">MILESTONE 3 — Support Automation & CX</h3>
+                    <span class="percentage" style="font-size: 11px;">20%</span>
+                </div>
+                <div class="milestone-subheader" style="padding: 6px 12px; font-size: 10px;">Due upon completion of AI support agent and customer features</div>
+                <div class="line-items">
+                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
+                        <span class="line-item-name">Customer Account Features & OMS</span>
+                        <span class="line-item-price">£1,874</span>
+                    </div>
+                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
+                        <span class="line-item-name">AI Support Agent Chatbot Deployment</span>
+                        <span class="line-item-price">£1,874</span>
+                    </div>
+                </div>
+                <div class="milestone-subtotal" style="padding: 8px 12px; font-size: 11px;">
+                    <span>Milestone 3 Total</span>
+                    <span>£3,748</span>
+                </div>
+            </div>
+
+            <!-- Milestone 4 Payment -->
+            <div class="milestone-payment-section" style="margin-bottom: 12px;">
+                <div class="milestone-payment-header" style="padding: 8px 12px;">
+                    <h3 style="font-size: 12px;">MILESTONE 4 — Personalisation & Predictive</h3>
+                    <span class="percentage" style="font-size: 11px;">15%</span>
+                </div>
+                <div class="milestone-subheader" style="padding: 6px 12px; font-size: 10px;">Due upon completion of recommendation engine and analytics</div>
+                <div class="line-items">
+                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
+                        <span class="line-item-name">Loyalty Program & Analytics Dashboard</span>
+                        <span class="line-item-price">£1,405</span>
+                    </div>
+                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
+                        <span class="line-item-name">Predictive Recommendations & Demand Forecasting</span>
+                        <span class="line-item-price">£1,406</span>
+                    </div>
+                </div>
+                <div class="milestone-subtotal" style="padding: 8px 12px; font-size: 11px;">
+                    <span>Milestone 4 Total</span>
+                    <span>£2,811</span>
+                </div>
+            </div>
+
+            <!-- Milestone 5 & 6 Payment -->
+            <div class="milestone-payment-section" style="margin-bottom: 12px;">
+                <div class="milestone-payment-header" style="padding: 8px 12px;">
+                    <h3 style="font-size: 12px;">MILESTONE 5 & 6 — Advanced Features & Launch</h3>
+                    <span class="percentage" style="font-size: 11px;">15%</span>
+                </div>
+                <div class="milestone-subheader" style="padding: 6px 12px; font-size: 10px;">Due upon final deployment, training, and handover</div>
+                <div class="line-items">
+                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
+                        <span class="line-item-name">Visual Search, Dynamic Pricing & A/B Testing</span>
+                        <span class="line-item-price">£1,874</span>
+                    </div>
+                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
+                        <span class="line-item-name">Launch, Training & 30-Day Support</span>
+                        <span class="line-item-price">£937</span>
+                    </div>
+                </div>
+                <div class="milestone-subtotal" style="padding: 8px 12px; font-size: 11px;">
+                    <span>Milestone 5 & 6 Total</span>
+                    <span>£2,811</span>
+                </div>
+            </div>
+
+            <!-- Payment Summary -->
+            <div class="payment-summary" style="margin-top: 15px; padding-top: 12px;">
+                <div class="summary-row" style="padding: 6px 0; font-size: 11px;">
+                    <span class="label">Deposit (50%)</span>
+                    <span class="amount">£9,370</span>
+                </div>
+                <div class="summary-row" style="padding: 6px 0; font-size: 11px;">
+                    <span class="label">Milestone 3 (20%)</span>
+                    <span class="amount">£3,748</span>
+                </div>
+                <div class="summary-row" style="padding: 6px 0; font-size: 11px;">
+                    <span class="label">Milestone 4 (15%)</span>
+                    <span class="amount">£2,811</span>
+                </div>
+                <div class="summary-row" style="padding: 6px 0; font-size: 11px;">
+                    <span class="label">Milestone 5 & 6 (15%)</span>
+                    <span class="amount">£2,811</span>
+                </div>
+                <div class="summary-row total" style="font-size: 14px; padding-top: 10px; margin-top: 6px;">
+                    <span class="label">Project Total</span>
+                    <span class="amount editable" id="projectTotal">£18,740</span>
+                </div>
+            </div>
+
+            <!-- Platform Fees -->
+            <div class="platform-section" style="margin-top: 15px; padding-top: 12px;">
+                <h3 class="platform-header" style="font-size: 12px; margin-bottom: 10px;">ONGOING PLATFORM FEES</h3>
+                <div style="display: flex; gap: 15px;">
+                    <div class="platform-item" style="flex: 1; padding: 10px 12px; font-size: 11px;">
+                        <span class="editable" id="platform1Name">Make.com (monthly)</span>
+                        <span class="editable" id="platform1Price">£25/mo</span>
+                    </div>
+                    <div class="platform-item" style="flex: 1; padding: 10px 12px; font-size: 11px;">
+                        <span>AI API Usage (est.)</span>
+                        <span>£50-150/mo</span>
                     </div>
                 </div>
             </div>
 
-            <div style="background: #f9f9f9; padding: 15px; border-left: 3px solid #000; margin-bottom: 10px;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-size: 12px; flex: 1;" class="editable" id="item2Name">CRM Integration & Setup</span>
-                    <div style="display: flex; gap: 80px; font-size: 12px;">
-                        <span style="width: 80px; text-align: right;" class="editable" id="item2Price">$1,800</span>
-                        <span style="width: 50px; text-align: center;" class="editable" id="item2Qty">1</span>
-                        <span style="width: 100px; text-align: right; font-weight: bold;" class="editable" id="item2Subtotal">$1,800</span>
-                    </div>
-                </div>
-            </div>
-
-            <div style="background: #f9f9f9; padding: 15px; border-left: 3px solid #000; margin-bottom: 10px;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-size: 12px; flex: 1;" class="editable" id="item3Name">Training & Documentation</span>
-                    <div style="display: flex; gap: 80px; font-size: 12px;">
-                        <span style="width: 80px; text-align: right;" class="editable" id="item3Price">$700</span>
-                        <span style="width: 50px; text-align: center;" class="editable" id="item3Qty">1</span>
-                        <span style="width: 100px; text-align: right; font-weight: bold;" class="editable" id="item3Subtotal">$700</span>
-                    </div>
-                </div>
-            </div>
-
-            <div style="background: #f9f9f9; padding: 15px; border-left: 3px solid #000; margin-bottom: 20px;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-size: 12px; flex: 1;" class="editable" id="item4Name">30-Day Post-Launch Support</span>
-                    <div style="display: flex; gap: 80px; font-size: 12px;">
-                        <span style="width: 80px; text-align: right;" class="editable" id="item4Price">$500</span>
-                        <span style="width: 50px; text-align: center;" class="editable" id="item4Qty">1</span>
-                        <span style="width: 100px; text-align: right; font-weight: bold;" class="editable" id="item4Subtotal">$500</span>
-                    </div>
-                </div>
-            </div>
-
-            <div style="text-align: right; margin-bottom: 20px; padding-right: 0;">
-                <div style="display: flex; justify-content: flex-end; gap: 20px; padding: 8px 0; font-size: 12px;">
-                    <span>Subtotal</span>
-                    <span style="width: 100px; text-align: right;" class="editable" id="implementationSubtotal">$8,500</span>
-                </div>
-                <div style="display: flex; justify-content: flex-end; gap: 20px; padding: 8px 0; font-size: 12px; background: #f5f5f5; padding-right: 0;">
-                    <span>Deposit (10%)</span>
-                    <span style="width: 100px; text-align: right; font-weight: bold;" class="editable" id="depositAmount">$850</span>
-                </div>
-                <div style="display: flex; justify-content: flex-end; gap: 20px; padding: 12px 0; font-size: 14px; font-weight: bold;">
-                    <span>Total Due Now</span>
-                    <span style="width: 100px; text-align: right;" class="editable" id="totalDueNow">$850</span>
-                </div>
-            </div>
-
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; margin-top: 40px; padding-top: 30px; border-top: 2px solid #ddd;">
-                <h3 style="font-size: 16px; font-weight: bold; margin: 0;">PLATFORM OR SOFTWARE FEES</h3>
-                <div style="display: flex; gap: 80px; font-size: 12px; font-weight: bold;">
-                    <span style="width: 80px; text-align: right;">PRICE</span>
-                    <span style="width: 50px; text-align: center;">QTY</span>
-                    <span style="width: 100px; text-align: right;">SUBTOTAL</span>
-                </div>
-            </div>
-
-            <div style="background: #f9f9f9; padding: 15px; border-left: 3px solid #000; margin-bottom: 10px;">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-size: 12px; flex: 1;" class="editable" id="platform1Name">Make.com, monthly</span>
-                    <div style="display: flex; gap: 80px; font-size: 12px;">
-                        <span style="width: 80px; text-align: right;" class="editable" id="platform1Price">$30.00</span>
-                        <span style="width: 50px; text-align: center;" class="editable" id="platform1Qty">1</span>
-                        <span style="width: 100px; text-align: right;" class="editable" id="platform1Subtotal">$30.00</span>
-                    </div>
-                </div>
-            </div>
-
-            <div style="background: #f9f9f9; padding: 15px; border-left: 3px solid #000; margin-bottom: 20px;">
-                <div style="font-size: 11px; color: #666; font-style: italic;">
-                    <span class="editable" id="platform1Note">Monthly subscription to Make.com for automation workflows</span>
-                </div>
-            </div>
-
-            <div style="text-align: right; margin-bottom: 20px;">
-                <div style="display: flex; justify-content: flex-end; gap: 20px; padding: 8px 0; font-size: 12px;">
-                    <span>Subtotal</span>
-                    <span style="width: 100px; text-align: right;" class="editable" id="platformSubtotal">$30.00</span>
-                </div>
-                <div style="display: flex; justify-content: flex-end; gap: 20px; padding: 12px 0; font-size: 13px; font-weight: bold; border-top: 2px solid #000; margin-top: 8px; padding-top: 12px;">
-                    <span>Total</span>
-                    <span style="width: 100px; text-align: right;" class="editable" id="platformTotal">$30.00</span>
-                </div>
-            </div>
-
-            <div style="margin-top: 40px; padding-top: 30px; border-top: 3px solid #000;">
-                <div style="text-align: right;">
-                    <div style="display: flex; justify-content: flex-end; gap: 20px; padding: 12px 0; font-size: 16px; font-weight: bold;">
-                        <span>Balance Due Upon Completion:</span>
-                        <span style="width: 100px; text-align: right;" class="editable" id="balanceDue">$7,650</span>
-                    </div>
-                </div>
+            <!-- Notes Box -->
+            <div class="payment-notes-compact">
+                <p><strong>Payment Structure:</strong> A 50% deposit is required to begin work. The remaining balance is paid upon completion of each milestone, ensuring you only pay for delivered results.</p>
+                <p><strong>"Delivery"</strong> is defined as the successful completion of scope items outlined for each milestone, with your sign-off confirming satisfaction before the next phase begins.</p>
             </div>
         </div>
     </div>
@@ -853,49 +1401,40 @@
         <div class="terms-content">
             <p>
                 This agreement is entered into between <strong>Level One</strong> ("Service Provider") and 
-                <strong><span class="editable" id="termsClientName">Client Name</span></strong> ("Client") 
+                <strong><span class="editable" id="termsClientName">Cerka</span></strong> ("Client") 
                 for the services described in this proposal.
             </p>
 
             <h3>1. Scope of Work</h3>
             <p>
-                Level One agrees to fulfill the proposal of work according to the description laid out in the 
-                previous pages of this document. Any changes to the scope of work must be agreed upon in writing 
-                by both parties and may result in adjusted timelines and costs.
+                Level One agrees to fulfill the scope of work as described in the previous pages of this document. Any changes to scope must be agreed upon in writing by both parties and may result in adjusted timelines and costs.
             </p>
 
             <h3>2. Payment Terms</h3>
             <p>
-                A 10% deposit is required to commence work. The remaining balance will be paid according to 
-                milestone completion as outlined in the project timeline. Final payment is due upon delivery 
-                and client satisfaction with the completed project.
+                A 50% deposit is required to commence work. The remaining balance is payable upon completion of each milestone as outlined in the Investment section. Final payment is due upon delivery and client satisfaction with the completed project.
             </p>
 
             <h3>3. Timeline</h3>
             <p>
-                The Service Provider will make reasonable efforts to adhere to the timeline outlined in this proposal. 
-                Delays caused by client unavailability, delayed feedback, or changes in scope may result in 
-                adjusted timelines.
+                The Service Provider will make reasonable efforts to adhere to the timeline outlined in this proposal. Delays caused by client unavailability, delayed feedback, or scope changes may result in adjusted timelines.
             </p>
 
             <h3>4. Client Responsibilities</h3>
             <p>
-                The Client agrees to provide timely access to necessary systems, information, and feedback required 
-                for project completion. The Client is responsible for the accuracy of information provided and 
-                maintaining appropriate backups of their data.
+                The Client agrees to provide timely access to necessary systems, information, and feedback required for project completion. The Client is responsible for the accuracy of information provided and maintaining appropriate backups of their data.
             </p>
 
             <h3>5. Acceptance and Signatures</h3>
             <p>
-                By signing below, both parties agree to the terms outlined in this proposal and commit to 
-                fulfilling their respective obligations.
+                By signing below, both parties agree to the terms outlined in this proposal and commit to fulfilling their respective obligations.
             </p>
         </div>
 
         <div class="signature-section">
             <div class="signature-box">
                 <h4>Level One (Service Provider)</h4>
-                <canvas class="signature-pad" id="providerSignature" width="280" height="120"></canvas>
+                <canvas class="signature-pad" id="providerSignature" width="260" height="100"></canvas>
                 <div class="signature-controls">
                     <button class="btn btn-clear" onclick="clearSignature('providerSignature', 'providerDate')">Clear</button>
                     <label class="btn btn-upload">
@@ -908,7 +1447,7 @@
 
             <div class="signature-box">
                 <h4>Client</h4>
-                <canvas class="signature-pad" id="clientSignature" width="280" height="120"></canvas>
+                <canvas class="signature-pad" id="clientSignature" width="260" height="100"></canvas>
                 <div class="signature-controls">
                     <button class="btn btn-clear" onclick="clearSignature('clientSignature', 'clientDate')">Clear</button>
                     <label class="btn btn-upload">
@@ -928,54 +1467,37 @@
         <div class="terms-content">
             <p>
                 This Service Agreement ("Agreement") is made effective as of the date of last signature below 
-                between Level One and <strong><span class="editable" id="agreementClientName">Client Name</span></strong>.
+                between Level One and <strong><span class="editable" id="agreementClientName">Cerka</span></strong>.
             </p>
 
             <h3>1. Services</h3>
             <p>
-                The Service Provider agrees to provide web design and automation services as described in this proposal. 
-                Services will be performed in a professional and workmanlike manner in accordance with industry standards.
+                The Service Provider agrees to provide e-commerce development and automation services as described in this proposal. Services will be performed in a professional manner in accordance with industry standards.
             </p>
 
             <h3>2. Intellectual Property</h3>
             <p>
-                Upon full payment, all custom work products created specifically for this project will become the 
-                property of the Client. The Service Provider retains rights to any pre-existing materials, frameworks, 
-                or tools used in the delivery of services. The Service Provider may showcase the completed work in 
-                portfolios and marketing materials unless otherwise agreed in writing.
+                Upon full payment, all custom work products created specifically for this project become the property of the Client. The Service Provider retains rights to pre-existing materials, frameworks, or tools used in delivery. The Service Provider may showcase completed work in portfolios unless otherwise agreed in writing.
             </p>
 
             <h3>3. Confidentiality</h3>
             <p>
-                Both parties agree to maintain confidentiality of any proprietary or sensitive information shared 
-                during the course of this project. This obligation survives the termination of this Agreement. 
-                Neither party shall disclose confidential information to third parties without prior written consent, 
-                except as required by law.
+                Both parties agree to maintain confidentiality of proprietary or sensitive information shared during this project. This obligation survives termination of this Agreement. Neither party shall disclose confidential information to third parties without prior written consent, except as required by law.
             </p>
 
             <h3>4. Warranties and Disclaimers</h3>
             <p>
-                The Service Provider warrants that services will be performed with reasonable care and skill and that 
-                all deliverables will be free from material defects for a period of 30 days following delivery. 
-                However, the Service Provider makes no warranties regarding third-party integrations, services, 
-                or platforms beyond its control. The Client acknowledges that automation systems depend on external 
-                platforms and APIs which may change without notice.
+                The Service Provider warrants that services will be performed with reasonable care and skill and that deliverables will be free from material defects for 30 days following delivery. The Service Provider makes no warranties regarding third-party integrations, services, or platforms beyond its control.
             </p>
 
             <h3>5. Limitation of Liability</h3>
             <p>
-                The Service Provider's total liability under this Agreement shall not exceed the total amount 
-                paid by the Client for the services. Neither party shall be liable for indirect, incidental, 
-                consequential, or punitive damages, including but not limited to loss of profits, data, or business 
-                opportunities, even if advised of the possibility of such damages.
+                The Service Provider's total liability under this Agreement shall not exceed the total amount paid by the Client. Neither party shall be liable for indirect, incidental, consequential, or punitive damages.
             </p>
 
             <h3>6. Support and Maintenance</h3>
             <p>
-                The Service Provider will provide support as outlined in the scope of work. Post-launch support 
-                periods are specified in the investment section. Additional support or maintenance beyond the agreed 
-                scope may be provided at the Service Provider's standard hourly rates or through a separate 
-                maintenance agreement.
+                The Service Provider will provide support as outlined in the scope of work. Post-launch support periods are specified in the investment section. Additional support may be provided at standard hourly rates or through a separate maintenance agreement.
             </p>
         </div>
     </div>
@@ -985,65 +1507,44 @@
         <div class="terms-content" style="margin-top: 0;">
             <h3>7. Termination</h3>
             <p>
-                Either party may terminate this Agreement with written notice if the other party breaches any 
-                material term and fails to remedy such breach within 15 days of written notice. Upon termination, 
-                the Client shall pay for all services rendered to date, including any work in progress, calculated 
-                on a pro-rata basis. The Service Provider will deliver all completed work and source files upon 
-                receipt of payment for services rendered.
+                Either party may terminate this Agreement with written notice if the other party breaches any material term and fails to remedy such breach within 15 days of written notice. Upon termination, the Client shall pay for all services rendered to date. The Service Provider will deliver all completed work upon receipt of payment.
             </p>
 
             <h3>8. Force Majeure</h3>
             <p>
-                Neither party shall be liable for any failure or delay in performance due to circumstances beyond 
-                their reasonable control, including but not limited to acts of God, natural disasters, war, 
-                terrorism, labor disputes, government actions, or technical failures of third-party services. 
-                The affected party shall notify the other party promptly and make reasonable efforts to minimize 
-                the impact of such circumstances.
+                Neither party shall be liable for failure or delay in performance due to circumstances beyond their reasonable control, including acts of God, natural disasters, war, terrorism, labor disputes, government actions, or technical failures of third-party services.
             </p>
 
             <h3>9. Dispute Resolution</h3>
             <p>
-                Any disputes arising from this Agreement shall first be attempted to be resolved through good 
-                faith negotiation between the parties. If negotiation fails within 30 days, the parties agree 
-                to pursue mediation before resorting to litigation. If mediation is unsuccessful, disputes shall 
-                be resolved through binding arbitration in accordance with applicable law, with the prevailing 
-                party entitled to recover reasonable attorney's fees and costs.
+                Any disputes arising from this Agreement shall first be attempted to be resolved through good faith negotiation. If negotiation fails within 30 days, the parties agree to pursue mediation before resorting to litigation.
             </p>
 
             <h3>10. Independent Contractor</h3>
             <p>
-                The Service Provider is an independent contractor and not an employee, partner, or joint venturer 
-                of the Client. The Service Provider is responsible for all taxes, insurance, and other obligations 
-                related to its business operations. Nothing in this Agreement creates an employment relationship 
-                or grants the Service Provider authority to bind the Client to any obligation.
+                The Service Provider is an independent contractor and not an employee, partner, or joint venturer of the Client. The Service Provider is responsible for all taxes, insurance, and other obligations related to its business operations.
             </p>
 
-            <h3>11. Amendments and Modifications</h3>
+            <h3>11. Amendments</h3>
             <p>
-                This Agreement may only be amended or modified by a written document signed by both parties. 
-                No oral modifications shall be valid. Any waiver of a provision must be in writing and shall 
-                not constitute a waiver of any other provision or subsequent breach.
+                This Agreement may only be amended by a written document signed by both parties. No oral modifications shall be valid.
             </p>
 
             <h3>12. Entire Agreement</h3>
             <p>
-                This Agreement, together with the proposal pages and any attached exhibits, constitutes the 
-                entire agreement between the parties and supersedes all prior negotiations, understandings, 
-                and agreements, whether written or oral. If any provision of this Agreement is found to be 
-                unenforceable, the remaining provisions shall remain in full force and effect.
+                This Agreement, together with the proposal pages, constitutes the entire agreement between the parties and supersedes all prior negotiations and agreements, whether written or oral.
             </p>
 
             <h3>13. Governing Law</h3>
             <p>
-                This Agreement shall be governed by and construed in accordance with the laws of the jurisdiction 
-                in which the Service Provider is located, without regard to conflict of law principles.
+                This Agreement shall be governed by and construed in accordance with the laws of the United Kingdom.
             </p>
         </div>
 
-        <div class="signature-section" style="margin-top: 25px;">
+        <div class="signature-section" style="margin-top: 20px;">
             <div class="signature-box">
                 <h4>Level One (Service Provider)</h4>
-                <canvas class="signature-pad" id="providerSignature2" width="280" height="120"></canvas>
+                <canvas class="signature-pad" id="providerSignature2" width="260" height="100"></canvas>
                 <div class="signature-controls">
                     <button class="btn btn-clear" onclick="clearSignature('providerSignature2', 'providerDate2')">Clear</button>
                     <label class="btn btn-upload">
@@ -1056,7 +1557,7 @@
 
             <div class="signature-box">
                 <h4>Client</h4>
-                <canvas class="signature-pad" id="clientSignature2" width="280" height="120"></canvas>
+                <canvas class="signature-pad" id="clientSignature2" width="260" height="100"></canvas>
                 <div class="signature-controls">
                     <button class="btn btn-clear" onclick="clearSignature('clientSignature2', 'clientDate2')">Clear</button>
                     <label class="btn btn-upload">
@@ -1073,12 +1574,81 @@
                 Download Signed Proposal
             </button>
             <p class="download-note">
-                All signatures must be completed before downloading
+                Client signatures must be completed before downloading
             </p>
         </div>
     </div>
 
     <script>
+        // Provider signature image data
+        const providerSignatureData = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAggAAADICAYAAACNixn+AAAQAElEQVR4AezdS4x1XTrA8ZcBEpMmIgYSGgMDke6BGZoYMGWERDSJgYl0D4wM6MS821xCJ5qYMSNx64FxuwxEECKMxCUGSBD2v7rW9+3vvFX11qk6l732+X05T+3L2XutZ/9WZa+n9nuqvi994z8CBAgQIECAwIGAAuEAxCYBAgQIEJhf4PVXoEB4vaEWCBAgQIDA7gQUCLsbUhdEgAABArMLbCF/BcIWRkEOBAgQIEBgYwIKhI0NiHQIECBAYHaBfeSvQNjHOLoKAgQIECBwUgEFwkk5NUaAAAECswvI/4sCCoQvOvhKgAABAgQIrAQUCCsMqwQIECAwu4D8TyWgQDiVpHYIECBAgMCOBBQIOxpMl0KAAIHZBeS/HQEFwnbGQiYECBAgQGAzAgqEzQyFRAgQIDC7gPz3JKBA2NNouhYCBAgQIHAiAQXCiSA1Q4AAgdkF5E9gLaBAWGtYJ0CAAAECBO4EFAh3DL4QIEBgdgH5EzitgALhtJ5aI0CAAAECuxBQIOxiGF0EAQKzC8ifwNYEFAhbGxH5ECBAgACBDQgoEDYwCFIgQGB2AfkT2J+AAmF/Y+qKCBAgQIDAqwUUCK8m1AABArMLyJ8AgbcFFAhvm9hDgAABAgRuXkCBcPPfAgAIzC4gfwIEziGgQDiHqjYJECBAgMDkAgqEyQdQ+gRmF5A/AQLbFFAgbHNcZEWAAAECBK4qoEC4Kr/OCcwuIH8CBPYqoEDY68i6LgIECBAg8AoBBcIr8JxKYHYB+RMgQOAxAQXCYzL2EyBAgACBGxZQINzw4Lv02QXkT4AAgfMJKBDOZ6tlAgQIECAwrYACYdqhk/jsAvInQIDAlgUUCFseHbkRIECAAIErCSgQrgSv29kF5E+AAIF9CygQ9j2+ro4AAQIECLxIQIHwIjYnzS4gfwIECBB4WkCB8LSPdwkQIECAwE0KKBBucthnv2j5EyBAgMC5BRQI5xbWPgECBAgQmFBAgTDhoM2esvwJECBAYPsCCoTtj5EMCRAgQIDAZQX+HwAA///dbY38AAAABklEQVQDALQzgq9Ng63aAAAAAElFTkSuQmCC';
+
+        // Timeline hexagon interaction
+        function showMilestone(num) {
+            // Hide placeholder
+            const placeholder = document.getElementById('milestone-placeholder');
+            if (placeholder) {
+                placeholder.style.display = 'none';
+            }
+            
+            // Remove active class from all hexagons
+            document.querySelectorAll('.hexagon').forEach(hex => {
+                hex.classList.remove('active');
+            });
+            
+            // Add active class to clicked hexagon
+            document.querySelector(`.hexagon[data-milestone="${num}"]`).classList.add('active');
+            
+            // Hide all milestone content
+            document.querySelectorAll('.milestone-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Show selected milestone content
+            document.getElementById(`milestone-${num}`).classList.add('active');
+        }
+
+        // Function to pre-fill provider signature
+        function prefillProviderSignature(canvasId, dateId) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+            
+            img.onload = function() {
+                const scale = Math.min(
+                    canvas.width / img.width,
+                    canvas.height / img.height
+                ) * 0.9;
+                const x = (canvas.width - img.width * scale) / 2;
+                const y = (canvas.height - img.height * scale) / 2;
+                
+                ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+                
+                if (signaturePads[canvasId]) {
+                    signaturePads[canvasId].isEmpty = false;
+                }
+                
+                // Set date to 5 minutes ago
+                const signedDate = new Date(Date.now() - 5 * 60 * 1000);
+                const dateStr = signedDate.toLocaleDateString('en-GB', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+                const timeStr = signedDate.toLocaleTimeString('en-GB', {
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+                document.getElementById(dateId).textContent = `Date: ${dateStr} at ${timeStr}`;
+                
+                checkAllSignatures();
+            };
+            
+            img.src = providerSignatureData;
+        }
+
         // URL Parameter Handling
         function loadURLParameters() {
             const urlParams = new URLSearchParams(window.location.search);
@@ -1097,6 +1667,8 @@
 
         function initSignaturePad(canvasId) {
             const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            
             const ctx = canvas.getContext('2d');
             let isDrawing = false;
             let lastX = 0;
@@ -1200,6 +1772,7 @@
 
         function clearSignature(canvasId, dateId) {
             const pad = signaturePads[canvasId];
+            if (!pad) return;
             pad.ctx.clearRect(0, 0, pad.canvas.width, pad.canvas.height);
             pad.isEmpty = true;
             document.getElementById(dateId).textContent = 'Date: Not signed';
@@ -1241,7 +1814,7 @@
             else if (canvasId === 'clientSignature2') dateId = 'clientDate2';
             
             const today = new Date();
-            const dateStr = today.toLocaleDateString('en-US', { 
+            const dateStr = today.toLocaleDateString('en-GB', { 
                 year: 'numeric', 
                 month: 'long', 
                 day: 'numeric' 
@@ -1252,12 +1825,14 @@
         }
 
         function checkAllSignatures() {
-            const allSigned = !signaturePads['providerSignature'].isEmpty &&
-                            !signaturePads['clientSignature'].isEmpty &&
-                            !signaturePads['providerSignature2'].isEmpty &&
-                            !signaturePads['clientSignature2'].isEmpty;
+            // Provider signatures are pre-filled, only check client signatures
+            const clientSigned = signaturePads['clientSignature'] && !signaturePads['clientSignature'].isEmpty &&
+                            signaturePads['clientSignature2'] && !signaturePads['clientSignature2'].isEmpty;
             
-            document.getElementById('downloadBtn').disabled = !allSigned;
+            const downloadBtn = document.getElementById('downloadBtn');
+            if (downloadBtn) {
+                downloadBtn.disabled = !clientSigned;
+            }
         }
 
         // PDF Generation
@@ -1315,6 +1890,12 @@
             initSignaturePad('clientSignature');
             initSignaturePad('providerSignature2');
             initSignaturePad('clientSignature2');
+            
+            // Pre-fill provider signatures
+            setTimeout(() => {
+                prefillProviderSignature('providerSignature', 'providerDate');
+                prefillProviderSignature('providerSignature2', 'providerDate2');
+            }, 100);
         });
     </script>
 </body>
