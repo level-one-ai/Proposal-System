@@ -68,7 +68,7 @@ function prefillProviderSignatures() {
 // Check if first form is complete
 function checkFormCompletion() {
     const fullName = document.getElementById('clientFullName').value.trim();
-    const position = document.getElementById('clientPosition').value.trim();
+    const position = document.getElementById('clientPosition').value;
     const submitBtn = document.getElementById('submitClientSig');
     
     if (fullName && position && clientSignatureData1) {
@@ -81,7 +81,7 @@ function checkFormCompletion() {
 // Check if second form is complete
 function checkFormCompletion2() {
     const fullName = document.getElementById('clientFullName2').value.trim();
-    const position = document.getElementById('clientPosition2').value.trim();
+    const position = document.getElementById('clientPosition2').value;
     const submitBtn = document.getElementById('submitClientSig2');
     
     if (fullName && position && clientSignatureData2) {
@@ -94,7 +94,7 @@ function checkFormCompletion2() {
 // Submit first client signature
 function submitClientSignature() {
     const fullName = document.getElementById('clientFullName').value.trim();
-    const position = document.getElementById('clientPosition').value.trim();
+    const position = document.getElementById('clientPosition').value;
     
     if (!fullName || !position || !clientSignatureData1) {
         alert('Please complete all fields');
@@ -134,7 +134,7 @@ function submitClientSignature() {
 // Submit second client signature
 function submitClientSignature2() {
     const fullName = document.getElementById('clientFullName2').value.trim();
-    const position = document.getElementById('clientPosition2').value.trim();
+    const position = document.getElementById('clientPosition2').value;
     
     if (!fullName || !position || !clientSignatureData2) {
         alert('Please complete all fields');
@@ -447,7 +447,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Add event listeners for client forms
     document.getElementById('clientFullName').addEventListener('input', checkFormCompletion);
-    document.getElementById('clientPosition').addEventListener('input', checkFormCompletion);
+    document.getElementById('clientPosition').addEventListener('change', checkFormCompletion);
     document.getElementById('clientFullName2').addEventListener('input', checkFormCompletion2);
-    document.getElementById('clientPosition2').addEventListener('input', checkFormCompletion2);
+    document.getElementById('clientPosition2').addEventListener('change', checkFormCompletion2);
 });
