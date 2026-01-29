@@ -87,7 +87,13 @@ body {
 }
 
 .logo-image {
-    height: 60px;
+    height: 90px;
+    width: auto;
+    display: block;
+}
+
+.logo-text {
+    height: 40px;
     width: auto;
     display: block;
 }
@@ -498,19 +504,21 @@ body {
 
 .preview-pages .hexagon-container {
     flex-direction: column;
-    gap: 25px;
-    width: 120px;
+    gap: 30px;
+    width: 100px;
     flex-shrink: 0;
 }
 
 .preview-pages .hex-row {
     flex-direction: column;
     margin-top: 0;
-    gap: 25px;
+    gap: 0;
 }
 
 .preview-pages .hexagon {
     cursor: default;
+    width: 80px;
+    height: 92px;
 }
 
 .preview-pages .hexagon .hex-border {
@@ -524,7 +532,7 @@ body {
 .preview-pages .timeline-details {
     flex: 1;
     margin-top: 0;
-    margin-left: 40px;
+    margin-left: 0;
     text-align: left;
     position: relative;
 }
@@ -536,63 +544,113 @@ body {
 .preview-pages .milestone-content {
     display: block;
     position: relative;
-    margin-bottom: 30px;
-    padding: 20px;
+    margin-bottom: 0;
+    padding: 12px 15px;
     background: var(--card-bg);
     border-radius: 8px;
     border-left: 3px solid var(--primary-orange);
+    font-size: 10px;
 }
 
+/* Position each milestone with different left margins and connect with lines */
+.preview-pages .milestone-content:nth-child(1) {
+    margin-left: 60px;
+    margin-top: 0;
+}
+
+.preview-pages .milestone-content:nth-child(2) {
+    margin-left: 100px;
+    margin-top: 20px;
+}
+
+.preview-pages .milestone-content:nth-child(3) {
+    margin-left: 80px;
+    margin-top: 20px;
+}
+
+.preview-pages .milestone-content:nth-child(4) {
+    margin-left: 120px;
+    margin-top: 20px;
+}
+
+.preview-pages .milestone-content:nth-child(5) {
+    margin-left: 90px;
+    margin-top: 20px;
+}
+
+.preview-pages .milestone-content:nth-child(6) {
+    margin-left: 110px;
+    margin-top: 20px;
+}
+
+/* Connecting lines from hexagons to milestone content */
 .preview-pages .milestone-content::before {
     content: '';
     position: absolute;
-    left: -43px;
+    right: 100%;
     top: 50%;
-    width: 40px;
     height: 2px;
     background: var(--primary-orange);
     transform: translateY(-50%);
 }
 
-.preview-pages .milestone-content:nth-child(1) {
-    margin-top: 0;
+.preview-pages .milestone-content:nth-child(1)::before {
+    width: 60px;
 }
 
-.preview-pages .milestone-content:nth-child(2) {
-    margin-top: 80px;
+.preview-pages .milestone-content:nth-child(2)::before {
+    width: 100px;
 }
 
-.preview-pages .milestone-content:nth-child(3) {
-    margin-top: 60px;
+.preview-pages .milestone-content:nth-child(3)::before {
+    width: 80px;
 }
 
-.preview-pages .milestone-content:nth-child(4) {
-    margin-top: 90px;
+.preview-pages .milestone-content:nth-child(4)::before {
+    width: 120px;
 }
 
-.preview-pages .milestone-content:nth-child(5) {
-    margin-top: 70px;
+.preview-pages .milestone-content:nth-child(5)::before {
+    width: 90px;
 }
 
-.preview-pages .milestone-content:nth-child(6) {
-    margin-top: 85px;
+.preview-pages .milestone-content:nth-child(6)::before {
+    width: 110px;
 }
 
 .preview-pages .milestone-title {
     text-align: left;
+    font-size: 11px;
+    margin-bottom: 4px;
 }
 
 .preview-pages .milestone-date {
     text-align: left;
+    font-size: 9px;
+    margin-bottom: 6px;
 }
 
 .preview-pages .milestone-desc {
     text-align: left;
+    font-size: 9px;
+    line-height: 1.5;
+    margin-bottom: 6px;
 }
 
 .preview-pages .milestone-tasks {
     display: block;
     width: 100%;
+    margin-top: 6px;
+}
+
+.preview-pages .milestone-tasks li {
+    font-size: 8px;
+    padding: 3px 0;
+    padding-left: 12px;
+}
+
+.preview-pages .milestone-tasks li::before {
+    font-size: 8px;
 }
 
 /* Related Systems - Box Design with Hover */
@@ -1266,6 +1324,11 @@ body {
 .preview-pages {
     background: #f5f5f5;
     padding: 20px 0;
+}
+
+/* Hide download section in preview */
+.preview-pages .download-section {
+    display: none;
 }
 
 .preview-footer {
