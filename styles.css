@@ -86,27 +86,10 @@ body {
     gap: 15px;
 }
 
-.logo-placeholder {
-    width: 50px;
-    height: 50px;
-    border: 2px solid var(--text-light);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    color: var(--text-light);
-    font-weight: bold;
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
-}
-
-.company-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 26px;
-    font-weight: 600;
-    color: var(--text-light);
-    letter-spacing: 1px;
+.logo-image {
+    height: 60px;
+    width: auto;
+    display: block;
 }
 
 .cover-center {
@@ -502,6 +485,116 @@ body {
     text-align: left;
 }
 
+/* Preview Timeline - Vertical Layout with Lines */
+.preview-pages .timeline-section {
+    padding: 30px 0;
+}
+
+.preview-pages .timeline-wrapper {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0;
+}
+
+.preview-pages .hexagon-container {
+    flex-direction: column;
+    gap: 25px;
+    width: 120px;
+    flex-shrink: 0;
+}
+
+.preview-pages .hex-row {
+    flex-direction: column;
+    margin-top: 0;
+    gap: 25px;
+}
+
+.preview-pages .hexagon {
+    cursor: default;
+}
+
+.preview-pages .hexagon .hex-border {
+    opacity: 1;
+}
+
+.preview-pages .hexagon .hex-bg {
+    stroke: var(--primary-orange);
+}
+
+.preview-pages .timeline-details {
+    flex: 1;
+    margin-top: 0;
+    margin-left: 40px;
+    text-align: left;
+    position: relative;
+}
+
+.preview-pages .milestone-placeholder {
+    display: none;
+}
+
+.preview-pages .milestone-content {
+    display: block;
+    position: relative;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: var(--card-bg);
+    border-radius: 8px;
+    border-left: 3px solid var(--primary-orange);
+}
+
+.preview-pages .milestone-content::before {
+    content: '';
+    position: absolute;
+    left: -43px;
+    top: 50%;
+    width: 40px;
+    height: 2px;
+    background: var(--primary-orange);
+    transform: translateY(-50%);
+}
+
+.preview-pages .milestone-content:nth-child(1) {
+    margin-top: 0;
+}
+
+.preview-pages .milestone-content:nth-child(2) {
+    margin-top: 80px;
+}
+
+.preview-pages .milestone-content:nth-child(3) {
+    margin-top: 60px;
+}
+
+.preview-pages .milestone-content:nth-child(4) {
+    margin-top: 90px;
+}
+
+.preview-pages .milestone-content:nth-child(5) {
+    margin-top: 70px;
+}
+
+.preview-pages .milestone-content:nth-child(6) {
+    margin-top: 85px;
+}
+
+.preview-pages .milestone-title {
+    text-align: left;
+}
+
+.preview-pages .milestone-date {
+    text-align: left;
+}
+
+.preview-pages .milestone-desc {
+    text-align: left;
+}
+
+.preview-pages .milestone-tasks {
+    display: block;
+    width: 100%;
+}
+
 /* Related Systems - Box Design with Hover */
 .systems-grid {
     display: grid;
@@ -764,7 +857,7 @@ body {
     color: #444;
 }
 
-/* NEW PROFESSIONAL SIGNATURE CARD STYLES */
+/* PROFESSIONAL SIGNATURE CARD STYLES */
 .signature-section {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -790,7 +883,7 @@ body {
     margin: 0;
 }
 
-/* Level One Signature Display */
+/* Level One Signature Display - Always visible */
 .signature-display {
     padding: 0;
 }
@@ -821,12 +914,12 @@ body {
 }
 
 .sig-image-container {
-    padding: 20px 18px;
+    padding: 25px 18px;
     background: white;
     border: 2px solid #e8e8e8;
     margin: 12px;
     border-radius: 4px;
-    min-height: 100px;
+    min-height: 140px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -835,7 +928,7 @@ body {
 .signature-display img {
     max-width: 100%;
     height: auto;
-    max-height: 80px;
+    max-height: 120px;
     display: block;
 }
 
@@ -870,7 +963,8 @@ body {
     font-weight: 600;
 }
 
-.form-group input[type="text"] {
+.form-group input[type="text"],
+.form-group select {
     width: 100%;
     padding: 8px 10px;
     border: 1px solid #ddd;
@@ -879,9 +973,14 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
-.form-group input[type="text"]:focus {
+.form-group input[type="text"]:focus,
+.form-group select:focus {
     outline: none;
     border-color: #000;
+}
+
+.form-group select {
+    cursor: pointer;
 }
 
 .signature-upload-wrapper {
@@ -1069,7 +1168,7 @@ body {
 .client-signature-display img {
     max-width: 100%;
     height: auto;
-    max-height: 80px;
+    max-height: 120px;
     display: block;
 }
 
