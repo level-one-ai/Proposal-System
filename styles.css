@@ -1,0 +1,1279 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-orange: #e67e22;
+    --primary-orange-glow: rgba(230, 126, 34, 0.6);
+    --dark-bg: #0a0a0a;
+    --card-bg: #141414;
+    --text-light: #ffffff;
+    --text-muted: #a0a0a0;
+    --highlight-yellow: rgba(255, 236, 153, 0.35);
+    --highlight-yellow-subtle: rgba(255, 236, 153, 0.20);
+    --border-light: #333;
+}
+
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.page {
+    width: 8.5in;
+    height: 11in;
+    margin: 20px auto;
+    background: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+}
+
+.editable {
+    background: linear-gradient(180deg, transparent 60%, var(--highlight-yellow) 60%);
+    padding: 0 4px;
+    border-radius: 2px;
+    display: inline;
+}
+
+.editable-subtitle {
+    background: linear-gradient(180deg, transparent 60%, var(--highlight-yellow-subtle) 60%);
+    padding: 0 4px;
+    border-radius: 2px;
+    display: inline;
+}
+
+/* Page 1 - Cover */
+.page-1 {
+    background: url('https://github.com/level-one-ai/Proposal-System/blob/main/processed-image.png?raw=true') center center / cover no-repeat;
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+    position: relative;
+}
+
+.page-1::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.8) 100%);
+    z-index: 1;
+}
+
+.cover-content {
+    position: relative;
+    z-index: 2;
+    padding: 50px 60px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-placeholder {
+    width: 50px;
+    height: 50px;
+    border: 2px solid var(--text-light);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--text-light);
+    font-weight: bold;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+}
+
+.company-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text-light);
+    letter-spacing: 1px;
+}
+
+.cover-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 85%;
+}
+
+.proposal-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--primary-orange);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.proposal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 25px 0;
+    color: var(--text-light);
+}
+
+.proposal-subtitle {
+    font-size: 15px;
+    color: rgba(255,255,255,0.85);
+    max-width: 520px;
+    line-height: 1.7;
+    font-weight: 300;
+}
+
+.cover-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
+
+.cover-footer-item {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+}
+
+.cover-footer-item strong {
+    display: block;
+    color: var(--text-light);
+    font-size: 13px;
+    margin-top: 3px;
+}
+
+/* Dark Section Pages */
+.dark-page {
+    background: var(--dark-bg);
+    color: var(--text-light);
+    padding: 50px 55px;
+}
+
+.dark-page .page-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 8px;
+    border: none;
+    padding-bottom: 0;
+}
+
+.dark-page .page-subheader {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    line-height: 1.7;
+    max-width: 90%;
+}
+
+.dark-page .editable {
+    background: linear-gradient(180deg, transparent 60%, rgba(255, 200, 87, 0.3) 60%);
+}
+
+/* Light Content Pages */
+.content-page {
+    padding: 50px 55px;
+}
+
+.page-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 8px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 12px;
+}
+
+.page-subheader {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.7;
+}
+
+/* Bullet List Style */
+.bullet-list {
+    list-style: disc;
+    margin: 20px 0;
+    padding-left: 25px;
+}
+
+.bullet-list li {
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    color: #444;
+}
+
+/* Letter Content */
+.letter-content {
+    font-size: 13px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.letter-content p {
+    margin-bottom: 12px;
+}
+
+/* Problem List - Dark Theme */
+.problem-list {
+    list-style: none;
+    margin: 20px 0;
+}
+
+.problem-list li {
+    padding: 18px 20px;
+    margin-bottom: 12px;
+    background: var(--card-bg);
+    border-left: 3px solid var(--primary-orange);
+    font-size: 13px;
+    line-height: 1.6;
+    border-radius: 0 8px 8px 0;
+}
+
+.problem-list li strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.problem-list li span {
+    color: var(--text-muted);
+}
+
+/* Solution List - Dark Theme */
+.solution-list {
+    list-style: none;
+    margin: 20px 0;
+}
+
+.solution-list li {
+    padding: 18px 20px;
+    margin-bottom: 12px;
+    background: var(--card-bg);
+    border-left: 3px solid var(--primary-orange);
+    font-size: 13px;
+    line-height: 1.6;
+    border-radius: 0 8px 8px 0;
+}
+
+.solution-list li strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+.solution-list li span {
+    color: var(--text-muted);
+}
+
+.closing-statement {
+    margin-top: 25px;
+    padding: 18px 20px;
+    background: rgba(230, 126, 34, 0.1);
+    border-left: 3px solid var(--primary-orange);
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    border-radius: 0 8px 8px 0;
+}
+
+.dark-page .closing-statement {
+    background: rgba(230, 126, 34, 0.15);
+}
+
+.signature-line {
+    margin-top: 25px;
+    font-size: 13px;
+    color: var(--text-light);
+}
+
+/* Timeline Section - Hexagon Design */
+.timeline-section {
+    padding: 15px 0;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 100px);
+}
+
+.timeline-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+
+.hexagon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: -5px;
+}
+
+.hex-row {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: -18px;
+}
+
+.hex-row:first-child {
+    margin-top: 0;
+}
+
+.hexagon {
+    width: 100px;
+    height: 115px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.hexagon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.hexagon .hex-bg {
+    fill: var(--card-bg);
+    stroke: #444;
+    stroke-width: 2;
+    transition: all 0.3s ease;
+}
+
+.hexagon .hex-border {
+    fill: none;
+    stroke: var(--primary-orange);
+    stroke-width: 3;
+    opacity: 0;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 8px var(--primary-orange-glow));
+}
+
+.hexagon:hover .hex-border,
+.hexagon.active .hex-border {
+    opacity: 1;
+}
+
+.hexagon:hover .hex-bg,
+.hexagon.active .hex-bg {
+    stroke: var(--primary-orange);
+}
+
+.hexagon-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: var(--text-light);
+    pointer-events: none;
+}
+
+.hexagon-step {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+}
+
+.hexagon-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-light);
+}
+
+.timeline-details {
+    width: 100%;
+    min-height: 200px;
+    margin-top: 25px;
+    text-align: center;
+    flex: 1;
+}
+
+.milestone-content {
+    display: none;
+    animation: fadeIn 0.4s ease;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.milestone-content.active {
+    display: block;
+}
+
+.milestone-placeholder {
+    color: var(--text-muted);
+    font-size: 14px;
+    font-style: italic;
+    padding: 20px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.milestone-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primary-orange);
+    margin-bottom: 8px;
+}
+
+.milestone-date {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.milestone-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.milestone-tasks {
+    margin-top: 12px;
+    list-style: none;
+    text-align: left;
+    display: inline-block;
+}
+
+.milestone-tasks li {
+    font-size: 12px;
+    color: var(--text-muted);
+    padding: 5px 0;
+    padding-left: 18px;
+    position: relative;
+}
+
+.milestone-tasks li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-orange);
+}
+
+.timeline-footer {
+    margin-top: auto;
+    padding: 15px 20px;
+    background: rgba(230, 126, 34, 0.1);
+    border-left: 3px solid var(--primary-orange);
+    font-size: 12px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    border-radius: 0 6px 6px 0;
+    text-align: left;
+}
+
+/* Related Systems - Box Design with Hover */
+.systems-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.system-box {
+    background: #fafafa;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 18px;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.system-box::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--primary-orange), rgba(230, 126, 34, 0.3));
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.system-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1), -4px 0 20px rgba(230, 126, 34, 0.15);
+    border-color: var(--primary-orange);
+}
+
+.system-box:hover::before {
+    opacity: 1;
+    width: 5px;
+    box-shadow: 0 0 15px rgba(230, 126, 34, 0.4);
+}
+
+.system-box h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #000;
+}
+
+.system-box p {
+    font-size: 11px;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* Investment Page */
+.investment-section {
+    margin: 20px 0;
+}
+
+.payment-notes {
+    background: #f8f8f8;
+    padding: 18px 20px;
+    border-left: 3px solid #000;
+    margin-bottom: 25px;
+    font-size: 12px;
+    line-height: 1.7;
+}
+
+.payment-notes p {
+    margin-bottom: 8px;
+}
+
+.payment-notes p:last-child {
+    margin-bottom: 0;
+}
+
+.milestone-payment-section {
+    margin-bottom: 25px;
+}
+
+.milestone-payment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background: #000;
+    color: #fff;
+    margin-bottom: 0;
+}
+
+.milestone-payment-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.milestone-payment-header .percentage {
+    font-size: 13px;
+    color: var(--primary-orange);
+    font-weight: 600;
+}
+
+.milestone-subheader {
+    font-size: 11px;
+    color: #666;
+    padding: 10px 15px;
+    background: #f5f5f5;
+    border-bottom: 1px solid #e5e5e5;
+    font-style: italic;
+}
+
+.line-items {
+    border: 1px solid #e5e5e5;
+    border-top: none;
+}
+
+.line-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 12px;
+}
+
+.line-item:last-child {
+    border-bottom: none;
+}
+
+.line-item-name {
+    flex: 1;
+    color: #333;
+}
+
+.line-item-price {
+    width: 90px;
+    text-align: right;
+    font-weight: 600;
+}
+
+.milestone-subtotal {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 15px;
+    background: #f9f9f9;
+    border: 1px solid #e5e5e5;
+    border-top: none;
+    font-weight: 600;
+    font-size: 13px;
+}
+
+.payment-summary {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 3px solid #000;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    font-size: 13px;
+}
+
+.summary-row.total {
+    font-size: 16px;
+    font-weight: 700;
+    padding-top: 15px;
+    margin-top: 10px;
+    border-top: 2px solid #000;
+}
+
+.summary-row .label {
+    color: #333;
+}
+
+.summary-row .amount {
+    font-weight: 600;
+}
+
+/* Platform Fees Section */
+.platform-section {
+    margin-top: 30px;
+    padding-top: 25px;
+    border-top: 1px solid #ddd;
+}
+
+.platform-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.platform-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background: #f9f9f9;
+    border-left: 3px solid #666;
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+
+.platform-note {
+    font-size: 11px;
+    color: #666;
+    font-style: italic;
+    margin-top: -4px;
+    margin-bottom: 15px;
+    padding-left: 15px;
+}
+
+.payment-notes-compact {
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 12px 15px;
+    margin-top: 15px;
+    font-size: 10px;
+    line-height: 1.5;
+    color: #555;
+}
+
+.payment-notes-compact p {
+    margin-bottom: 6px;
+}
+
+.payment-notes-compact p:last-child {
+    margin-bottom: 0;
+}
+
+.payment-notes-compact strong {
+    color: #333;
+}
+
+/* Terms and Service Agreement */
+.terms-content {
+    font-size: 11px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.terms-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 18px 0 8px 0;
+    color: #000;
+}
+
+.terms-content p {
+    margin-bottom: 10px;
+    text-align: justify;
+    color: #444;
+}
+
+/* NEW PROFESSIONAL SIGNATURE CARD STYLES */
+.signature-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.signature-box {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+}
+
+.signature-box h4 {
+    font-family: 'Playfair Display', serif;
+    padding: 12px 18px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    background: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+    margin: 0;
+}
+
+/* Level One Signature Display */
+.signature-display {
+    padding: 0;
+}
+
+.sig-info-row {
+    display: flex;
+    padding: 10px 18px;
+    background: #f5f5f5;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 11px;
+}
+
+.sig-info-label {
+    font-weight: 600;
+    color: #666;
+    width: 70px;
+}
+
+.sig-info-value {
+    color: #333;
+    flex: 1;
+}
+
+.sig-divider {
+    height: 1px;
+    background: #ddd;
+    margin: 0;
+}
+
+.sig-image-container {
+    padding: 20px 18px;
+    background: white;
+    border: 2px solid #e8e8e8;
+    margin: 12px;
+    border-radius: 4px;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signature-display img {
+    max-width: 100%;
+    height: auto;
+    max-height: 80px;
+    display: block;
+}
+
+.sig-date-row {
+    padding: 10px 18px;
+    background: #f5f5f5;
+    border-top: 1px solid #e5e5e5;
+    font-size: 10px;
+    color: #666;
+    text-align: center;
+}
+
+/* Client Signature Form */
+.client-signature-form {
+    display: block;
+    padding: 18px;
+}
+
+.client-signature-form.hidden {
+    display: none;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 11px;
+    margin-bottom: 4px;
+    color: #333;
+    font-weight: 600;
+}
+
+.form-group input[type="text"] {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 11px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.form-group input[type="text"]:focus {
+    outline: none;
+    border-color: #000;
+}
+
+.signature-upload-wrapper {
+    margin-bottom: 12px;
+}
+
+.signature-upload-wrapper label {
+    display: block;
+    font-size: 11px;
+    margin-bottom: 4px;
+    color: #333;
+    font-weight: 600;
+}
+
+.draw-signature-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    font-family: 'Source Sans Pro', sans-serif;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.draw-signature-btn:hover {
+    background: #333;
+}
+
+/* Signature Drawing Modal */
+.signature-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.signature-modal.active {
+    display: flex;
+}
+
+.signature-modal-content {
+    background: white;
+    border-radius: 8px;
+    padding: 25px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.signature-modal-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.signature-canvas-wrapper {
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    background: white;
+}
+
+.signature-canvas {
+    display: block;
+    width: 100%;
+    height: 150px;
+    cursor: crosshair;
+}
+
+.signature-modal-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.modal-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'Source Sans Pro', sans-serif;
+    transition: all 0.3s;
+}
+
+.modal-btn-clear {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.modal-btn-clear:hover {
+    background: #e0e0e0;
+}
+
+.modal-btn-cancel {
+    background: #999;
+    color: white;
+}
+
+.modal-btn-cancel:hover {
+    background: #777;
+}
+
+.modal-btn-submit {
+    background: var(--primary-orange);
+    color: white;
+}
+
+.modal-btn-submit:hover {
+    background: #d35400;
+}
+
+.signature-preview {
+    margin-top: 10px;
+    text-align: center;
+    padding: 10px;
+    border: 2px dashed #ddd;
+    border-radius: 4px;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signature-preview img {
+    max-width: 100%;
+    max-height: 80px;
+}
+
+.signature-preview-text {
+    font-size: 10px;
+    color: #999;
+    font-style: italic;
+}
+
+.submit-signature-btn {
+    width: 100%;
+    padding: 10px;
+    background: var(--primary-orange);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'Source Sans Pro', sans-serif;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.submit-signature-btn:hover:not(:disabled) {
+    background: #d35400;
+    transform: translateY(-2px);
+}
+
+.submit-signature-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Client Signature Display (after submission) */
+.client-signature-display {
+    display: none;
+    padding: 0;
+}
+
+.client-signature-display.show {
+    display: block;
+}
+
+.client-signature-display img {
+    max-width: 100%;
+    height: auto;
+    max-height: 80px;
+    display: block;
+}
+
+.download-section {
+    margin-top: 25px;
+    text-align: center;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.btn-preview {
+    background: #000;
+    color: white;
+    padding: 12px 35px;
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    margin: 5px;
+}
+
+.btn-preview:hover:not(:disabled) {
+    background: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.download-note {
+    margin-top: 10px;
+    font-size: 11px;
+    color: #666;
+}
+
+/* Preview Modal Styles */
+.preview-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 10000;
+    overflow-y: auto;
+}
+
+.preview-modal.active {
+    display: block;
+}
+
+.preview-modal-content {
+    max-width: 8.5in;
+    margin: 40px auto;
+    background: white;
+    position: relative;
+}
+
+.preview-modal-header {
+    position: sticky;
+    top: 0;
+    background: #000;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10001;
+}
+
+.preview-modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+}
+
+.preview-close-btn {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s;
+}
+
+.preview-close-btn:hover {
+    background: white;
+    color: #000;
+}
+
+.preview-pages {
+    background: #f5f5f5;
+    padding: 20px 0;
+}
+
+.preview-footer {
+    position: sticky;
+    bottom: 0;
+    background: #000;
+    padding: 20px;
+    text-align: center;
+    z-index: 10001;
+}
+
+.btn-agree {
+    background: var(--primary-orange);
+    color: white;
+    padding: 15px 50px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-agree:hover {
+    background: #d35400;
+    transform: scale(1.05);
+}
+
+/* Thank You Modal */
+.thankyou-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10002;
+    align-items: center;
+    justify-content: center;
+}
+
+.thankyou-modal.active {
+    display: flex;
+}
+
+.thankyou-content {
+    background: white;
+    border-radius: 12px;
+    padding: 50px 40px;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.thankyou-icon {
+    font-size: 60px;
+    color: var(--primary-orange);
+    margin-bottom: 20px;
+}
+
+.thankyou-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.thankyou-message {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.btn-download-final {
+    background: var(--primary-orange);
+    color: white;
+    padding: 15px 40px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-download-final:hover {
+    background: #d35400;
+    transform: scale(1.05);
+}
+
+.no-highlights .editable,
+.no-highlights .editable-subtitle {
+    background: none !important;
+    padding: 0 !important;
+}
+
+@media print {
+    body {
+        background: white;
+    }
+    .page {
+        margin: 0;
+        box-shadow: none;
+    }
+    .download-section {
+        display: none;
+    }
+}
