@@ -80,12 +80,10 @@ body {
     justify-content: space-between;
 }
 
-/* Updated logo section - positioned to align with "Project Proposal" text */
 .logo-section {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
+    align-items: center;
+    gap: 10px;
 }
 
 .logo-image {
@@ -98,7 +96,6 @@ body {
     height: 30px;
     width: auto;
     display: block;
-    margin-left: 5px; /* Small offset to align better with logo */
 }
 
 .cover-center {
@@ -494,55 +491,34 @@ body {
     text-align: left;
 }
 
-/* ========================================
-   PREVIEW TIMELINE - Completely Redesigned
-   ======================================== */
-
-/* Preview Timeline - Compact Two-Column Grid Layout */
+/* Preview Timeline - Vertical Layout with Lines */
 .preview-pages .timeline-section {
-    padding: 10px 0;
-    height: auto;
+    padding: 30px 0;
 }
 
 .preview-pages .timeline-wrapper {
     flex-direction: row;
     align-items: flex-start;
-    gap: 20px;
+    gap: 0;
 }
 
-/* Hexagons in a compact 2x3 grid on the left */
 .preview-pages .hexagon-container {
     flex-direction: column;
-    gap: 0;
-    width: 140px;
+    gap: 30px;
+    width: 100px;
     flex-shrink: 0;
 }
 
 .preview-pages .hex-row {
-    flex-direction: row;
-    margin-top: -12px;
-    gap: 4px;
-    justify-content: center;
-}
-
-.preview-pages .hex-row:first-child {
+    flex-direction: column;
     margin-top: 0;
-    justify-content: center;
+    gap: 0;
 }
 
-/* Make hexagons smaller in preview */
 .preview-pages .hexagon {
     cursor: default;
-    width: 55px;
-    height: 63px;
-}
-
-.preview-pages .hexagon-step {
-    font-size: 6px;
-}
-
-.preview-pages .hexagon-number {
-    font-size: 16px;
+    width: 80px;
+    height: 92px;
 }
 
 .preview-pages .hexagon .hex-border {
@@ -553,86 +529,128 @@ body {
     stroke: var(--primary-orange);
 }
 
-/* Timeline details - all milestones visible in a grid */
 .preview-pages .timeline-details {
     flex: 1;
     margin-top: 0;
     margin-left: 0;
     text-align: left;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    min-height: auto;
+    position: relative;
 }
 
 .preview-pages .milestone-placeholder {
     display: none;
 }
 
-/* All milestone content visible and compact */
 .preview-pages .milestone-content {
-    display: block !important;
+    display: block;
     position: relative;
-    margin: 0 !important;
-    padding: 8px 10px;
+    margin-bottom: 0;
+    padding: 12px 15px;
     background: var(--card-bg);
-    border-radius: 6px;
-    border-left: 2px solid var(--primary-orange);
-    font-size: 8px;
-    animation: none;
-    max-width: none;
+    border-radius: 8px;
+    border-left: 3px solid var(--primary-orange);
+    font-size: 10px;
 }
 
-/* Remove connecting lines in preview */
+/* Position each milestone with different left margins and connect with lines */
+.preview-pages .milestone-content:nth-child(1) {
+    margin-left: 60px;
+    margin-top: 0;
+}
+
+.preview-pages .milestone-content:nth-child(2) {
+    margin-left: 100px;
+    margin-top: 20px;
+}
+
+.preview-pages .milestone-content:nth-child(3) {
+    margin-left: 80px;
+    margin-top: 20px;
+}
+
+.preview-pages .milestone-content:nth-child(4) {
+    margin-left: 120px;
+    margin-top: 20px;
+}
+
+.preview-pages .milestone-content:nth-child(5) {
+    margin-left: 90px;
+    margin-top: 20px;
+}
+
+.preview-pages .milestone-content:nth-child(6) {
+    margin-left: 110px;
+    margin-top: 20px;
+}
+
+/* Connecting lines from hexagons to milestone content */
 .preview-pages .milestone-content::before {
-    display: none;
+    content: '';
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    height: 2px;
+    background: var(--primary-orange);
+    transform: translateY(-50%);
+}
+
+.preview-pages .milestone-content:nth-child(1)::before {
+    width: 60px;
+}
+
+.preview-pages .milestone-content:nth-child(2)::before {
+    width: 100px;
+}
+
+.preview-pages .milestone-content:nth-child(3)::before {
+    width: 80px;
+}
+
+.preview-pages .milestone-content:nth-child(4)::before {
+    width: 120px;
+}
+
+.preview-pages .milestone-content:nth-child(5)::before {
+    width: 90px;
+}
+
+.preview-pages .milestone-content:nth-child(6)::before {
+    width: 110px;
 }
 
 .preview-pages .milestone-title {
     text-align: left;
-    font-size: 9px;
-    margin-bottom: 2px;
-    line-height: 1.2;
+    font-size: 11px;
+    margin-bottom: 4px;
 }
 
 .preview-pages .milestone-date {
     text-align: left;
-    font-size: 7px;
-    margin-bottom: 4px;
-    letter-spacing: 0.5px;
+    font-size: 9px;
+    margin-bottom: 6px;
 }
 
 .preview-pages .milestone-desc {
     text-align: left;
-    font-size: 7px;
-    line-height: 1.4;
-    margin-bottom: 4px;
+    font-size: 9px;
+    line-height: 1.5;
+    margin-bottom: 6px;
 }
 
 .preview-pages .milestone-tasks {
     display: block;
     width: 100%;
-    margin-top: 4px;
+    margin-top: 6px;
 }
 
 .preview-pages .milestone-tasks li {
-    font-size: 6.5px;
-    padding: 1px 0;
-    padding-left: 10px;
-    line-height: 1.3;
+    font-size: 8px;
+    padding: 3px 0;
+    padding-left: 12px;
 }
 
 .preview-pages .milestone-tasks li::before {
-    font-size: 7px;
-}
-
-/* Timeline footer in preview */
-.preview-pages .timeline-footer {
-    grid-column: 1 / -1;
-    margin-top: 8px;
-    padding: 8px 12px;
     font-size: 8px;
-    line-height: 1.5;
 }
 
 /* Related Systems - Box Design with Hover */
