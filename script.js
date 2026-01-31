@@ -69,6 +69,55 @@ const milestoneData = [
     }
 ];
 
+// Line and card positioning for each step
+const milestonePositions = [
+    // Step I (top-right) - line to upper-right
+    {
+        lineStart: { x: 90, y: 20 },
+        lineAngle: -45,
+        lineLength: 90,
+        cardOffset: { x: 100, y: -120 }
+    },
+    // Step II (right) - line to right
+    {
+        lineStart: { x: 100, y: 69 },
+        lineAngle: 0,
+        lineLength: 90,
+        cardOffset: { x: 200, y: 40 }
+    },
+    // Step III (bottom-right) - line to lower-right
+    {
+        lineStart: { x: 90, y: 118 },
+        lineAngle: 45,
+        lineLength: 90,
+        cardOffset: { x: 100, y: 145 }
+    },
+    // Step IV (bottom-left) - line to lower-left
+    {
+        lineStart: { x: -30, y: 118 },
+        lineAngle: 135,
+        lineLength: 90,
+        cardOffset: { x: -350, y: 145 }
+    },
+    // Step V (left) - line to left
+    {
+        lineStart: { x: -40, y: 69 },
+        lineAngle: 180,
+        lineLength: 90,
+        cardOffset: { x: -340, y: 40 }
+    },
+    // Step VI (top-left) - line to upper-left
+    {
+        lineStart: { x: -30, y: 20 },
+        lineAngle: -135,
+        lineLength: 90,
+        cardOffset: { x: -350, y: -120 }
+    }
+];
+
+let currentActiveMilestone = null;
+let isAnimating = false;
+
 // Create hexagon timeline
 function initHexagonTimeline() {
     const container = document.getElementById('hexagon-timeline-container');
@@ -243,14 +292,20 @@ function initHexagonTimeline() {
         // Click event listener
         hexagon.addEventListener('click', function(e) {
             e.stopPropagation();
+            if (isAnimating) return;
+            
             const milestoneIndex = parseInt(this.getAttribute('data-milestone'));
-            showMilestone(milestoneIndex);
+            
+            // If clicking the same hexagon, do nothing
+            if (currentActiveMilestone === milestoneIndex) return;
             
             document.querySelectorAll('.hexagon').forEach(hex => hex.classList.remove('active'));
             this.classList.add('active');
             
             isStopped = true;
             document.querySelectorAll('.hexagon').forEach(h => h.classList.remove('pulsing'));
+            
+            showMilestoneWithAnimation(milestoneIndex);
         });
 
         // Hover pause
@@ -284,36 +339,58 @@ function initHexagonTimeline() {
         }
     }
 
-    // Create center content container
-    const centerContent = document.createElement('div');
-    centerContent.className = 'timeline-center-content';
-    centerContent.id = 'timeline-center-content';
-    
-    // Create milestone content divs
+    // Create milestone lines and cards for each hexagon
     milestoneData.forEach((milestone, index) => {
-        const milestoneDiv = document.createElement('div');
-        milestoneDiv.className = 'milestone-content';
-        milestoneDiv.id = `milestone-${index}`;
+        const position = milestonePositions[index];
+        
+        // Create line element
+        const line = document.createElement('div');
+        line.className = 'milestone-line';
+        line.id = `milestone-line-${index}`;
+        
+        // Position line at hexagon edge
+        const hexagon = document.querySelector(`.hexagon[data-milestone="${index}"]`);
+        const hexRect = hexagon.getBoundingClientRect();
+        const containerRect = container.getBoundingClientRect();
+        
+        const hexCenterX = hexagon.offsetLeft + 60;
+        const hexCenterY = hexagon.offsetTop + 69;
+        
+        line.style.left = (hexCenterX + position.lineStart.x) + 'px';
+        line.style.top = (hexCenterY + position.lineStart.y) + 'px';
+        line.style.width = '0px';
+        line.style.transform = `rotate(${position.lineAngle}deg)`;
+        
+        container.appendChild(line);
+        
+        // Create card element
+        const card = document.createElement('div');
+        card.className = 'milestone-card';
+        card.id = `milestone-card-${index}`;
         
         const tasksHTML = milestone.tasks.map(task => `<li>${task}</li>`).join('');
         
-        milestoneDiv.innerHTML = `
+        card.innerHTML = `
             <div class="milestone-title">${milestone.title}</div>
-            <div class="milestone-date editable">${milestone.date}</div>
+            <div class="milestone-date">${milestone.date}</div>
             <div class="milestone-desc">${milestone.desc}</div>
             <ul class="milestone-tasks">${tasksHTML}</ul>
         `;
         
-        centerContent.appendChild(milestoneDiv);
+        // Position card at end of line
+        card.style.left = (hexCenterX + position.cardOffset.x) + 'px';
+        card.style.top = (hexCenterY + position.cardOffset.y) + 'px';
+        
+        container.appendChild(card);
     });
-    
-    container.appendChild(centerContent);
 
     // Click outside to hide
     document.addEventListener('click', function(e) {
-        if (!e.target.closest('.hexagon') && !e.target.closest('.timeline-center-content')) {
+        if (!e.target.closest('.hexagon') && !e.target.closest('.milestone-card')) {
+            if (currentActiveMilestone !== null && !isAnimating) {
+                hideCurrentMilestone();
+            }
             document.querySelectorAll('.hexagon').forEach(hex => hex.classList.remove('active'));
-            document.querySelectorAll('.milestone-content').forEach(content => content.classList.remove('active'));
             isStopped = false;
         }
     });
@@ -322,15 +399,58 @@ function initHexagonTimeline() {
     startPulsing();
 }
 
-function showMilestone(index) {
-    document.querySelectorAll('.milestone-content').forEach(content => {
-        content.classList.remove('active');
-    });
+async function showMilestoneWithAnimation(index) {
+    isAnimating = true;
     
-    const milestone = document.getElementById(`milestone-${index}`);
-    if (milestone) {
-        milestone.classList.add('active');
+    // Step 1: Fade out current milestone if exists (1 second)
+    if (currentActiveMilestone !== null && currentActiveMilestone !== index) {
+        await hideCurrentMilestone();
     }
+    
+    // Step 2: Fade in and extend new line (1 second)
+    const line = document.getElementById(`milestone-line-${index}`);
+    const position = milestonePositions[index];
+    
+    line.classList.add('active');
+    line.style.width = position.lineLength + 'px';
+    
+    // Wait for line animation to complete
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    // Step 3: Fade in card (0.6 seconds)
+    const card = document.getElementById(`milestone-card-${index}`);
+    card.classList.add('active');
+    
+    currentActiveMilestone = index;
+    
+    // Wait for card fade in to complete
+    await new Promise(resolve => setTimeout(resolve, 600));
+    
+    isAnimating = false;
+}
+
+async function hideCurrentMilestone() {
+    if (currentActiveMilestone === null) return;
+    
+    const line = document.getElementById(`milestone-line-${currentActiveMilestone}`);
+    const card = document.getElementById(`milestone-card-${currentActiveMilestone}`);
+    
+    // Fade out card first
+    card.classList.remove('active');
+    await new Promise(resolve => setTimeout(resolve, 600));
+    
+    // Then retract line
+    line.style.width = '0px';
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    line.classList.remove('active');
+    
+    currentActiveMilestone = null;
+}
+
+function showMilestone(index) {
+    // Legacy function - now handled by showMilestoneWithAnimation
+    showMilestoneWithAnimation(index);
 }
 
 // Pulsing animation variables
