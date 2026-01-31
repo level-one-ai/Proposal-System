@@ -306,170 +306,344 @@ body {
     color: var(--text-light);
 }
 
-/* Timeline Section - Hexagon Design */
+/* Timeline Section - Circular Hexagon Design */
 .timeline-section {
     padding: 15px 0;
     display: flex;
     flex-direction: column;
     height: calc(100% - 100px);
+    position: relative;
 }
 
-.timeline-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+#hexagon-timeline-container {
+    position: relative;
+    width: 550px;
+    height: 550px;
+    margin: 0 auto;
     flex: 1;
 }
 
-.hexagon-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: -5px;
-}
-
-.hex-row {
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    margin-top: -18px;
-}
-
-.hex-row:first-child {
-    margin-top: 0;
-}
-
 .hexagon {
-    width: 100px;
-    height: 115px;
-    position: relative;
+    position: absolute;
+    width: 120px;
+    height: 138px;
+    transition: all 0.4s ease;
     cursor: pointer;
-    transition: all 0.3s ease;
 }
 
-.hexagon svg {
+.hexagon-inner {
+    position: relative;
     width: 100%;
     height: 100%;
+    transform-origin: center;
 }
 
-.hexagon .hex-bg {
-    fill: var(--card-bg);
-    stroke: #444;
+/* 3D grey hexagon underneath (shadow/depth layer) */
+.hex-3d-base {
+    fill: rgba(80, 90, 100, 0.15);
+    stroke: rgba(100, 110, 120, 0.3);
     stroke-width: 2;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
 }
 
-.hexagon .hex-border {
+.hexagon:hover .hex-3d-base,
+.hexagon.active .hex-3d-base {
+    fill: rgba(80, 90, 100, 0.25);
+    stroke: rgba(100, 110, 120, 0.5);
+}
+
+/* Main hexagon segments (solid thick lines with breaks) */
+.hex-segment {
     fill: none;
-    stroke: var(--primary-orange);
-    stroke-width: 3;
+    stroke: #ff8c00;
+    stroke-width: 4;
+    stroke-linecap: round;
+    transition: stroke 0.4s ease, stroke-width 0.4s ease;
+}
+
+.hexagon:hover .hex-segment,
+.hexagon.active .hex-segment {
+    stroke: #ff9933;
+    stroke-width: 5;
+}
+
+.hexagon.pulsing .hex-segment {
+    stroke: #ff9933;
+    stroke-width: 5;
+}
+
+/* Glow elements - separate paths for the glow effect */
+.hex-segment-glow {
+    fill: none;
+    stroke: #ff9933;
+    stroke-width: 8;
+    stroke-linecap: round;
     opacity: 0;
-    transition: all 0.3s ease;
-    filter: drop-shadow(0 0 8px var(--primary-orange-glow));
+    filter: blur(8px);
+    transition: opacity 0.6s ease;
 }
 
-.hexagon:hover .hex-border,
-.hexagon.active .hex-border {
+.hexagon:hover .hex-segment-glow,
+.hexagon.active .hex-segment-glow {
+    opacity: 0.8;
+}
+
+.hexagon.pulsing .hex-segment-glow {
+    opacity: 0.8;
+}
+
+/* Corner brackets */
+.corner-bracket {
+    stroke: #ff8c00;
+    stroke-width: 3;
+    stroke-linecap: square;
+    fill: none;
     opacity: 1;
+    transition: stroke 0.4s ease, stroke-width 0.4s ease;
 }
 
-.hexagon:hover .hex-bg,
-.hexagon.active .hex-bg {
-    stroke: var(--primary-orange);
+.hexagon:hover .corner-bracket,
+.hexagon.active .corner-bracket {
+    stroke: #ff9933;
+    stroke-width: 4;
 }
 
-.hexagon-content {
+.hexagon.pulsing .corner-bracket {
+    stroke: #ff9933;
+    stroke-width: 4;
+}
+
+.corner-bracket-glow {
+    stroke: #ff9933;
+    stroke-width: 6;
+    stroke-linecap: square;
+    fill: none;
+    opacity: 0;
+    filter: blur(6px);
+    transition: opacity 0.6s ease;
+}
+
+.hexagon:hover .corner-bracket-glow,
+.hexagon.active .corner-bracket-glow {
+    opacity: 0.7;
+}
+
+.hexagon.pulsing .corner-bracket-glow {
+    opacity: 0.7;
+}
+
+/* Circuit nodes */
+.circuit-node {
+    fill: #ff8c00;
+    transition: fill 0.4s ease;
+}
+
+.hexagon:hover .circuit-node,
+.hexagon.active .circuit-node {
+    fill: #ff9933;
+}
+
+.hexagon.pulsing .circuit-node {
+    fill: #ff9933;
+}
+
+.circuit-node-glow {
+    fill: #ff9933;
+    opacity: 0;
+    filter: blur(4px);
+    transition: opacity 0.6s ease;
+}
+
+.hexagon:hover .circuit-node-glow,
+.hexagon.active .circuit-node-glow {
+    opacity: 0.8;
+}
+
+.hexagon.pulsing .circuit-node-glow {
+    opacity: 0.8;
+}
+
+/* Inner hexagon lines following the same path */
+.hex-inner-line {
+    fill: none;
+    stroke: #ff8c00;
+    stroke-width: 1.5;
+    stroke-linecap: square;
+    opacity: 0.4;
+    transition: all 0.4s ease;
+}
+
+.hex-inner-line-faint {
+    fill: none;
+    stroke: #ff8c00;
+    stroke-width: 1;
+    stroke-linecap: square;
+    opacity: 0.2;
+    transition: all 0.4s ease;
+}
+
+/* Thick external lines */
+.thick-external {
+    stroke: #ff8c00;
+    stroke-width: 4;
+    stroke-linecap: square;
+    fill: none;
+    opacity: 0.8;
+    transition: all 0.4s ease;
+}
+
+.thick-external-faded {
+    stroke: #ff8c00;
+    stroke-width: 3;
+    stroke-linecap: square;
+    fill: none;
+    opacity: 0.3;
+    transition: all 0.4s ease;
+}
+
+/* Accent lines - varying brightness levels */
+.accent-line-bright {
+    stroke: #ff8c00;
+    stroke-width: 2;
+    stroke-linecap: square;
+    fill: none;
+    opacity: 0.7;
+    transition: all 0.4s ease;
+}
+
+.accent-line-medium {
+    stroke: #ff8c00;
+    stroke-width: 1.5;
+    stroke-linecap: square;
+    fill: none;
+    opacity: 0.4;
+    transition: all 0.4s ease;
+}
+
+.accent-line-dim {
+    stroke: #ff8c00;
+    stroke-width: 1;
+    stroke-linecap: square;
+    fill: none;
+    opacity: 0.2;
+    transition: all 0.4s ease;
+}
+
+/* Orange dots between hexagons */
+.dot {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #ff8c00;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 140, 0, 0.8),
+                0 0 18px rgba(255, 140, 0, 0.4);
+    opacity: 0.9;
+}
+
+/* Roman numeral labels */
+.hex-number {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    text-align: center;
-    color: var(--text-light);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 32px;
+    font-weight: bold;
+    color: #ff8c00;
+    opacity: 0;
     pointer-events: none;
+    text-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
+    transition: opacity 0.6s ease, color 0.4s ease, text-shadow 0.4s ease;
 }
 
-.hexagon-step {
-    font-size: 9px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--text-muted);
-    margin-bottom: 2px;
+.hexagon:hover .hex-number {
+    opacity: 0.3;
 }
 
-.hexagon-number {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--text-light);
+.hexagon.active .hex-number {
+    opacity: 1;
+    color: #ff9933;
+    text-shadow: 0 0 15px rgba(255, 140, 0, 0.9),
+                0 0 25px rgba(255, 140, 0, 0.6),
+                0 0 35px rgba(255, 140, 0, 0.4);
 }
 
-.timeline-details {
-    width: 100%;
-    min-height: 200px;
-    margin-top: 25px;
-    text-align: center;
-    flex: 1;
+.hexagon.pulsing .hex-number {
+    opacity: 0.5;
+    color: #ff9933;
+    text-shadow: 0 0 15px rgba(255, 140, 0, 0.9),
+                0 0 25px rgba(255, 140, 0, 0.6),
+                0 0 35px rgba(255, 140, 0, 0.4);
+}
+
+/* Center milestone content area */
+.timeline-center-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    max-height: 320px;
+    overflow-y: auto;
+    z-index: 10;
 }
 
 .milestone-content {
     display: none;
+    padding: 18px 20px;
+    background: var(--card-bg);
+    border-left: 3px solid var(--primary-orange);
+    border-radius: 0 8px 8px 0;
     animation: fadeIn 0.4s ease;
-    max-width: 650px;
-    margin: 0 auto;
 }
 
 .milestone-content.active {
     display: block;
 }
 
-.milestone-placeholder {
-    color: var(--text-muted);
-    font-size: 14px;
-    font-style: italic;
-    padding: 20px;
-}
-
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
 }
 
 .milestone-title {
     font-family: 'Playfair Display', serif;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 600;
     color: var(--primary-orange);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+    line-height: 1.3;
 }
 
 .milestone-date {
-    font-size: 13px;
+    font-size: 10px;
     color: var(--text-muted);
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 .milestone-desc {
-    font-size: 13px;
-    line-height: 1.7;
+    font-size: 11px;
+    line-height: 1.6;
     color: var(--text-muted);
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .milestone-tasks {
-    margin-top: 12px;
+    margin-top: 10px;
     list-style: none;
-    text-align: left;
-    display: inline-block;
+    padding-left: 0;
 }
 
 .milestone-tasks li {
-    font-size: 12px;
+    font-size: 10px;
     color: var(--text-muted);
-    padding: 5px 0;
-    padding-left: 18px;
+    padding: 4px 0;
+    padding-left: 14px;
     position: relative;
+    line-height: 1.4;
 }
 
 .milestone-tasks li::before {
@@ -477,10 +651,11 @@ body {
     position: absolute;
     left: 0;
     color: var(--primary-orange);
+    font-size: 10px;
 }
 
 .timeline-footer {
-    margin-top: auto;
+    margin-top: 20px;
     padding: 15px 20px;
     background: rgba(230, 126, 34, 0.1);
     border-left: 3px solid var(--primary-orange);
