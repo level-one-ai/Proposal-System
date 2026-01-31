@@ -1,866 +1,532 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Level One - Proposal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+// Milestone data
+const milestoneData = [
+    {
+        title: "Core Foundation & Content Automation",
+        date: "Weeks 1-3 • May 2026",
+        desc: "Building the essential platform infrastructure and implementing AI-powered content generation.",
+        tasks: [
+            "Platform setup: domain, hosting, CDN, and core framework",
+            "Product Information Management (PIM) database",
+            "User authentication and secure login system",
+            "AI content generation for product descriptions",
+            "Automated catalog tagging using image recognition"
+        ]
+    },
+    {
+        title: "Transactional MVP & Security",
+        date: "Weeks 4-6 • May-June 2026",
+        desc: "Enabling secure purchasing with fraud protection and intelligent search.",
+        tasks: [
+            "Shopping cart and multi-step checkout",
+            "Payment gateway integration (Stripe/PayPal)",
+            "Shipping and tax calculation",
+            "Real-time AI fraud detection",
+            "Smart semantic search"
+        ]
+    },
+    {
+        title: "Support Automation & CX",
+        date: "Weeks 7-9 • June 2026",
+        desc: "Deploying 24/7 AI support and customer account features.",
+        tasks: [
+            "Customer account dashboard",
+            "Order Management System backend",
+            "AI Support Agent chatbot",
+            "Review summarization using NLP"
+        ]
+    },
+    {
+        title: "Personalisation & Predictive Ops",
+        date: "Weeks 10-12 • June-July 2026",
+        desc: "Implementing data-driven personalization and analytics.",
+        tasks: [
+            "Loyalty program infrastructure",
+            "Analytics dashboard",
+            "Predictive recommendation engine",
+            "Demand forecasting"
+        ]
+    },
+    {
+        title: "Advanced Discovery & Growth",
+        date: "Weeks 13-15 • July 2026",
+        desc: "Adding sophisticated features for conversions.",
+        tasks: [
+            "Visual search / \"Shop the Look\"",
+            "Dynamic pricing",
+            "AI-driven A/B testing"
+        ]
+    },
+    {
+        title: "Launch & Handover",
+        date: "Week 16 • July-August 2026",
+        desc: "Final deployment, training, and handover.",
+        tasks: [
+            "Production deployment",
+            "Performance optimization",
+            "Team training sessions",
+            "Documentation and guides"
+        ]
+    }
+];
 
-    <!-- Page 1: Cover -->
-    <div class="page page-1">
-        <div class="cover-content">
-            <div class="logo-section">
-                <img src="https://github.com/level-one-ai/Proposal-System/blob/main/Whisk_cc3ea92b36cae7aaaf5425d64468a20ceg.png?raw=true" alt="Level One Logo" class="logo-image">
-                <img src="https://github.com/level-one-ai/Proposal-System/blob/main/Screenshot%202026-01-29%2020.36.28.png?raw=true" alt="Level One Text" class="logo-text">
-            </div>
-            
-            <div class="cover-center">
-                <div class="proposal-label">Project Proposal</div>
-                <h1 class="proposal-title" id="proposalTitle"><span class="editable" id="proposalTitlePrefix">E-Commerce Platform & Automation System for</span> <span class="editable" id="clientNameCover">Cerka</span></h1>
-                <p class="proposal-subtitle">
-                   <span class="editable-subtitle" id="proposalSubtitle">This comprehensive proposal outlines our approach to building a fully automated, 
-                       AI-powered e-commerce platform. Inside, you'll find detailed scope of work, 
-                    milestone-based timelines, and transparent investment breakdowns. We look forward 
-                    to partnering with you on this transformative project.</span>
-                 </p>
-            </div>
+// Create hexagon timeline
+function initHexagonTimeline() {
+    const container = document.getElementById('hexagon-timeline-container');
+    if (!container) return;
 
-            <div class="cover-footer">
-                <div class="cover-footer-item">
-                    Prepared by
-                    <strong>Dean @ Level One</strong>
-                </div>
-                <div class="cover-footer-item">
-                    Date
-                    <strong>January 2026</strong>
-                </div>
-                <div class="cover-footer-item">
-                    Contact
-                    <strong>dean@levelone.ai</strong>
-                </div>
-            </div>
-        </div>
-    </div>
+    const centerX = 275;
+    const centerY = 275;
+    const numHexagons = 6;
+    const radius = 133;
 
-    <!-- Page 2: Statement / Introduction -->
-    <div class="page content-page">
-        <h2 class="page-header">Understanding Your Challenges</h2>
-        <p class="page-subheader">Before we can solve a problem, we need to understand it. This section outlines the key challenges we've identified through our discussions, and why addressing them is crucial for your business growth.</p>
+    // Hexagon vertices (points of a regular hexagon)
+    const hexPoints = [
+        {x: 90, y: 12},
+        {x: 168, y: 58},
+        {x: 168, y: 150},
+        {x: 90, y: 196},
+        {x: 12, y: 150},
+        {x: 12, y: 58}
+    ];
+
+    // Function to create segment paths with small gaps
+    function createHexagonSegments(pattern) {
+        const segments = [];
         
-        <div class="letter-content">
-            <p>Dear <span class="editable" id="clientName">Rafal</span>,</p>
+        for (let i = 0; i < 6; i++) {
+            const start = hexPoints[i];
+            const end = hexPoints[(i + 1) % 6];
             
-            <p style="margin-top: 15px;">
-                Thank you for taking the time to discuss your business needs with us. After our conversations, 
-                it's clear that you're facing several operational challenges that are limiting your growth potential 
-                and consuming valuable resources that could be better spent elsewhere.
-            </p>
+            const dx = end.x - start.x;
+            const dy = end.y - start.y;
+            const length = Math.sqrt(dx * dx + dy * dy);
+            const unitX = dx / length;
+            const unitY = dy / length;
             
-            <p>
-                The good news? Every challenge you're facing has a solution. Modern automation and AI technologies 
-                can transform these pain points into competitive advantages. Below, we've summarized the key issues 
-                we'll be addressing together.
-            </p>
-        </div>
-
-        <ul class="bullet-list">
-            <li><span class="editable" id="problem1">Creating product descriptions, categorizing items, and managing inventory consumes hours of staff time daily—time that could be spent on growth activities.</span></li>
-            <li><span class="editable" id="problem2">Customers frequently contact support for basic inquiries like order status and returns, overwhelming your team with repetitive tasks.</span></li>
-            <li><span class="editable" id="problem3">Without data-driven insights, you're making inventory and marketing decisions based on intuition rather than actionable intelligence.</span></li>
-            <li><span class="editable" id="problem4">Every visitor sees the same products and content, missing opportunities for personalization that drives conversions and loyalty.</span></li>
-        </ul>
-
-        <div class="letter-content" style="margin-top: 25px;">
-            <p>
-                The following pages detail exactly how we'll tackle each of these challenges, the timeline 
-                for implementation, and the investment required. If you have any questions at any point, 
-                please reach out to me directly at <strong>dean@levelone.ai</strong>.
-            </p>
+            const gapSize = pattern[i];
             
-            <p class="signature-line" style="margin-top: 30px;">
-                Looking forward to working together,<br>
-                <strong>Dean</strong>
-            </p>
-        </div>
-    </div>
+            if (gapSize === 0) {
+                segments.push(`M${start.x},${start.y} L${end.x},${end.y}`);
+            } else {
+                const gapStart = length * 0.45;
+                const gapEnd = length * 0.55;
+                
+                const gap1X = start.x + unitX * gapStart;
+                const gap1Y = start.y + unitY * gapStart;
+                segments.push(`M${start.x},${start.y} L${gap1X},${gap1Y}`);
+                
+                const gap2X = start.x + unitX * gapEnd;
+                const gap2Y = start.y + unitY * gapEnd;
+                segments.push(`M${gap2X},${gap2Y} L${end.x},${end.y}`);
+            }
+        }
+        
+        return segments;
+    }
 
-    <!-- Page 3: Problem Details (Dark Theme) -->
-    <div class="page dark-page">
-        <h2 class="page-header">The Problems We'll Solve</h2>
-        <p class="page-subheader">Each challenge below represents not just a problem, but an opportunity. By automating these processes, you'll free up resources, reduce errors, and create a foundation for scalable growth.</p>
+    // Different gap patterns for each hexagon
+    const gapPatterns = [
+        [1, 0, 1, 0, 1, 0],
+        [0, 1, 0, 1, 0, 1],
+        [1, 1, 0, 1, 1, 0],
+        [0, 1, 1, 0, 1, 1],
+        [1, 0, 1, 1, 0, 1],
+        [1, 1, 1, 0, 0, 0]
+    ];
 
-        <ul class="problem-list">
-            <li>
-                <strong class="editable" id="detailProblem1Title">Manual Content Creation Bottleneck</strong>
-                <span class="editable" id="detailProblem1Desc">Writing unique, SEO-optimized product descriptions for hundreds or thousands of items is time-consuming and inconsistent. AI-powered content generation will create compelling descriptions in seconds, not hours.</span>
-            </li>
-            <li>
-                <strong class="editable" id="detailProblem2Title">Fraud Vulnerability</strong>
-                <span class="editable" id="detailProblem2Desc">Without real-time fraud detection, you're exposed to chargebacks and fraudulent orders. AI monitoring can analyze transaction patterns instantly and block high-risk orders before they're processed.</span>
-            </li>
-            <li>
-                <strong class="editable" id="detailProblem3Title">Support Team Overload</strong>
-                <span class="editable" id="detailProblem3Desc">Your team spends valuable time answering repetitive questions that could be handled automatically. An AI chatbot can resolve 80% of common inquiries 24/7, freeing your team for complex issues.</span>
-            </li>
-            <li>
-                <strong class="editable" id="detailProblem4Title">Missed Personalization Opportunities</strong>
-                <span class="editable" id="detailProblem4Desc">Static product displays and one-size-fits-all recommendations leave conversion potential on the table. Predictive AI can deliver personalized experiences that dramatically increase engagement.</span>
-            </li>
-        </ul>
+    // Create hexagons
+    for (let i = 0; i < numHexagons; i++) {
+        const angle = (i * 60 - 60) * Math.PI / 180;
+        const x = centerX + radius * Math.cos(angle);
+        const y = centerY + radius * Math.sin(angle);
 
-        <div class="closing-statement">
-            These aren't just technical improvements—they're business transformations. Each solution we implement will directly impact your bottom line through reduced costs, increased conversions, and improved customer satisfaction.
-        </div>
-    </div>
+        const hexagon = document.createElement('div');
+        hexagon.className = 'hexagon';
+        hexagon.style.left = (x - 60) + 'px';
+        hexagon.style.top = (y - 69) + 'px';
+        hexagon.setAttribute('data-milestone', i);
 
-    <!-- Page 4: Solution (Dark Theme) -->
-    <div class="page dark-page">
-        <h2 class="page-header">Our Solution</h2>
-        <p class="page-subheader">We've designed a comprehensive solution that addresses each of your challenges through strategic automation and AI integration. Here's how we'll transform your operations.</p>
-
-        <ul class="solution-list">
-            <li>
-                <strong class="editable" id="solution0Title">Custom E-Commerce Platform</strong>
-                <span class="editable" id="solution0Desc">A fully bespoke, high-performance online store built from the ground up using modern technologies. Includes responsive design, intuitive navigation, product management, shopping cart, secure checkout, and seamless payment integration.</span>
-            </li>
-            <li>
-                <strong class="editable" id="solution1Title">AI-Powered Content Engine</strong>
-                <span class="editable" id="solution1Desc">Automatically generate SEO-optimized product descriptions, meta-tags, and marketing copy using advanced AI tools. New products go from upload to fully-described in minutes, not days.</span>
-            </li>
-            <li>
-                <strong class="editable" id="solution2Title">Intelligent Fraud Prevention</strong>
-                <span class="editable" id="solution2Desc">Real-time transaction monitoring using machine learning to identify and block fraudulent orders before they cost you money. Integrated seamlessly into your checkout flow.</span>
-            </li>
-            <li>
-                <strong class="editable" id="solution3Title">24/7 AI Support Agent</strong>
-                <span class="editable" id="solution3Desc">A sophisticated chatbot that handles order tracking, FAQs, and simple returns automatically. When human help is needed, it seamlessly hands off with full context.</span>
-            </li>
-            <li>
-                <strong class="editable" id="solution4Title">Predictive Personalization</strong>
-                <span class="editable" id="solution4Desc">Dynamic product recommendations, personalized search results, and demand forecasting that learns from every customer interaction to continuously improve.</span>
-            </li>
-            <li>
-                <strong class="editable" id="solution5Title">Visual Search & Dynamic Pricing</strong>
-                <span class="editable" id="solution5Desc">Allow customers to upload images to find similar products, plus automated pricing that responds to market conditions and competitor data.</span>
-            </li>
-        </ul>
-
-        <div class="closing-statement">
-            This integrated approach ensures every component works together seamlessly. The result is a platform that runs smarter, responds faster, and grows with your business.
-        </div>
-    </div>
-
-    <!-- Page 5: Timeline (Dark Theme with Hexagons) -->
-    <div class="page dark-page">
-        <h2 class="page-header">Project Timeline</h2>
-        <p class="page-subheader">We've structured this project into six clear milestones, each building upon the last. Click on any hexagon to see the detailed breakdown of what we'll accomplish in that phase.</p>
-
-        <div class="timeline-section">
-            <div class="timeline-wrapper">
-                <div class="hexagon-container">
-                    <!-- Row 1: 1 hexagon -->
-                    <div class="hex-row">
-                        <div class="hexagon" data-milestone="1" onclick="showMilestone(1)">
-                            <svg viewBox="0 0 100 115">
-                                <polygon class="hex-bg" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
-                                <polygon class="hex-border" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
-                            </svg>
-                            <div class="hexagon-content">
-                                <div class="hexagon-step">Step</div>
-                                <div class="hexagon-number">1</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Row 2: 2 hexagons -->
-                    <div class="hex-row">
-                        <div class="hexagon" data-milestone="2" onclick="showMilestone(2)">
-                            <svg viewBox="0 0 100 115">
-                                <polygon class="hex-bg" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
-                                <polygon class="hex-border" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
-                            </svg>
-                            <div class="hexagon-content">
-                                <div class="hexagon-step">Step</div>
-                                <div class="hexagon-number">2</div>
-                            </div>
-                        </div>
-                        <div class="hexagon" data-milestone="3" onclick="showMilestone(3)">
-                            <svg viewBox="0 0 100 115">
-                                <polygon class="hex-bg" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
-                                <polygon class="hex-border" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
-                            </svg>
-                            <div class="hexagon-content">
-                                <div class="hexagon-step">Step</div>
-                                <div class="hexagon-number">3</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Row 3: 3 hexagons -->
-                    <div class="hex-row">
-                        <div class="hexagon" data-milestone="4" onclick="showMilestone(4)">
-                            <svg viewBox="0 0 100 115">
-                                <polygon class="hex-bg" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
-                                <polygon class="hex-border" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
-                            </svg>
-                            <div class="hexagon-content">
-                                <div class="hexagon-step">Step</div>
-                                <div class="hexagon-number">4</div>
-                            </div>
-                        </div>
-                        <div class="hexagon" data-milestone="5" onclick="showMilestone(5)">
-                            <svg viewBox="0 0 100 115">
-                                <polygon class="hex-bg" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
-                                <polygon class="hex-border" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
-                            </svg>
-                            <div class="hexagon-content">
-                                <div class="hexagon-step">Step</div>
-                                <div class="hexagon-number">5</div>
-                            </div>
-                        </div>
-                        <div class="hexagon" data-milestone="6" onclick="showMilestone(6)">
-                            <svg viewBox="0 0 100 115">
-                                <polygon class="hex-bg" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
-                                <polygon class="hex-border" points="50,2 95,28 95,87 50,113 5,87 5,28"/>
-                            </svg>
-                            <div class="hexagon-content">
-                                <div class="hexagon-step">Step</div>
-                                <div class="hexagon-number">6</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="timeline-details">
-                    <p class="milestone-placeholder" id="milestone-placeholder">Click on a step above to view milestone details</p>
+        const segments = createHexagonSegments(gapPatterns[i]);
+        const segmentPaths = segments.map(seg => `<path class="hex-segment" d="${seg}"/>`).join('');
+        const segmentGlowPaths = segments.map(seg => `<path class="hex-segment-glow" d="${seg}"/>`).join('');
+        
+        const romanNumerals = ['I', 'II', 'III', 'IV', 'V', 'VI'];
+        const hexNumber = romanNumerals[i];
+        
+        hexagon.innerHTML = `
+            <div class="hexagon-inner">
+                <svg viewBox="0 0 180 207" xmlns="http://www.w3.org/2000/svg">
+                    <polygon class="hex-3d-base" points="92,14 170,60 170,152 92,198 14,152 14,60"/>
                     
-                    <!-- Milestone 1 -->
-                    <div class="milestone-content" id="milestone-1">
-                        <div class="milestone-title">Core Foundation & Content Automation</div>
-                        <div class="milestone-date editable">Weeks 1-3 • May 2026</div>
-                        <div class="milestone-desc">
-                            Building the essential platform infrastructure and implementing AI-powered content generation.
-                        </div>
-                        <ul class="milestone-tasks">
-                            <li>Platform setup: domain, hosting, CDN, and core framework</li>
-                            <li>Product Information Management (PIM) database</li>
-                            <li>User authentication and secure login system</li>
-                            <li>AI content generation for product descriptions</li>
-                            <li>Automated catalog tagging using image recognition</li>
-                        </ul>
-                    </div>
-
-                    <!-- Milestone 2 -->
-                    <div class="milestone-content" id="milestone-2">
-                        <div class="milestone-title">Transactional MVP & Security</div>
-                        <div class="milestone-date editable">Weeks 4-6 • May-June 2026</div>
-                        <div class="milestone-desc">
-                            Enabling secure purchasing with fraud protection and intelligent search.
-                        </div>
-                        <ul class="milestone-tasks">
-                            <li>Shopping cart and multi-step checkout</li>
-                            <li>Payment gateway integration (Stripe/PayPal)</li>
-                            <li>Shipping and tax calculation</li>
-                            <li>Real-time AI fraud detection</li>
-                            <li>Smart semantic search</li>
-                        </ul>
-                    </div>
-
-                    <!-- Milestone 3 -->
-                    <div class="milestone-content" id="milestone-3">
-                        <div class="milestone-title">Support Automation & CX</div>
-                        <div class="milestone-date editable">Weeks 7-9 • June 2026</div>
-                        <div class="milestone-desc">
-                            Deploying 24/7 AI support and customer account features.
-                        </div>
-                        <ul class="milestone-tasks">
-                            <li>Customer account dashboard</li>
-                            <li>Order Management System backend</li>
-                            <li>AI Support Agent chatbot</li>
-                            <li>Review summarization using NLP</li>
-                        </ul>
-                    </div>
-
-                    <!-- Milestone 4 -->
-                    <div class="milestone-content" id="milestone-4">
-                        <div class="milestone-title">Personalisation & Predictive Ops</div>
-                        <div class="milestone-date editable">Weeks 10-12 • June-July 2026</div>
-                        <div class="milestone-desc">
-                            Implementing data-driven personalization and analytics.
-                        </div>
-                        <ul class="milestone-tasks">
-                            <li>Loyalty program infrastructure</li>
-                            <li>Analytics dashboard</li>
-                            <li>Predictive recommendation engine</li>
-                            <li>Demand forecasting</li>
-                        </ul>
-                    </div>
-
-                    <!-- Milestone 5 -->
-                    <div class="milestone-content" id="milestone-5">
-                        <div class="milestone-title">Advanced Discovery & Growth</div>
-                        <div class="milestone-date editable">Weeks 13-15 • July 2026</div>
-                        <div class="milestone-desc">
-                            Adding sophisticated features for conversions.
-                        </div>
-                        <ul class="milestone-tasks">
-                            <li>Visual search / "Shop the Look"</li>
-                            <li>Dynamic pricing</li>
-                            <li>AI-driven A/B testing</li>
-                        </ul>
-                    </div>
-
-                    <!-- Milestone 6 -->
-                    <div class="milestone-content" id="milestone-6">
-                        <div class="milestone-title">Launch & Handover</div>
-                        <div class="milestone-date editable">Week 16 • July-August 2026</div>
-                        <div class="milestone-desc">
-                            Final deployment, training, and handover.
-                        </div>
-                        <ul class="milestone-tasks">
-                            <li>Production deployment</li>
-                            <li>Performance optimization</li>
-                            <li>Team training sessions</li>
-                            <li>Documentation and guides</li>
-                        </ul>
-                    </div>
-                </div>
+                    ${segmentGlowPaths}
+                    
+                    <polyline class="corner-bracket-glow" points="80,12 90,12 90,22"/>
+                    <polyline class="corner-bracket-glow" points="100,12 90,12 90,22"/>
+                    <polyline class="corner-bracket-glow" points="168,53 168,58 163,61"/>
+                    <polyline class="corner-bracket-glow" points="168,63 168,58 163,55"/>
+                    <polyline class="corner-bracket-glow" points="168,145 168,150 163,147"/>
+                    <polyline class="corner-bracket-glow" points="168,155 168,150 163,153"/>
+                    <polyline class="corner-bracket-glow" points="100,196 90,196 90,186"/>
+                    <polyline class="corner-bracket-glow" points="80,196 90,196 90,186"/>
+                    <polyline class="corner-bracket-glow" points="12,53 12,58 17,61"/>
+                    <polyline class="corner-bracket-glow" points="12,63 12,58 17,55"/>
+                    <polyline class="corner-bracket-glow" points="12,145 12,150 17,147"/>
+                    <polyline class="corner-bracket-glow" points="12,155 12,150 17,153"/>
+                    
+                    <circle class="circuit-node-glow" cx="90" cy="12" r="4"/>
+                    <circle class="circuit-node-glow" cx="168" cy="58" r="4"/>
+                    <circle class="circuit-node-glow" cx="168" cy="150" r="4"/>
+                    <circle class="circuit-node-glow" cx="90" cy="196" r="4"/>
+                    <circle class="circuit-node-glow" cx="12" cy="150" r="4"/>
+                    <circle class="circuit-node-glow" cx="12" cy="58" r="4"/>
+                    
+                    ${segmentPaths}
+                    <polygon class="hex-inner-line" points="90,25 155,65 155,143 90,183 25,143 25,65"/>
+                    <polygon class="hex-inner-line-faint" points="90,35 145,73 145,135 90,175 35,135 35,73"/>
+                    
+                    <line class="thick-external" x1="90" y1="0" x2="90" y2="8"/>
+                    <line class="thick-external-faded" x1="85" y1="-3" x2="85" y2="5"/>
+                    <line class="thick-external-faded" x1="95" y1="-3" x2="95" y2="5"/>
+                    <line class="thick-external" x1="175" y1="52" x2="183" y2="56"/>
+                    <line class="thick-external-faded" x1="177" y1="47" x2="185" y2="51"/>
+                    <line class="thick-external" x1="175" y1="153" x2="183" y2="149"/>
+                    <line class="thick-external-faded" x1="177" y1="158" x2="185" y2="154"/>
+                    <line class="thick-external" x1="90" y1="207" x2="90" y2="199"/>
+                    <line class="thick-external-faded" x1="85" y1="210" x2="85" y2="202"/>
+                    <line class="thick-external" x1="5" y1="153" x2="-3" y2="149"/>
+                    <line class="thick-external-faded" x1="3" y1="158" x2="-5" y2="154"/>
+                    <line class="thick-external" x1="5" y1="52" x2="-3" y2="56"/>
+                    <line class="thick-external-faded" x1="3" y1="47" x2="-5" y2="51"/>
+                    
+                    <polyline class="corner-bracket" points="80,12 90,12 90,22"/>
+                    <polyline class="corner-bracket" points="100,12 90,12 90,22"/>
+                    <polyline class="corner-bracket" points="168,53 168,58 163,61"/>
+                    <polyline class="corner-bracket" points="168,63 168,58 163,55"/>
+                    <polyline class="corner-bracket" points="168,145 168,150 163,147"/>
+                    <polyline class="corner-bracket" points="168,155 168,150 163,153"/>
+                    <polyline class="corner-bracket" points="100,196 90,196 90,186"/>
+                    <polyline class="corner-bracket" points="80,196 90,196 90,186"/>
+                    <polyline class="corner-bracket" points="12,53 12,58 17,61"/>
+                    <polyline class="corner-bracket" points="12,63 12,58 17,55"/>
+                    <polyline class="corner-bracket" points="12,145 12,150 17,147"/>
+                    <polyline class="corner-bracket" points="12,155 12,150 17,153"/>
+                    
+                    <circle class="circuit-node" cx="90" cy="12" r="2.5"/>
+                    <circle class="circuit-node" cx="168" cy="58" r="2.5"/>
+                    <circle class="circuit-node" cx="168" cy="150" r="2.5"/>
+                    <circle class="circuit-node" cx="90" cy="196" r="2.5"/>
+                    <circle class="circuit-node" cx="12" cy="150" r="2.5"/>
+                    <circle class="circuit-node" cx="12" cy="58" r="2.5"/>
+                    
+                    <line class="accent-line-bright" x1="70" y1="5" x2="85" y2="5"/>
+                    <line class="accent-line-medium" x1="95" y1="3" x2="105" y2="3"/>
+                    <line class="accent-line-dim" x1="60" y1="8" x2="68" y2="8"/>
+                    <line class="accent-line-medium" x1="175" y1="50" x2="175" y2="65"/>
+                    <line class="accent-line-bright" x1="178" y1="72" x2="178" y2="85"/>
+                    <line class="accent-line-dim" x1="173" y1="40" x2="173" y2="48"/>
+                    <line class="accent-line-bright" x1="175" y1="155" x2="175" y2="168"/>
+                    <line class="accent-line-medium" x1="173" y1="175" x2="173" y2="185"/>
+                    <line class="accent-line-medium" x1="95" y1="203" x2="110" y2="203"/>
+                    <line class="accent-line-bright" x1="75" y1="205" x2="88" y2="205"/>
+                    <line class="accent-line-dim" x1="112" y1="200" x2="120" y2="200"/>
+                    <line class="accent-line-bright" x1="2" y1="145" x2="2" y2="158"/>
+                    <line class="accent-line-medium" x1="7" y1="175" x2="7" y2="188"/>
+                    <line class="accent-line-bright" x1="2" y1="65" x2="2" y2="78"/>
+                    <line class="accent-line-medium" x1="5" y1="48" x2="5" y2="60"/>
+                </svg>
+                <div class="hex-number">${hexNumber}</div>
             </div>
+        `;
 
-            <div class="timeline-footer">
-                Each milestone includes built-in review points and your approval before we proceed. This ensures you're never surprised and always in control of the project's direction. We've structured this timeline to ensure smooth project execution while maintaining flexibility for your team's availability.
-            </div>
-        </div>
-    </div>
+        container.appendChild(hexagon);
 
-    <!-- Page 6: Related Systems -->
-    <div class="page content-page">
-        <h2 class="page-header">Related Systems & Capabilities</h2>
-        <p class="page-subheader">Beyond this project, Level One offers a comprehensive suite of automation solutions. These systems can enhance your operations now or be added as your business grows.</p>
+        // Click event listener
+        hexagon.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const milestoneIndex = parseInt(this.getAttribute('data-milestone'));
+            showMilestone(milestoneIndex);
+            
+            document.querySelectorAll('.hexagon').forEach(hex => hex.classList.remove('active'));
+            this.classList.add('active');
+            
+            isStopped = true;
+            document.querySelectorAll('.hexagon').forEach(h => h.classList.remove('pulsing'));
+        });
 
-        <div class="systems-grid">
-            <div class="system-box">
-                <h4>Lead Sourcing & Cold Outreach</h4>
-                <p class="editable" id="system1Desc">Automated prospecting, data enrichment, and personalized outreach campaigns that scale your business development without scaling your team.</p>
-            </div>
-            <div class="system-box">
-                <h4>Client Onboarding System</h4>
-                <p class="editable" id="system2Desc">Streamlined onboarding workflows with automated document collection, welcome sequences, and task management—reducing time-to-value significantly.</p>
-            </div>
-            <div class="system-box">
-                <h4>Data Entry Integration</h4>
-                <p class="editable" id="system3Desc">Connect all your systems and eliminate manual data transfer between platforms. Ensures data consistency across your entire tech stack.</p>
-            </div>
-            <div class="system-box">
-                <h4>Contract Creation & Auto-Reply</h4>
-                <p class="editable" id="system4Desc">Generate customized contracts from templates and automate responses to common inquiries, freeing your team for high-value conversations.</p>
-            </div>
-            <div class="system-box">
-                <h4>Customer Support Automation</h4>
-                <p class="editable" id="system5Desc">AI-powered chatbots and intelligent ticket routing that provide instant responses and ensure every inquiry reaches the right person.</p>
-            </div>
-            <div class="system-box">
-                <h4>Reporting & Analytics Dashboard</h4>
-                <p class="editable" id="system6Desc">Custom dashboards aggregating data from multiple sources, providing real-time insights into the metrics that matter most to your business.</p>
-            </div>
-        </div>
-
-        <div class="closing-statement" style="background: #f5f5f5; border-left-color: #000;">
-            These systems can be implemented individually or as part of a comprehensive automation strategy. We're happy to discuss how any of these solutions might benefit your specific business needs.
-        </div>
-    </div>
-
-    <!-- Page 7: Investment -->
-    <div class="page content-page">
-        <h2 class="page-header" style="margin-bottom: 15px;">Investment Required</h2>
-
-        <div class="investment-section">
-            <!-- Deposit Section -->
-            <div class="milestone-payment-section" style="margin-bottom: 12px;">
-                <div class="milestone-payment-header" style="padding: 8px 12px;">
-                    <h3 style="font-size: 12px;">DEPOSIT — Project Initiation</h3>
-                    <span class="percentage" style="font-size: 11px;">50%</span>
-                </div>
-                <div class="milestone-subheader" style="padding: 6px 12px; font-size: 10px;">Due upon agreement signing to begin Milestones 1 & 2</div>
-                <div class="line-items">
-                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
-                        <span class="line-item-name">Core Foundation, PIM & Content Automation</span>
-                        <span class="line-item-price">£4,685</span>
-                    </div>
-                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
-                        <span class="line-item-name">Transactional MVP, Security & Smart Search</span>
-                        <span class="line-item-price">£4,685</span>
-                    </div>
-                </div>
-                <div class="milestone-subtotal" style="padding: 8px 12px; font-size: 11px;">
-                    <span>Deposit Total</span>
-                    <span class="editable" id="depositAmount">£9,370</span>
-                </div>
-            </div>
-
-            <!-- Milestone 3 Payment -->
-            <div class="milestone-payment-section" style="margin-bottom: 12px;">
-                <div class="milestone-payment-header" style="padding: 8px 12px;">
-                    <h3 style="font-size: 12px;">MILESTONE 3 — Support Automation & CX</h3>
-                    <span class="percentage" style="font-size: 11px;">20%</span>
-                </div>
-                <div class="milestone-subheader" style="padding: 6px 12px; font-size: 10px;">Due upon completion of AI support agent and customer features</div>
-                <div class="line-items">
-                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
-                        <span class="line-item-name">Customer Account Features & OMS</span>
-                        <span class="line-item-price">£1,874</span>
-                    </div>
-                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
-                        <span class="line-item-name">AI Support Agent Chatbot Deployment</span>
-                        <span class="line-item-price">£1,874</span>
-                    </div>
-                </div>
-                <div class="milestone-subtotal" style="padding: 8px 12px; font-size: 11px;">
-                    <span>Milestone 3 Total</span>
-                    <span>£3,748</span>
-                </div>
-            </div>
-
-            <!-- Milestone 4 Payment -->
-            <div class="milestone-payment-section" style="margin-bottom: 12px;">
-                <div class="milestone-payment-header" style="padding: 8px 12px;">
-                    <h3 style="font-size: 12px;">MILESTONE 4 — Personalisation & Predictive</h3>
-                    <span class="percentage" style="font-size: 11px;">15%</span>
-                </div>
-                <div class="milestone-subheader" style="padding: 6px 12px; font-size: 10px;">Due upon completion of recommendation engine and analytics</div>
-                <div class="line-items">
-                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
-                        <span class="line-item-name">Loyalty Program & Analytics Dashboard</span>
-                        <span class="line-item-price">£1,405</span>
-                    </div>
-                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
-                        <span class="line-item-name">Predictive Recommendations & Demand Forecasting</span>
-                        <span class="line-item-price">£1,406</span>
-                    </div>
-                </div>
-                <div class="milestone-subtotal" style="padding: 8px 12px; font-size: 11px;">
-                    <span>Milestone 4 Total</span>
-                    <span>£2,811</span>
-                </div>
-            </div>
-
-            <!-- Milestone 5 & 6 Payment -->
-            <div class="milestone-payment-section" style="margin-bottom: 12px;">
-                <div class="milestone-payment-header" style="padding: 8px 12px;">
-                    <h3 style="font-size: 12px;">MILESTONE 5 & 6 — Advanced Features & Launch</h3>
-                    <span class="percentage" style="font-size: 11px;">15%</span>
-                </div>
-                <div class="milestone-subheader" style="padding: 6px 12px; font-size: 10px;">Due upon final deployment, training, and handover</div>
-                <div class="line-items">
-                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
-                        <span class="line-item-name">Visual Search, Dynamic Pricing & A/B Testing</span>
-                        <span class="line-item-price">£1,874</span>
-                    </div>
-                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
-                        <span class="line-item-name">Launch, Training & 30-Day Support</span>
-                        <span class="line-item-price">£937</span>
-                    </div>
-                </div>
-                <div class="milestone-subtotal" style="padding: 8px 12px; font-size: 11px;">
-                    <span>Milestone 5 & 6 Total</span>
-                    <span>£2,811</span>
-                </div>
-            </div>
-
-            <!-- Payment Summary -->
-            <div class="payment-summary" style="margin-top: 15px; padding-top: 12px;">
-                <div class="summary-row" style="padding: 6px 0; font-size: 11px;">
-                    <span class="label">Deposit (50%)</span>
-                    <span class="amount">£9,370</span>
-                </div>
-                <div class="summary-row" style="padding: 6px 0; font-size: 11px;">
-                    <span class="label">Milestone 3 (20%)</span>
-                    <span class="amount">£3,748</span>
-                </div>
-                <div class="summary-row" style="padding: 6px 0; font-size: 11px;">
-                    <span class="label">Milestone 4 (15%)</span>
-                    <span class="amount">£2,811</span>
-                </div>
-                <div class="summary-row" style="padding: 6px 0; font-size: 11px;">
-                    <span class="label">Milestone 5 & 6 (15%)</span>
-                    <span class="amount">£2,811</span>
-                </div>
-                <div class="summary-row total" style="font-size: 14px; padding-top: 10px; margin-top: 6px;">
-                    <span class="label">Project Total</span>
-                    <span class="amount editable" id="projectTotal">£18,740</span>
-                </div>
-            </div>
-
-            <!-- Platform Fees -->
-            <div class="platform-section" style="margin-top: 15px; padding-top: 12px;">
-                <h3 class="platform-header" style="font-size: 12px; margin-bottom: 10px;">ONGOING PLATFORM FEES</h3>
-                <div style="display: flex; gap: 15px;">
-                    <div class="platform-item" style="flex: 1; padding: 10px 12px; font-size: 11px;">
-                        <span class="editable" id="platform1Name">Make.com (monthly)</span>
-                        <span class="editable" id="platform1Price">£25/mo</span>
-                    </div>
-                    <div class="platform-item" style="flex: 1; padding: 10px 12px; font-size: 11px;">
-                        <span>AI API Usage (est.)</span>
-                        <span>£50-150/mo</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Notes Box -->
-            <div class="payment-notes-compact">
-                <p><strong>Payment Structure:</strong> A 50% deposit is required to begin work. The remaining balance is paid upon completion of each milestone, ensuring you only pay for delivered results.</p>
-                <p><strong>"Delivery"</strong> is defined as the successful completion of scope items outlined for each milestone, with your sign-off confirming satisfaction before the next phase begins.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Page 8: Terms & Conditions -->
-    <div class="page content-page">
-        <h2 class="page-header">Terms & Conditions</h2>
+        // Hover pause
+        hexagon.addEventListener('mouseenter', () => {
+            isPaused = true;
+            document.querySelectorAll('.hexagon').forEach(h => h.classList.remove('pulsing'));
+        });
         
-        <div class="terms-content">
-            <p>
-                This agreement is entered into between <strong>Level One</strong> ("Service Provider") and 
-                <strong><span class="editable" id="termsClientName">Cerka</span></strong> ("Client") 
-                for the services described in this proposal.
-            </p>
+        hexagon.addEventListener('mouseleave', () => {
+            isPaused = false;
+        });
 
-            <h3>1. Scope of Work</h3>
-            <p>
-                Level One agrees to fulfill the scope of work as described in the previous pages of this document. Any changes to scope must be agreed upon in writing by both parties and may result in adjusted timelines and costs.
-            </p>
+        // Create dots between hexagons
+        const nextI = (i + 1) % numHexagons;
+        const nextAngle = (nextI * 60 - 60) * Math.PI / 180;
+        const nextX = centerX + radius * Math.cos(nextAngle);
+        const nextY = centerY + radius * Math.sin(nextAngle);
+        const midX = (x + nextX) / 2;
+        const midY = (y + nextY) / 2;
 
-            <h3>2. Payment Terms</h3>
-            <p>
-                A 50% deposit is required to commence work. The remaining balance is payable upon completion of each milestone as outlined in the Investment section. Final payment is due upon delivery and client satisfaction with the completed project.
-            </p>
+        for (let j = 0; j < 3; j++) {
+            const dot = document.createElement('div');
+            dot.className = 'dot';
+            const dx = nextX - x;
+            const dy = nextY - y;
+            const length = Math.sqrt(dx * dx + dy * dy);
+            const offset = (j - 1) * 13;
+            dot.style.left = (midX + (dx / length) * offset - 3) + 'px';
+            dot.style.top = (midY + (dy / length) * offset - 3) + 'px';
+            container.appendChild(dot);
+        }
+    }
 
-            <h3>3. Timeline</h3>
-            <p>
-                The Service Provider will make reasonable efforts to adhere to the timeline outlined in this proposal. Delays caused by client unavailability, delayed feedback, or scope changes may result in adjusted timelines.
-            </p>
-
-            <h3>4. Client Responsibilities</h3>
-            <p>
-                The Client agrees to provide timely access to necessary systems, information, and feedback required for project completion. The Client is responsible for the accuracy of information provided and maintaining appropriate backups of their data.
-            </p>
-
-            <h3>5. Acceptance and Signatures</h3>
-            <p>
-                By signing below, both parties agree to the terms outlined in this proposal and commit to fulfilling their respective obligations.
-            </p>
-        </div>
-
-        <div class="signature-section">
-            <!-- Level One Signature Box -->
-            <div class="signature-box">
-                <h4>Level One</h4>
-                <div class="signature-display" id="providerSignatureDisplay">
-                    <div class="sig-info-row">
-                        <span class="sig-info-label">Name:</span>
-                        <span class="sig-info-value">Dean Finlayson</span>
-                    </div>
-                    <div class="sig-info-row">
-                        <span class="sig-info-label">Position:</span>
-                        <span class="sig-info-value">CEO</span>
-                    </div>
-                    <div class="sig-divider"></div>
-                    <div class="sig-image-container">
-                        <img src="https://github.com/level-one-ai/Proposal-System/blob/main/Screenshot%202026-01-29%2012.12.00.png?raw=true" alt="Level One Signature">
-                    </div>
-                    <div class="sig-date-row" id="providerDate">Date: Not signed</div>
-                </div>
-            </div>
-
-            <!-- Client Signature Box -->
-            <div class="signature-box">
-                <h4 id="clientSignatureHeader">Cerka</h4>
-                
-                <!-- Client Form -->
-                <div class="client-signature-form" id="clientForm">
-                    <div class="form-group">
-                        <label for="clientFullName">Full Name *</label>
-                        <input type="text" id="clientFullName" placeholder="Enter your full name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="clientPosition">Position *</label>
-                        <select id="clientPosition" required>
-                            <option value="">Select position...</option>
-                            <option value="Owner">Owner</option>
-                            <option value="Co-Owner">Co-Owner</option>
-                            <option value="Founder">Founder</option>
-                            <option value="Co-Founder">Co-Founder</option>
-                            <option value="CEO">CEO</option>
-                            <option value="COO">COO</option>
-                            <option value="CFO">CFO</option>
-                            <option value="CTO">CTO</option>
-                            <option value="President">President</option>
-                            <option value="Vice President">Vice President</option>
-                            <option value="Managing Director">Managing Director</option>
-                            <option value="Director">Director</option>
-                            <option value="Partner">Partner</option>
-                            <option value="Manager">Manager</option>
-                            <option value="General Manager">General Manager</option>
-                            <option value="Operations Manager">Operations Manager</option>
-                        </select>
-                    </div>
-                    <div class="signature-upload-wrapper">
-                        <label>Digital Signature *</label>
-                        <button type="button" class="draw-signature-btn" onclick="openSignatureModal(1)">
-                            Draw Signature
-                        </button>
-                        <div class="signature-preview" id="clientSigPreview">
-                            <span class="signature-preview-text">No signature drawn</span>
-                        </div>
-                    </div>
-                    <button type="button" class="submit-signature-btn" id="submitClientSig" onclick="submitClientSignature()" disabled>
-                        Submit Signature
-                    </button>
-                </div>
-
-                <!-- Client Signature Display (hidden initially) -->
-                <div class="client-signature-display" id="clientSignatureDisplay">
-                    <div class="sig-info-row">
-                        <span class="sig-info-label">Name:</span>
-                        <span class="sig-info-value" id="clientNameDisplay"></span>
-                    </div>
-                    <div class="sig-info-row">
-                        <span class="sig-info-label">Position:</span>
-                        <span class="sig-info-value" id="clientPositionDisplay"></span>
-                    </div>
-                    <div class="sig-divider"></div>
-                    <div class="sig-image-container">
-                        <img id="clientSigImg" src="" alt="Client Signature">
-                    </div>
-                    <div class="sig-date-row" id="clientDate">Date: Not signed</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Page 9: Service Agreement (Part 1) -->
-    <div class="page content-page">
-        <h2 class="page-header">Service Agreement</h2>
+    // Create center content container
+    const centerContent = document.createElement('div');
+    centerContent.className = 'timeline-center-content';
+    centerContent.id = 'timeline-center-content';
+    
+    // Create milestone content divs
+    milestoneData.forEach((milestone, index) => {
+        const milestoneDiv = document.createElement('div');
+        milestoneDiv.className = 'milestone-content';
+        milestoneDiv.id = `milestone-${index}`;
         
-        <div class="terms-content">
-            <p>
-                This Service Agreement ("Agreement") is made effective as of the date of last signature below 
-                between Level One and <strong><span class="editable" id="agreementClientName">Cerka</span></strong>.
-            </p>
+        const tasksHTML = milestone.tasks.map(task => `<li>${task}</li>`).join('');
+        
+        milestoneDiv.innerHTML = `
+            <div class="milestone-title">${milestone.title}</div>
+            <div class="milestone-date editable">${milestone.date}</div>
+            <div class="milestone-desc">${milestone.desc}</div>
+            <ul class="milestone-tasks">${tasksHTML}</ul>
+        `;
+        
+        centerContent.appendChild(milestoneDiv);
+    });
+    
+    container.appendChild(centerContent);
 
-            <h3>1. Services</h3>
-            <p>
-                The Service Provider agrees to provide e-commerce development and automation services as described in this proposal. Services will be performed in a professional manner in accordance with industry standards.
-            </p>
+    // Click outside to hide
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.hexagon') && !e.target.closest('.timeline-center-content')) {
+            document.querySelectorAll('.hexagon').forEach(hex => hex.classList.remove('active'));
+            document.querySelectorAll('.milestone-content').forEach(content => content.classList.remove('active'));
+            isStopped = false;
+        }
+    });
 
-            <h3>2. Intellectual Property</h3>
-            <p>
-                Upon full payment, all custom work products created specifically for this project become the property of the Client. The Service Provider retains rights to pre-existing materials, frameworks, or tools used in delivery. The Service Provider may showcase completed work in portfolios unless otherwise agreed in writing.
-            </p>
+    // Start pulsing animation
+    startPulsing();
+}
 
-            <h3>3. Confidentiality</h3>
-            <p>
-                Both parties agree to maintain confidentiality of proprietary or sensitive information shared during this project. This obligation survives termination of this Agreement. Neither party shall disclose confidential information to third parties without prior written consent, except as required by law.
-            </p>
+function showMilestone(index) {
+    document.querySelectorAll('.milestone-content').forEach(content => {
+        content.classList.remove('active');
+    });
+    
+    const milestone = document.getElementById(`milestone-${index}`);
+    if (milestone) {
+        milestone.classList.add('active');
+    }
+}
 
-            <h3>4. Warranties and Disclaimers</h3>
-            <p>
-                The Service Provider warrants that services will be performed with reasonable care and skill and that deliverables will be free from material defects for 30 days following delivery. The Service Provider makes no warranties regarding third-party integrations, services, or platforms beyond its control.
-            </p>
+// Pulsing animation variables
+let currentPulse = 0;
+let pulseInterval;
+let isPaused = false;
+let isStopped = false;
 
-            <h3>5. Limitation of Liability</h3>
-            <p>
-                The Service Provider's total liability under this Agreement shall not exceed the total amount paid by the Client. Neither party shall be liable for indirect, incidental, consequential, or punitive damages.
-            </p>
+function startPulsing() {
+    if (pulseInterval) return;
+    
+    pulseInterval = setInterval(() => {
+        if (isPaused || isStopped) return;
+        
+        const hexagons = document.querySelectorAll('.hexagon');
+        hexagons.forEach(hex => hex.classList.remove('pulsing'));
+        
+        setTimeout(() => {
+            if (isPaused || isStopped) return;
+            currentPulse = (currentPulse + 1) % 6;
+            hexagons[currentPulse].classList.add('pulsing');
+        }, 600);
+        
+    }, 3000);
+}
 
-            <h3>6. Support and Maintenance</h3>
-            <p>
-                The Service Provider will provide support as outlined in the scope of work. Post-launch support periods are specified in the investment section. Additional support may be provided at standard hourly rates or through a separate maintenance agreement.
-            </p>
+// Initialize timeline when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initHexagonTimeline();
+});
 
-            <h3>7. Termination</h3>
-            <p>
-                Either party may terminate this Agreement with written notice if the other party breaches any material term and fails to remedy such breach within 15 days of written notice. Upon termination, the Client shall pay for all services rendered to date. The Service Provider will deliver all completed work upon receipt of payment.
-            </p>
+// Signature functionality
+let currentSignatureInstance = null;
+let canvas, ctx;
+let isDrawing = false;
+let lastX = 0;
+let lastY = 0;
+let signatureData1 = null;
+let signatureData2 = null;
 
-            <h3>8. Force Majeure</h3>
-            <p>
-                Neither party shall be liable for failure or delay in performance due to circumstances beyond their reasonable control, including acts of God, natural disasters, war, terrorism, labor disputes, government actions, or technical failures of third-party services.
-            </p>
-        </div>
-    </div>
+function openSignatureModal(instance) {
+    currentSignatureInstance = instance;
+    const modal = document.getElementById('signatureModal');
+    modal.classList.add('active');
+    
+    canvas = document.getElementById('signatureCanvas');
+    ctx = canvas.getContext('2d');
+    ctx.strokeStyle = '#000';
+    ctx.lineWidth = 2;
+    ctx.lineCap = 'round';
+    
+    canvas.addEventListener('mousedown', startDrawing);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', stopDrawing);
+    canvas.addEventListener('mouseout', stopDrawing);
+    
+    canvas.addEventListener('touchstart', handleTouch);
+    canvas.addEventListener('touchmove', handleTouch);
+    canvas.addEventListener('touchend', stopDrawing);
+}
 
-    <!-- Page 10: Service Agreement (Part 2) & Signatures -->
-    <div class="page content-page">
-        <div class="terms-content" style="margin-top: 0;">
-            <h3>9. Dispute Resolution</h3>
-            <p>
-                Any disputes arising from this Agreement shall first be attempted to be resolved through good faith negotiation. If negotiation fails within 30 days, the parties agree to pursue mediation before resorting to litigation.
-            </p>
+function closeSignatureModal() {
+    const modal = document.getElementById('signatureModal');
+    modal.classList.remove('active');
+    currentSignatureInstance = null;
+}
 
-            <h3>10. Independent Contractor</h3>
-            <p>
-                The Service Provider is an independent contractor and not an employee, partner, or joint venturer of the Client. The Service Provider is responsible for all taxes, insurance, and other obligations related to its business operations.
-            </p>
+function startDrawing(e) {
+    isDrawing = true;
+    [lastX, lastY] = [e.offsetX, e.offsetY];
+}
 
-            <h3>11. Amendments</h3>
-            <p>
-                This Agreement may only be amended by a written document signed by both parties. No oral modifications shall be valid.
-            </p>
+function draw(e) {
+    if (!isDrawing) return;
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(e.offsetX, e.offsetY);
+    ctx.stroke();
+    [lastX, lastY] = [e.offsetX, e.offsetY];
+}
 
-            <h3>12. Entire Agreement</h3>
-            <p>
-                This Agreement, together with the proposal pages, constitutes the entire agreement between the parties and supersedes all prior negotiations and agreements, whether written or oral.
-            </p>
+function stopDrawing() {
+    isDrawing = false;
+}
 
-            <h3>13. Governing Law</h3>
-            <p>
-                This Agreement shall be governed by and construed in accordance with the laws of the United Kingdom.
-            </p>
-        </div>
+function handleTouch(e) {
+    e.preventDefault();
+    const touch = e.touches[0];
+    const rect = canvas.getBoundingClientRect();
+    const x = touch.clientX - rect.left;
+    const y = touch.clientY - rect.top;
+    
+    if (e.type === 'touchstart') {
+        isDrawing = true;
+        [lastX, lastY] = [x, y];
+    } else if (e.type === 'touchmove' && isDrawing) {
+        ctx.beginPath();
+        ctx.moveTo(lastX, lastY);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+        [lastX, lastY] = [x, y];
+    }
+}
 
-        <div class="signature-section" style="margin-top: 20px;">
-            <!-- Level One Signature Box -->
-            <div class="signature-box">
-                <h4>Level One</h4>
-                <div class="signature-display" id="providerSignatureDisplay2">
-                    <div class="sig-info-row">
-                        <span class="sig-info-label">Name:</span>
-                        <span class="sig-info-value">Dean Finlayson</span>
-                    </div>
-                    <div class="sig-info-row">
-                        <span class="sig-info-label">Position:</span>
-                        <span class="sig-info-value">CEO</span>
-                    </div>
-                    <div class="sig-divider"></div>
-                    <div class="sig-image-container">
-                        <img src="https://github.com/level-one-ai/Proposal-System/blob/main/Screenshot%202026-01-29%2012.12.00.png?raw=true" alt="Level One Signature">
-                    </div>
-                    <div class="sig-date-row" id="providerDate2">Date: Not signed</div>
-                </div>
-            </div>
+function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
 
-            <!-- Client Signature Box -->
-            <div class="signature-box">
-                <h4 id="clientSignatureHeader2">Cerka</h4>
-                
-                <!-- Client Form -->
-                <div class="client-signature-form" id="clientForm2">
-                    <div class="form-group">
-                        <label for="clientFullName2">Full Name *</label>
-                        <input type="text" id="clientFullName2" placeholder="Enter your full name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="clientPosition2">Position *</label>
-                        <select id="clientPosition2" required>
-                            <option value="">Select position...</option>
-                            <option value="Owner">Owner</option>
-                            <option value="Co-Owner">Co-Owner</option>
-                            <option value="Founder">Founder</option>
-                            <option value="Co-Founder">Co-Founder</option>
-                            <option value="CEO">CEO</option>
-                            <option value="COO">COO</option>
-                            <option value="CFO">CFO</option>
-                            <option value="CTO">CTO</option>
-                            <option value="President">President</option>
-                            <option value="Vice President">Vice President</option>
-                            <option value="Managing Director">Managing Director</option>
-                            <option value="Director">Director</option>
-                            <option value="Partner">Partner</option>
-                            <option value="Manager">Manager</option>
-                            <option value="General Manager">General Manager</option>
-                            <option value="Operations Manager">Operations Manager</option>
-                        </select>
-                    </div>
-                    <div class="signature-upload-wrapper">
-                        <label>Digital Signature *</label>
-                        <button type="button" class="draw-signature-btn" onclick="openSignatureModal(2)">
-                            Draw Signature
-                        </button>
-                        <div class="signature-preview" id="clientSigPreview2">
-                            <span class="signature-preview-text">No signature drawn</span>
-                        </div>
-                    </div>
-                    <button type="button" class="submit-signature-btn" id="submitClientSig2" onclick="submitClientSignature2()" disabled>
-                        Submit Signature
-                    </button>
-                </div>
+function saveSignature() {
+    const dataURL = canvas.getDataURL();
+    
+    if (currentSignatureInstance === 1) {
+        signatureData1 = dataURL;
+        const preview = document.getElementById('clientSigPreview');
+        preview.innerHTML = `<img src="${dataURL}" alt="Signature">`;
+        document.getElementById('submitClientSig').disabled = false;
+    } else if (currentSignatureInstance === 2) {
+        signatureData2 = dataURL;
+        const preview = document.getElementById('clientSigPreview2');
+        preview.innerHTML = `<img src="${dataURL}" alt="Signature">`;
+        document.getElementById('submitClientSig2').disabled = false;
+    }
+    
+    closeSignatureModal();
+}
 
-                <!-- Client Signature Display (hidden initially) -->
-                <div class="client-signature-display" id="clientSignatureDisplay2">
-                    <div class="sig-info-row">
-                        <span class="sig-info-label">Name:</span>
-                        <span class="sig-info-value" id="clientNameDisplay2"></span>
-                    </div>
-                    <div class="sig-info-row">
-                        <span class="sig-info-label">Position:</span>
-                        <span class="sig-info-value" id="clientPositionDisplay2"></span>
-                    </div>
-                    <div class="sig-divider"></div>
-                    <div class="sig-image-container">
-                        <img id="clientSigImg2" src="" alt="Client Signature">
-                    </div>
-                    <div class="sig-date-row" id="clientDate2">Date: Not signed</div>
-                </div>
-            </div>
-        </div>
+function submitClientSignature() {
+    const name = document.getElementById('clientFullName').value;
+    const position = document.getElementById('clientPosition').value;
+    
+    if (!name || !position || !signatureData1) {
+        alert('Please fill in all required fields');
+        return;
+    }
+    
+    document.getElementById('clientForm').classList.add('hidden');
+    
+    const display = document.getElementById('clientSignatureDisplay');
+    document.getElementById('clientNameDisplay').textContent = name;
+    document.getElementById('clientPositionDisplay').textContent = position;
+    document.getElementById('clientSigImg').src = signatureData1;
+    document.getElementById('clientDate').textContent = `Date: ${new Date().toLocaleDateString()}`;
+    display.classList.add('show');
+    
+    document.getElementById('providerDate').textContent = `Date: ${new Date().toLocaleDateString()}`;
+}
 
-        <div class="download-section">
-            <button class="btn-preview" onclick="openPreview()">
-                Preview Proposal
-            </button>
-            <p class="download-note">
-                Review the proposal before agreeing to the terms
-            </p>
-        </div>
-    </div>
+function submitClientSignature2() {
+    const name = document.getElementById('clientFullName2').value;
+    const position = document.getElementById('clientPosition2').value;
+    
+    if (!name || !position || !signatureData2) {
+        alert('Please fill in all required fields');
+        return;
+    }
+    
+    document.getElementById('clientForm2').classList.add('hidden');
+    
+    const display = document.getElementById('clientSignatureDisplay2');
+    document.getElementById('clientNameDisplay2').textContent = name;
+    document.getElementById('clientPositionDisplay2').textContent = position;
+    document.getElementById('clientSigImg2').src = signatureData2;
+    document.getElementById('clientDate2').textContent = `Date: ${new Date().toLocaleDateString()}`;
+    display.classList.add('show');
+    
+    document.getElementById('providerDate2').textContent = `Date: ${new Date().toLocaleDateString()}`;
+}
 
-    <!-- Signature Drawing Modal -->
-    <div class="signature-modal" id="signatureModal">
-        <div class="signature-modal-content">
-            <div class="signature-modal-header">Draw Your Signature</div>
-            <div class="signature-canvas-wrapper">
-                <canvas class="signature-canvas" id="signatureCanvas" width="450" height="150"></canvas>
-            </div>
-            <div class="signature-modal-actions">
-                <button class="modal-btn modal-btn-clear" onclick="clearCanvas()">Clear</button>
-                <button class="modal-btn modal-btn-cancel" onclick="closeSignatureModal()">Cancel</button>
-                <button class="modal-btn modal-btn-submit" onclick="saveSignature()">Submit</button>
-            </div>
-        </div>
-    </div>
+function openPreview() {
+    const modal = document.getElementById('previewModal');
+    const previewContainer = document.getElementById('previewPages');
+    previewContainer.innerHTML = '';
+    
+    const pages = document.querySelectorAll('.page');
+    pages.forEach((page, index) => {
+        const clone = page.cloneNode(true);
+        clone.classList.add('no-highlights');
+        previewContainer.appendChild(clone);
+    });
+    
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
 
-    <!-- Preview Modal -->
-    <div class="preview-modal" id="previewModal">
-        <div class="preview-modal-content">
-            <div class="preview-modal-header">
-                <div class="preview-modal-title">Preview Proposal</div>
-                <button class="preview-close-btn" onclick="closePreview()">Close Preview</button>
-            </div>
-            <div class="preview-pages" id="previewPages">
-                <!-- Pages will be cloned here -->
-            </div>
-            <div class="preview-footer">
-                <button class="btn-agree" onclick="agreeToProposal()">I Agree to the Terms</button>
-            </div>
-        </div>
-    </div>
+function closePreview() {
+    const modal = document.getElementById('previewModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+}
 
-    <!-- Thank You Modal -->
-    <div class="thankyou-modal" id="thankyouModal">
-        <div class="thankyou-content">
-            <div class="thankyou-icon">✓</div>
-            <h2 class="thankyou-title">Thank You!</h2>
-            <p class="thankyou-message">
-                We're thrilled to partner with you on this exciting journey. Your agreement has been received and we'll be in touch shortly to begin the onboarding process. We're committed to delivering exceptional results and look forward to exceeding your expectations.
-            </p>
-            <button class="btn-download-final" onclick="downloadProposal()">
-                Download Your Copy
-            </button>
-        </div>
-    </div>
+function agreeToProposal() {
+    closePreview();
+    const thankyouModal = document.getElementById('thankyouModal');
+    thankyouModal.classList.add('active');
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+function downloadProposal() {
+    window.print();
+}
