@@ -71,7 +71,8 @@ const milestoneData = [
 
 // Configuration for the hexagon timeline
 const timelineConfig = {
-    containerSize: 412, // 25% smaller than 550
+    containerWidth: 720,
+    containerHeight: 450,
     hexagonRadius: 100, // 25% smaller than 133
     hexagonSize: 90, // Width of each hexagon (25% smaller than 120)
     hexagonHeight: 104, // Height of each hexagon (25% smaller than 138)
@@ -88,8 +89,9 @@ function initHexagonTimeline() {
     const container = document.getElementById('hexagon-timeline-container');
     if (!container) return;
 
-    const centerX = timelineConfig.containerSize / 2;
-    const centerY = timelineConfig.containerSize / 2;
+    // Center point of the hexagon arrangement within the container
+    const centerX = timelineConfig.containerWidth / 2;
+    const centerY = timelineConfig.containerHeight / 2;
     const numHexagons = 6;
     const radius = timelineConfig.hexagonRadius;
 
