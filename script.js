@@ -69,51 +69,16 @@ const milestoneData = [
     }
 ];
 
-// Line and card positioning for each step
-const milestonePositions = [
-    // Step I (top-right) - line to upper-right
-    {
-        lineStart: { x: 90, y: 20 },
-        lineAngle: -45,
-        lineLength: 90,
-        cardOffset: { x: 100, y: -120 }
-    },
-    // Step II (right) - line to right
-    {
-        lineStart: { x: 100, y: 69 },
-        lineAngle: 0,
-        lineLength: 90,
-        cardOffset: { x: 200, y: 40 }
-    },
-    // Step III (bottom-right) - line to lower-right
-    {
-        lineStart: { x: 90, y: 118 },
-        lineAngle: 45,
-        lineLength: 90,
-        cardOffset: { x: 100, y: 145 }
-    },
-    // Step IV (bottom-left) - line to lower-left
-    {
-        lineStart: { x: -30, y: 118 },
-        lineAngle: 135,
-        lineLength: 90,
-        cardOffset: { x: -350, y: 145 }
-    },
-    // Step V (left) - line to left
-    {
-        lineStart: { x: -40, y: 69 },
-        lineAngle: 180,
-        lineLength: 90,
-        cardOffset: { x: -340, y: 40 }
-    },
-    // Step VI (top-left) - line to upper-left
-    {
-        lineStart: { x: -30, y: 20 },
-        lineAngle: -135,
-        lineLength: 90,
-        cardOffset: { x: -350, y: -120 }
-    }
-];
+// Configuration for the hexagon timeline
+const timelineConfig = {
+    containerSize: 412, // 25% smaller than 550
+    hexagonRadius: 100, // 25% smaller than 133
+    hexagonSize: 90, // Width of each hexagon (25% smaller than 120)
+    hexagonHeight: 104, // Height of each hexagon (25% smaller than 138)
+    cardWidth: 200,
+    lineLength: 60,
+    cardGap: 15 // Gap between line end and card
+};
 
 let currentActiveMilestone = null;
 let isAnimating = false;
@@ -123,19 +88,19 @@ function initHexagonTimeline() {
     const container = document.getElementById('hexagon-timeline-container');
     if (!container) return;
 
-    const centerX = 275;
-    const centerY = 275;
+    const centerX = timelineConfig.containerSize / 2;
+    const centerY = timelineConfig.containerSize / 2;
     const numHexagons = 6;
-    const radius = 133;
+    const radius = timelineConfig.hexagonRadius;
 
-    // Hexagon vertices (points of a regular hexagon)
+    // Hexagon vertices (points of a regular hexagon) - scaled down
     const hexPoints = [
-        {x: 90, y: 12},
-        {x: 168, y: 58},
-        {x: 168, y: 150},
-        {x: 90, y: 196},
-        {x: 12, y: 150},
-        {x: 12, y: 58}
+        {x: 68, y: 9},
+        {x: 126, y: 44},
+        {x: 126, y: 113},
+        {x: 68, y: 147},
+        {x: 9, y: 113},
+        {x: 9, y: 44}
     ];
 
     // Function to create segment paths with small gaps
@@ -191,8 +156,8 @@ function initHexagonTimeline() {
 
         const hexagon = document.createElement('div');
         hexagon.className = 'hexagon';
-        hexagon.style.left = (x - 60) + 'px';
-        hexagon.style.top = (y - 69) + 'px';
+        hexagon.style.left = (x - timelineConfig.hexagonSize / 2) + 'px';
+        hexagon.style.top = (y - timelineConfig.hexagonHeight / 2) + 'px';
         hexagon.setAttribute('data-milestone', i);
 
         const segments = createHexagonSegments(gapPatterns[i]);
@@ -204,84 +169,84 @@ function initHexagonTimeline() {
         
         hexagon.innerHTML = `
             <div class="hexagon-inner">
-                <svg viewBox="0 0 180 207" xmlns="http://www.w3.org/2000/svg">
-                    <polygon class="hex-3d-base" points="92,14 170,60 170,152 92,198 14,152 14,60"/>
+                <svg viewBox="0 0 135 155" xmlns="http://www.w3.org/2000/svg">
+                    <polygon class="hex-3d-base" points="69,11 128,45 128,114 69,149 11,114 11,45"/>
                     
                     ${segmentGlowPaths}
                     
-                    <polyline class="corner-bracket-glow" points="80,12 90,12 90,22"/>
-                    <polyline class="corner-bracket-glow" points="100,12 90,12 90,22"/>
-                    <polyline class="corner-bracket-glow" points="168,53 168,58 163,61"/>
-                    <polyline class="corner-bracket-glow" points="168,63 168,58 163,55"/>
-                    <polyline class="corner-bracket-glow" points="168,145 168,150 163,147"/>
-                    <polyline class="corner-bracket-glow" points="168,155 168,150 163,153"/>
-                    <polyline class="corner-bracket-glow" points="100,196 90,196 90,186"/>
-                    <polyline class="corner-bracket-glow" points="80,196 90,196 90,186"/>
-                    <polyline class="corner-bracket-glow" points="12,53 12,58 17,61"/>
-                    <polyline class="corner-bracket-glow" points="12,63 12,58 17,55"/>
-                    <polyline class="corner-bracket-glow" points="12,145 12,150 17,147"/>
-                    <polyline class="corner-bracket-glow" points="12,155 12,150 17,153"/>
+                    <polyline class="corner-bracket-glow" points="60,9 68,9 68,17"/>
+                    <polyline class="corner-bracket-glow" points="75,9 68,9 68,17"/>
+                    <polyline class="corner-bracket-glow" points="126,40 126,44 122,46"/>
+                    <polyline class="corner-bracket-glow" points="126,47 126,44 122,41"/>
+                    <polyline class="corner-bracket-glow" points="126,109 126,113 122,110"/>
+                    <polyline class="corner-bracket-glow" points="126,116 126,113 122,115"/>
+                    <polyline class="corner-bracket-glow" points="75,147 68,147 68,140"/>
+                    <polyline class="corner-bracket-glow" points="60,147 68,147 68,140"/>
+                    <polyline class="corner-bracket-glow" points="9,40 9,44 13,46"/>
+                    <polyline class="corner-bracket-glow" points="9,47 9,44 13,41"/>
+                    <polyline class="corner-bracket-glow" points="9,109 9,113 13,110"/>
+                    <polyline class="corner-bracket-glow" points="9,116 9,113 13,115"/>
                     
-                    <circle class="circuit-node-glow" cx="90" cy="12" r="4"/>
-                    <circle class="circuit-node-glow" cx="168" cy="58" r="4"/>
-                    <circle class="circuit-node-glow" cx="168" cy="150" r="4"/>
-                    <circle class="circuit-node-glow" cx="90" cy="196" r="4"/>
-                    <circle class="circuit-node-glow" cx="12" cy="150" r="4"/>
-                    <circle class="circuit-node-glow" cx="12" cy="58" r="4"/>
+                    <circle class="circuit-node-glow" cx="68" cy="9" r="3"/>
+                    <circle class="circuit-node-glow" cx="126" cy="44" r="3"/>
+                    <circle class="circuit-node-glow" cx="126" cy="113" r="3"/>
+                    <circle class="circuit-node-glow" cx="68" cy="147" r="3"/>
+                    <circle class="circuit-node-glow" cx="9" cy="113" r="3"/>
+                    <circle class="circuit-node-glow" cx="9" cy="44" r="3"/>
                     
                     ${segmentPaths}
-                    <polygon class="hex-inner-line" points="90,25 155,65 155,143 90,183 25,143 25,65"/>
-                    <polygon class="hex-inner-line-faint" points="90,35 145,73 145,135 90,175 35,135 35,73"/>
+                    <polygon class="hex-inner-line" points="68,19 116,49 116,107 68,137 19,107 19,49"/>
+                    <polygon class="hex-inner-line-faint" points="68,26 109,55 109,101 68,131 26,101 26,55"/>
                     
-                    <line class="thick-external" x1="90" y1="0" x2="90" y2="8"/>
-                    <line class="thick-external-faded" x1="85" y1="-3" x2="85" y2="5"/>
-                    <line class="thick-external-faded" x1="95" y1="-3" x2="95" y2="5"/>
-                    <line class="thick-external" x1="175" y1="52" x2="183" y2="56"/>
-                    <line class="thick-external-faded" x1="177" y1="47" x2="185" y2="51"/>
-                    <line class="thick-external" x1="175" y1="153" x2="183" y2="149"/>
-                    <line class="thick-external-faded" x1="177" y1="158" x2="185" y2="154"/>
-                    <line class="thick-external" x1="90" y1="207" x2="90" y2="199"/>
-                    <line class="thick-external-faded" x1="85" y1="210" x2="85" y2="202"/>
-                    <line class="thick-external" x1="5" y1="153" x2="-3" y2="149"/>
-                    <line class="thick-external-faded" x1="3" y1="158" x2="-5" y2="154"/>
-                    <line class="thick-external" x1="5" y1="52" x2="-3" y2="56"/>
-                    <line class="thick-external-faded" x1="3" y1="47" x2="-5" y2="51"/>
+                    <line class="thick-external" x1="68" y1="0" x2="68" y2="6"/>
+                    <line class="thick-external-faded" x1="64" y1="-2" x2="64" y2="4"/>
+                    <line class="thick-external-faded" x1="71" y1="-2" x2="71" y2="4"/>
+                    <line class="thick-external" x1="131" y1="39" x2="137" y2="42"/>
+                    <line class="thick-external-faded" x1="133" y1="35" x2="139" y2="38"/>
+                    <line class="thick-external" x1="131" y1="115" x2="137" y2="112"/>
+                    <line class="thick-external-faded" x1="133" y1="119" x2="139" y2="116"/>
+                    <line class="thick-external" x1="68" y1="155" x2="68" y2="149"/>
+                    <line class="thick-external-faded" x1="64" y1="158" x2="64" y2="152"/>
+                    <line class="thick-external" x1="4" y1="115" x2="-2" y2="112"/>
+                    <line class="thick-external-faded" x1="2" y1="119" x2="-4" y2="116"/>
+                    <line class="thick-external" x1="4" y1="39" x2="-2" y2="42"/>
+                    <line class="thick-external-faded" x1="2" y1="35" x2="-4" y2="38"/>
                     
-                    <polyline class="corner-bracket" points="80,12 90,12 90,22"/>
-                    <polyline class="corner-bracket" points="100,12 90,12 90,22"/>
-                    <polyline class="corner-bracket" points="168,53 168,58 163,61"/>
-                    <polyline class="corner-bracket" points="168,63 168,58 163,55"/>
-                    <polyline class="corner-bracket" points="168,145 168,150 163,147"/>
-                    <polyline class="corner-bracket" points="168,155 168,150 163,153"/>
-                    <polyline class="corner-bracket" points="100,196 90,196 90,186"/>
-                    <polyline class="corner-bracket" points="80,196 90,196 90,186"/>
-                    <polyline class="corner-bracket" points="12,53 12,58 17,61"/>
-                    <polyline class="corner-bracket" points="12,63 12,58 17,55"/>
-                    <polyline class="corner-bracket" points="12,145 12,150 17,147"/>
-                    <polyline class="corner-bracket" points="12,155 12,150 17,153"/>
+                    <polyline class="corner-bracket" points="60,9 68,9 68,17"/>
+                    <polyline class="corner-bracket" points="75,9 68,9 68,17"/>
+                    <polyline class="corner-bracket" points="126,40 126,44 122,46"/>
+                    <polyline class="corner-bracket" points="126,47 126,44 122,41"/>
+                    <polyline class="corner-bracket" points="126,109 126,113 122,110"/>
+                    <polyline class="corner-bracket" points="126,116 126,113 122,115"/>
+                    <polyline class="corner-bracket" points="75,147 68,147 68,140"/>
+                    <polyline class="corner-bracket" points="60,147 68,147 68,140"/>
+                    <polyline class="corner-bracket" points="9,40 9,44 13,46"/>
+                    <polyline class="corner-bracket" points="9,47 9,44 13,41"/>
+                    <polyline class="corner-bracket" points="9,109 9,113 13,110"/>
+                    <polyline class="corner-bracket" points="9,116 9,113 13,115"/>
                     
-                    <circle class="circuit-node" cx="90" cy="12" r="2.5"/>
-                    <circle class="circuit-node" cx="168" cy="58" r="2.5"/>
-                    <circle class="circuit-node" cx="168" cy="150" r="2.5"/>
-                    <circle class="circuit-node" cx="90" cy="196" r="2.5"/>
-                    <circle class="circuit-node" cx="12" cy="150" r="2.5"/>
-                    <circle class="circuit-node" cx="12" cy="58" r="2.5"/>
+                    <circle class="circuit-node" cx="68" cy="9" r="2"/>
+                    <circle class="circuit-node" cx="126" cy="44" r="2"/>
+                    <circle class="circuit-node" cx="126" cy="113" r="2"/>
+                    <circle class="circuit-node" cx="68" cy="147" r="2"/>
+                    <circle class="circuit-node" cx="9" cy="113" r="2"/>
+                    <circle class="circuit-node" cx="9" cy="44" r="2"/>
                     
-                    <line class="accent-line-bright" x1="70" y1="5" x2="85" y2="5"/>
-                    <line class="accent-line-medium" x1="95" y1="3" x2="105" y2="3"/>
-                    <line class="accent-line-dim" x1="60" y1="8" x2="68" y2="8"/>
-                    <line class="accent-line-medium" x1="175" y1="50" x2="175" y2="65"/>
-                    <line class="accent-line-bright" x1="178" y1="72" x2="178" y2="85"/>
-                    <line class="accent-line-dim" x1="173" y1="40" x2="173" y2="48"/>
-                    <line class="accent-line-bright" x1="175" y1="155" x2="175" y2="168"/>
-                    <line class="accent-line-medium" x1="173" y1="175" x2="173" y2="185"/>
-                    <line class="accent-line-medium" x1="95" y1="203" x2="110" y2="203"/>
-                    <line class="accent-line-bright" x1="75" y1="205" x2="88" y2="205"/>
-                    <line class="accent-line-dim" x1="112" y1="200" x2="120" y2="200"/>
-                    <line class="accent-line-bright" x1="2" y1="145" x2="2" y2="158"/>
-                    <line class="accent-line-medium" x1="7" y1="175" x2="7" y2="188"/>
-                    <line class="accent-line-bright" x1="2" y1="65" x2="2" y2="78"/>
-                    <line class="accent-line-medium" x1="5" y1="48" x2="5" y2="60"/>
+                    <line class="accent-line-bright" x1="53" y1="4" x2="64" y2="4"/>
+                    <line class="accent-line-medium" x1="71" y1="2" x2="79" y2="2"/>
+                    <line class="accent-line-dim" x1="45" y1="6" x2="51" y2="6"/>
+                    <line class="accent-line-medium" x1="131" y1="38" x2="131" y2="49"/>
+                    <line class="accent-line-bright" x1="134" y1="54" x2="134" y2="64"/>
+                    <line class="accent-line-dim" x1="130" y1="30" x2="130" y2="36"/>
+                    <line class="accent-line-bright" x1="131" y1="116" x2="131" y2="126"/>
+                    <line class="accent-line-medium" x1="130" y1="131" x2="130" y2="139"/>
+                    <line class="accent-line-medium" x1="71" y1="152" x2="83" y2="152"/>
+                    <line class="accent-line-bright" x1="56" y1="154" x2="66" y2="154"/>
+                    <line class="accent-line-dim" x1="84" y1="150" x2="90" y2="150"/>
+                    <line class="accent-line-bright" x1="2" y1="109" x2="2" y2="119"/>
+                    <line class="accent-line-medium" x1="5" y1="131" x2="5" y2="141"/>
+                    <line class="accent-line-bright" x1="2" y1="49" x2="2" y2="59"/>
+                    <line class="accent-line-medium" x1="4" y1="36" x2="4" y2="45"/>
                 </svg>
                 <div class="hex-number">${hexNumber}</div>
             </div>
@@ -332,34 +297,74 @@ function initHexagonTimeline() {
             const dx = nextX - x;
             const dy = nextY - y;
             const length = Math.sqrt(dx * dx + dy * dy);
-            const offset = (j - 1) * 13;
-            dot.style.left = (midX + (dx / length) * offset - 3) + 'px';
-            dot.style.top = (midY + (dy / length) * offset - 3) + 'px';
+            const offset = (j - 1) * 10; // Slightly smaller spacing
+            dot.style.left = (midX + (dx / length) * offset - 2.5) + 'px';
+            dot.style.top = (midY + (dy / length) * offset - 2.5) + 'px';
             container.appendChild(dot);
         }
     }
 
     // Create milestone lines and cards for each hexagon
+    createMilestoneElements(container, centerX, centerY, radius);
+
+    // Click outside to hide
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.hexagon') && !e.target.closest('.milestone-card')) {
+            if (currentActiveMilestone !== null && !isAnimating) {
+                hideCurrentMilestone();
+            }
+            document.querySelectorAll('.hexagon').forEach(hex => hex.classList.remove('active'));
+            isStopped = false;
+        }
+    });
+
+    // Start pulsing animation
+    startPulsing();
+}
+
+function createMilestoneElements(container, centerX, centerY, radius) {
+    // Define positions for each milestone
+    // Hexagons are positioned at angles: -60, 0, 60, 120, 180, 240 degrees
+    // Index 0: top-right (angle -60°) -> card on RIGHT
+    // Index 1: right (angle 0°) -> card on RIGHT
+    // Index 2: bottom-right (angle 60°) -> card on RIGHT
+    // Index 3: bottom-left (angle 120°) -> card on LEFT
+    // Index 4: left (angle 180°) -> card on LEFT
+    // Index 5: top-left (angle 240°) -> card on LEFT
+
+    const milestonePositions = [
+        { side: 'right', lineAngle: -30, verticalOffset: -40 },   // I - top-right
+        { side: 'right', lineAngle: 0, verticalOffset: 0 },       // II - right
+        { side: 'right', lineAngle: 30, verticalOffset: 40 },     // III - bottom-right
+        { side: 'left', lineAngle: 150, verticalOffset: 40 },     // IV - bottom-left
+        { side: 'left', lineAngle: 180, verticalOffset: 0 },      // V - left
+        { side: 'left', lineAngle: -150, verticalOffset: -40 }    // VI - top-left
+    ];
+
     milestoneData.forEach((milestone, index) => {
         const position = milestonePositions[index];
+        const hexAngle = (index * 60 - 60) * Math.PI / 180;
+        
+        // Calculate hexagon center position
+        const hexCenterX = centerX + radius * Math.cos(hexAngle);
+        const hexCenterY = centerY + radius * Math.sin(hexAngle);
+        
+        // Calculate line start point (at the edge of the hexagon)
+        const lineAngleRad = position.lineAngle * Math.PI / 180;
+        const hexEdgeDistance = timelineConfig.hexagonSize / 2 + 5; // Start just outside hexagon
+        
+        const lineStartX = hexCenterX + hexEdgeDistance * Math.cos(lineAngleRad);
+        const lineStartY = hexCenterY + hexEdgeDistance * Math.sin(lineAngleRad);
         
         // Create line element
         const line = document.createElement('div');
         line.className = 'milestone-line';
         line.id = `milestone-line-${index}`;
-        
-        // Position line at hexagon edge
-        const hexagon = document.querySelector(`.hexagon[data-milestone="${index}"]`);
-        const hexRect = hexagon.getBoundingClientRect();
-        const containerRect = container.getBoundingClientRect();
-        
-        const hexCenterX = hexagon.offsetLeft + 60;
-        const hexCenterY = hexagon.offsetTop + 69;
-        
-        line.style.left = (hexCenterX + position.lineStart.x) + 'px';
-        line.style.top = (hexCenterY + position.lineStart.y) + 'px';
+        line.style.left = lineStartX + 'px';
+        line.style.top = lineStartY + 'px';
         line.style.width = '0px';
         line.style.transform = `rotate(${position.lineAngle}deg)`;
+        line.style.transformOrigin = 'left center';
         
         container.appendChild(line);
         
@@ -378,25 +383,27 @@ function initHexagonTimeline() {
         `;
         
         // Position card at end of line
-        card.style.left = (hexCenterX + position.cardOffset.x) + 'px';
-        card.style.top = (hexCenterY + position.cardOffset.y) + 'px';
+        const lineLength = timelineConfig.lineLength;
+        const cardGap = timelineConfig.cardGap;
+        
+        if (position.side === 'right') {
+            // Card on the right side of the hexagon ring
+            const cardX = lineStartX + (lineLength + cardGap) * Math.cos(lineAngleRad);
+            const cardY = lineStartY + (lineLength + cardGap) * Math.sin(lineAngleRad) - 40; // Adjust for card height
+            card.style.left = cardX + 'px';
+            card.style.top = cardY + 'px';
+            card.classList.add('card-right');
+        } else {
+            // Card on the left side - position so card's right edge meets the line
+            const cardX = lineStartX + (lineLength + cardGap) * Math.cos(lineAngleRad) - timelineConfig.cardWidth;
+            const cardY = lineStartY + (lineLength + cardGap) * Math.sin(lineAngleRad) - 40;
+            card.style.left = cardX + 'px';
+            card.style.top = cardY + 'px';
+            card.classList.add('card-left');
+        }
         
         container.appendChild(card);
     });
-
-    // Click outside to hide
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.hexagon') && !e.target.closest('.milestone-card')) {
-            if (currentActiveMilestone !== null && !isAnimating) {
-                hideCurrentMilestone();
-            }
-            document.querySelectorAll('.hexagon').forEach(hex => hex.classList.remove('active'));
-            isStopped = false;
-        }
-    });
-
-    // Start pulsing animation
-    startPulsing();
 }
 
 async function showMilestoneWithAnimation(index) {
@@ -409,13 +416,12 @@ async function showMilestoneWithAnimation(index) {
     
     // Step 2: Fade in and extend new line (1 second)
     const line = document.getElementById(`milestone-line-${index}`);
-    const position = milestonePositions[index];
     
     line.classList.add('active');
-    line.style.width = position.lineLength + 'px';
+    line.style.width = timelineConfig.lineLength + 'px';
     
     // Wait for line animation to complete
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, 600));
     
     // Step 3: Fade in card (0.6 seconds)
     const card = document.getElementById(`milestone-card-${index}`);
@@ -424,7 +430,7 @@ async function showMilestoneWithAnimation(index) {
     currentActiveMilestone = index;
     
     // Wait for card fade in to complete
-    await new Promise(resolve => setTimeout(resolve, 600));
+    await new Promise(resolve => setTimeout(resolve, 400));
     
     isAnimating = false;
 }
@@ -437,11 +443,11 @@ async function hideCurrentMilestone() {
     
     // Fade out card first
     card.classList.remove('active');
-    await new Promise(resolve => setTimeout(resolve, 600));
+    await new Promise(resolve => setTimeout(resolve, 400));
     
     // Then retract line
     line.style.width = '0px';
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, 600));
     
     line.classList.remove('active');
     
@@ -560,7 +566,7 @@ function clearCanvas() {
 }
 
 function saveSignature() {
-    const dataURL = canvas.getDataURL();
+    const dataURL = canvas.toDataURL();
     
     if (currentSignatureInstance === 1) {
         signatureData1 = dataURL;
