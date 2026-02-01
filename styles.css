@@ -315,15 +315,17 @@ body {
     flex-direction: column;
     height: calc(100% - 100px);
     position: relative;
+    flex: 1;
 }
 
 #hexagon-timeline-container {
     position: relative;
-    width: 100%;
-    max-width: 720px;
+    width: 720px;
     height: 450px;
-    margin: 20px auto 0 auto;
-    flex: 1;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Hexagon Base Styles */
