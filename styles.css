@@ -1,646 +1,1835 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Level One - Proposal</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    <!-- Page 1: Cover -->
-    <div class="page page-1">
-        <div class="cover-content">
-            <div class="logo-section">
-                <img src="https://github.com/level-one-ai/Proposal-System/blob/main/Whisk_cc3ea92b36cae7aaaf5425d64468a20ceg.png?raw=true" alt="Level One Logo" class="logo-image">
-                <img src="https://github.com/level-one-ai/Proposal-System/blob/main/Screenshot%202026-01-29%2020.36.28.png?raw=true" alt="Level One Text" class="logo-text">
-            </div>
-            
-            <div class="cover-center">
-                <div class="proposal-label">Project Proposal</div>
-                <h1 class="proposal-title" id="proposalTitle"><span class="editable" id="proposalTitlePrefix">E-Commerce Platform & Automation System for</span> <span class="editable" id="clientNameCover">Cerka</span></h1>
-                <p class="proposal-subtitle">
-                   <span class="editable-subtitle" id="proposalSubtitle">This comprehensive proposal outlines our approach to building a fully automated, 
-                       AI-powered e-commerce platform. Inside, you'll find detailed scope of work, 
-                    milestone-based timelines, and transparent investment breakdowns. We look forward 
-                    to partnering with you on this transformative project.</span>
-                 </p>
-            </div>
+:root {
+    --primary-orange: #e67e22;
+    --primary-orange-glow: rgba(230, 126, 34, 0.6);
+    --dark-bg: #0a0a0a;
+    --card-bg: #141414;
+    --text-light: #ffffff;
+    --text-muted: #a0a0a0;
+    --highlight-yellow: rgba(255, 236, 153, 0.35);
+    --highlight-yellow-subtle: rgba(255, 236, 153, 0.20);
+    --border-light: #333;
+}
 
-            <div class="cover-footer">
-                <div class="cover-footer-item">
-                    Prepared by
-                    <strong>Dean @ Level One</strong>
-                </div>
-                <div class="cover-footer-item">
-                    Date
-                    <strong>January 2026</strong>
-                </div>
-                <div class="cover-footer-item">
-                    Contact
-                    <strong>dean@levelone.ai</strong>
-                </div>
-            </div>
-        </div>
-    </div>
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    background: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
 
-    <!-- Page 2: Statement / Introduction -->
-    <div class="page content-page">
-        <h2 class="page-header">Understanding Your Challenges</h2>
-        <p class="page-subheader">Before we can solve a problem, we need to understand it. This section outlines the key challenges we've identified through our discussions, and why addressing them is crucial for your business growth.</p>
-        
-        <div class="letter-content">
-            <p>Dear <span class="editable" id="clientName">Rafal</span>,</p>
-            
-            <p style="margin-top: 15px;">
-                Thank you for taking the time to discuss your business needs with us. After our conversations, 
-                it's clear that you're facing several operational challenges that are limiting your growth potential 
-                and consuming valuable resources that could be better spent elsewhere.
-            </p>
-            
-            <p>
-                The good news? Every challenge you're facing has a solution. Modern automation and AI technologies 
-                can transform these pain points into competitive advantages. Below, we've summarized the key issues 
-                we'll be addressing together.
-            </p>
-        </div>
+.page {
+    width: 8.5in;
+    height: 11in;
+    margin: 20px auto;
+    background: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+}
 
-        <ul class="bullet-list">
-            <li><span class="editable" id="problem1">Creating product descriptions, categorizing items, and managing inventory consumes hours of staff time daily—time that could be spent on growth activities.</span></li>
-            <li><span class="editable" id="problem2">Customers frequently contact support for basic inquiries like order status and returns, overwhelming your team with repetitive tasks.</span></li>
-            <li><span class="editable" id="problem3">Without data-driven insights, you're making inventory and marketing decisions based on intuition rather than actionable intelligence.</span></li>
-            <li><span class="editable" id="problem4">Every visitor sees the same products and content, missing opportunities for personalization that drives conversions and loyalty.</span></li>
-        </ul>
+.editable {
+    background: linear-gradient(180deg, transparent 60%, var(--highlight-yellow) 60%);
+    padding: 0 4px;
+    border-radius: 2px;
+    display: inline;
+}
 
-        <div class="letter-content" style="margin-top: 25px;">
-            <p>
-                The following pages detail exactly how we'll tackle each of these challenges, the timeline 
-                for implementation, and the investment required. If you have any questions at any point, 
-                please reach out to me directly at <strong>dean@levelone.ai</strong>.
-            </p>
-            
-            <p class="signature-line" style="margin-top: 30px;">
-                Looking forward to working together,<br>
-                <strong>Dean</strong>
-            </p>
-        </div>
-    </div>
+.editable-subtitle {
+    background: linear-gradient(180deg, transparent 60%, var(--highlight-yellow-subtle) 60%);
+    padding: 0 4px;
+    border-radius: 2px;
+    display: inline;
+}
 
-    <!-- Page 3: Problem Details (Dark Theme) -->
-    <div class="page dark-page">
-        <h2 class="page-header">The Problems We'll Solve</h2>
-        <p class="page-subheader">Each challenge below represents not just a problem, but an opportunity. By automating these processes, you'll free up resources, reduce errors, and create a foundation for scalable growth.</p>
+/* Page 1 - Cover */
+.page-1 {
+    background: url('https://github.com/level-one-ai/Proposal-System/blob/main/processed-image.png?raw=true') center center / cover no-repeat;
+    color: var(--text-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+    position: relative;
+}
 
-        <ul class="problem-list">
-            <li>
-                <strong class="editable" id="detailProblem1Title">Manual Content Creation Bottleneck</strong>
-                <span class="editable" id="detailProblem1Desc">Writing unique, SEO-optimized product descriptions for hundreds or thousands of items is time-consuming and inconsistent. AI-powered content generation will create compelling descriptions in seconds, not hours.</span>
-            </li>
-            <li>
-                <strong class="editable" id="detailProblem2Title">Fraud Vulnerability</strong>
-                <span class="editable" id="detailProblem2Desc">Without real-time fraud detection, you're exposed to chargebacks and fraudulent orders. AI monitoring can analyze transaction patterns instantly and block high-risk orders before they're processed.</span>
-            </li>
-            <li>
-                <strong class="editable" id="detailProblem3Title">Support Team Overload</strong>
-                <span class="editable" id="detailProblem3Desc">Your team spends valuable time answering repetitive questions that could be handled automatically. An AI chatbot can resolve 80% of common inquiries 24/7, freeing your team for complex issues.</span>
-            </li>
-            <li>
-                <strong class="editable" id="detailProblem4Title">Missed Personalization Opportunities</strong>
-                <span class="editable" id="detailProblem4Desc">Static product displays and one-size-fits-all recommendations leave conversion potential on the table. Predictive AI can deliver personalized experiences that dramatically increase engagement.</span>
-            </li>
-        </ul>
+.page-1::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.8) 100%);
+    z-index: 1;
+}
 
-        <div class="closing-statement">
-            These aren't just technical improvements—they're business transformations. Each solution we implement will directly impact your bottom line through reduced costs, increased conversions, and improved customer satisfaction.
-        </div>
-    </div>
+.cover-content {
+    position: relative;
+    z-index: 2;
+    padding: 50px 55px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
-    <!-- Page 4: Solution (Dark Theme) -->
-    <div class="page dark-page">
-        <h2 class="page-header">Our Solution</h2>
-        <p class="page-subheader">We've designed a comprehensive solution that addresses each of your challenges through strategic automation and AI integration. Here's how we'll transform your operations.</p>
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
 
-        <ul class="solution-list">
-            <li>
-                <strong class="editable" id="solution0Title">Custom E-Commerce Platform</strong>
-                <span class="editable" id="solution0Desc">A fully bespoke, high-performance online store built from the ground up using modern technologies. Includes responsive design, intuitive navigation, product management, shopping cart, secure checkout, and seamless payment integration.</span>
-            </li>
-            <li>
-                <strong class="editable" id="solution1Title">AI-Powered Content Engine</strong>
-                <span class="editable" id="solution1Desc">Automatically generate SEO-optimized product descriptions, meta-tags, and marketing copy using advanced AI tools. New products go from upload to fully-described in minutes, not days.</span>
-            </li>
-            <li>
-                <strong class="editable" id="solution2Title">Intelligent Fraud Prevention</strong>
-                <span class="editable" id="solution2Desc">Real-time transaction monitoring using machine learning to identify and block fraudulent orders before they cost you money. Integrated seamlessly into your checkout flow.</span>
-            </li>
-            <li>
-                <strong class="editable" id="solution3Title">24/7 AI Support Agent</strong>
-                <span class="editable" id="solution3Desc">A sophisticated chatbot that handles order tracking, FAQs, and simple returns automatically. When human help is needed, it seamlessly hands off with full context.</span>
-            </li>
-            <li>
-                <strong class="editable" id="solution4Title">Predictive Personalization</strong>
-                <span class="editable" id="solution4Desc">Dynamic product recommendations, personalized search results, and demand forecasting that learns from every customer interaction to continuously improve.</span>
-            </li>
-            <li>
-                <strong class="editable" id="solution5Title">Visual Search & Dynamic Pricing</strong>
-                <span class="editable" id="solution5Desc">Allow customers to upload images to find similar products, plus automated pricing that responds to market conditions and competitor data.</span>
-            </li>
-        </ul>
+.logo-image {
+    height: 90px;
+    width: auto;
+    display: block;
+}
 
-        <div class="closing-statement">
-            This integrated approach ensures every component works together seamlessly. The result is a platform that runs smarter, responds faster, and grows with your business.
-        </div>
-    </div>
+.logo-text {
+    height: 30px;
+    width: auto;
+    display: block;
+}
 
-    <!-- Page 5: Timeline (Dark Theme with Circular Hexagons) -->
-    <div class="page dark-page">
-        <h2 class="page-header">Project Timeline</h2>
-        <p class="page-subheader">We've structured this project into six clear milestones, each building upon the last. Click on any hexagon to see the detailed breakdown of what we'll accomplish in that phase.</p>
+.cover-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 85%;
+}
 
-        <div class="timeline-section">
-            <div id="hexagon-timeline-container"></div>
-            
-            <div class="timeline-footer">
-                Each milestone includes built-in review points and your approval before we proceed. This ensures you're never surprised and always in control of the project's direction. We've structured this timeline to ensure smooth project execution while maintaining flexibility for your team's availability.
-            </div>
-        </div>
-    </div>
+.proposal-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--primary-orange);
+    margin-bottom: 15px;
+    font-weight: 600;
+}
 
-    <!-- Page 6: Related Systems -->
-    <div class="page content-page">
-        <h2 class="page-header">Related Systems & Capabilities</h2>
-        <p class="page-subheader">Beyond this project, Level One offers a comprehensive suite of automation solutions. These systems can enhance your operations now or be added as your business grows.</p>
+.proposal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0 0 25px 0;
+    color: var(--text-light);
+}
 
-        <div class="systems-grid">
-            <div class="system-box">
-                <h4>Lead Sourcing & Cold Outreach</h4>
-                <p class="editable" id="system1Desc">Automated prospecting, data enrichment, and personalized outreach campaigns that scale your business development without scaling your team.</p>
-            </div>
-            <div class="system-box">
-                <h4>Client Onboarding System</h4>
-                <p class="editable" id="system2Desc">Streamlined onboarding workflows with automated document collection, welcome sequences, and task management—reducing time-to-value significantly.</p>
-            </div>
-            <div class="system-box">
-                <h4>Data Entry Integration</h4>
-                <p class="editable" id="system3Desc">Connect all your systems and eliminate manual data transfer between platforms. Ensures data consistency across your entire tech stack.</p>
-            </div>
-            <div class="system-box">
-                <h4>Contract Creation & Auto-Reply</h4>
-                <p class="editable" id="system4Desc">Generate customized contracts from templates and automate responses to common inquiries, freeing your team for high-value conversations.</p>
-            </div>
-            <div class="system-box">
-                <h4>Customer Support Automation</h4>
-                <p class="editable" id="system5Desc">AI-powered chatbots and intelligent ticket routing that provide instant responses and ensure every inquiry reaches the right person.</p>
-            </div>
-            <div class="system-box">
-                <h4>Reporting & Analytics Dashboard</h4>
-                <p class="editable" id="system6Desc">Custom dashboards aggregating data from multiple sources, providing real-time insights into the metrics that matter most to your business.</p>
-            </div>
-        </div>
+.proposal-subtitle {
+    font-size: 15px;
+    color: rgba(255,255,255,0.85);
+    max-width: 520px;
+    line-height: 1.7;
+    font-weight: 300;
+}
 
-        <div class="closing-statement" style="background: #f5f5f5; border-left-color: #000;">
-            These systems can be implemented individually or as part of a comprehensive automation strategy. We're happy to discuss how any of these solutions might benefit your specific business needs.
-        </div>
-    </div>
+.cover-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
 
-    <!-- Page 7: Investment -->
-    <div class="page content-page">
-        <h2 class="page-header" style="margin-bottom: 20px;">Investment Required</h2>
+.cover-footer-item {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+}
 
-        <div class="investment-section">
-            <!-- Deposit Section -->
-            <div class="investment-block">
-                <div class="investment-block-header">
-                    <h3>Deposit — Project Initiation</h3>
-                    <span class="investment-percentage">50%</span>
-                </div>
-                <p class="investment-block-desc">Due upon agreement signing to commence work</p>
-                <div class="investment-includes">
-                    <div class="investment-includes-title">This covers Milestones 1 & 2:</div>
-                    <ul class="investment-includes-list">
-                        <li>Core platform foundation, hosting & infrastructure setup</li>
-                        <li>Product Information Management (PIM) system</li>
-                        <li>AI-powered content generation & catalog automation</li>
-                        <li>Shopping cart, checkout & payment integration</li>
-                        <li>Fraud detection & smart search functionality</li>
-                    </ul>
-                </div>
-                <div class="investment-block-amount">
-                    <span class="editable" id="depositAmount">£9,370</span>
-                </div>
-            </div>
+.cover-footer-item strong {
+    display: block;
+    color: var(--text-light);
+    font-size: 13px;
+    margin-top: 3px;
+}
 
-            <!-- Remaining Balance Section -->
-            <div class="investment-block">
-                <div class="investment-block-header">
-                    <h3>Remaining Balance</h3>
-                    <span class="investment-percentage">50%</span>
-                </div>
-                <p class="investment-block-desc">Paid in installments upon completion of each milestone</p>
-                <div class="investment-includes">
-                    <div class="investment-includes-title">This covers Milestones 3, 4, 5 & 6:</div>
-                    <ul class="investment-includes-list">
-                        <li>Customer accounts, order management & AI support chatbot</li>
-                        <li>Loyalty program, analytics & predictive recommendations</li>
-                        <li>Visual search, dynamic pricing & A/B testing</li>
-                        <li>Final deployment, training & 30-day support</li>
-                    </ul>
-                </div>
-                <div class="investment-milestone-breakdown">
-                    <div class="milestone-payment-row">
-                        <span>Milestone 3 — Support & CX</span>
-                        <span>£3,748</span>
-                    </div>
-                    <div class="milestone-payment-row">
-                        <span>Milestone 4 — Personalisation</span>
-                        <span>£2,811</span>
-                    </div>
-                    <div class="milestone-payment-row">
-                        <span>Milestones 5 & 6 — Launch</span>
-                        <span>£2,811</span>
-                    </div>
-                </div>
-                <div class="investment-block-amount">
-                    <span>£9,370</span>
-                </div>
-            </div>
+/* Dark Section Pages */
+.dark-page {
+    background: var(--dark-bg);
+    color: var(--text-light);
+    padding: 50px 55px;
+}
 
-            <!-- Project Total -->
-            <div class="investment-total">
-                <span class="investment-total-label">Project Total</span>
-                <span class="investment-total-amount editable" id="projectTotal">£18,740</span>
-            </div>
+.dark-page .page-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-light);
+    margin-bottom: 8px;
+    border: none;
+    padding-bottom: 0;
+}
 
-            <!-- Payment Notes -->
-            <div class="investment-notes">
-                <p><strong>Payment Structure:</strong> A 50% deposit is required to begin work. The remaining 50% is divided across milestone completions, ensuring you only pay for delivered results.</p>
-                <p><strong>Milestone Sign-off:</strong> Each phase requires your approval before proceeding to the next, keeping you in control throughout the project.</p>
-            </div>
+.dark-page .page-subheader {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+    line-height: 1.7;
+    max-width: 90%;
+}
 
-            <!-- Platform Fees -->
-            <div class="platform-section">
-                <h3 class="platform-header">Ongoing Platform Fees</h3>
-                <div class="platform-fees-grid">
-                    <div class="platform-fee-item">
-                        <span class="platform-fee-name editable" id="platform1Name">Make.com</span>
-                        <span class="platform-fee-price editable" id="platform1Price">£25/mo</span>
-                    </div>
-                    <div class="platform-fee-item">
-                        <span class="platform-fee-name">AI API Usage (est.)</span>
-                        <span class="platform-fee-price">£50-150/mo</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+.dark-page .editable {
+    background: linear-gradient(180deg, transparent 60%, rgba(255, 200, 87, 0.3) 60%);
+}
 
-    <!-- Page 8: Terms & Conditions -->
-    <div class="page content-page">
-        <h2 class="page-header">Terms & Conditions</h2>
-        
-        <div class="terms-content">
-            <p>
-                This agreement is entered into between <strong>Level One</strong> ("Service Provider") and 
-                <strong><span class="editable" id="termsClientName">Cerka</span></strong> ("Client") 
-                for the services described in this proposal.
-            </p>
+/* Light Content Pages */
+.content-page {
+    padding: 50px 55px;
+}
 
-            <h3>1. Scope of Work</h3>
-            <p>
-                Level One agrees to fulfill the scope of work as described in the previous pages of this document. Any changes to scope must be agreed upon in writing by both parties and may result in adjusted timelines and costs.
-            </p>
+.page-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 8px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 12px;
+}
 
-            <h3>2. Payment Terms</h3>
-            <p>
-                A 50% deposit is required to commence work. The remaining balance is payable upon completion of each milestone as outlined in the Investment section. Final payment is due upon delivery and client satisfaction with the completed project.
-            </p>
+.page-subheader {
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.7;
+}
 
-            <h3>3. Timeline</h3>
-            <p>
-                The Service Provider will make reasonable efforts to adhere to the timeline outlined in this proposal. Delays caused by client unavailability, delayed feedback, or scope changes may result in adjusted timelines.
-            </p>
+/* Bullet List Style */
+.bullet-list {
+    list-style: disc;
+    margin: 20px 0;
+    padding-left: 25px;
+}
 
-            <h3>4. Client Responsibilities</h3>
-            <p>
-                The Client agrees to provide timely access to necessary systems, information, and feedback required for project completion. The Client is responsible for the accuracy of information provided and maintaining appropriate backups of their data.
-            </p>
+.bullet-list li {
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 12px;
+    color: #444;
+}
 
-            <h3>5. Acceptance and Signatures</h3>
-            <p>
-                By signing below, both parties agree to the terms outlined in this proposal and commit to fulfilling their respective obligations.
-            </p>
-        </div>
+/* Letter Content */
+.letter-content {
+    font-size: 13px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
 
-        <div class="signature-section">
-            <!-- Level One Signature Box -->
-            <div class="signature-box">
-                <h4>Level One</h4>
-                <div class="signature-display" id="providerSignatureDisplay">
-                    <div class="sig-info-row">
-                        <span class="sig-info-label">Name:</span>
-                        <span class="sig-info-value">Dean Finlayson</span>
-                    </div>
-                    <div class="sig-info-row">
-                        <span class="sig-info-label">Position:</span>
-                        <span class="sig-info-value">CEO</span>
-                    </div>
-                    <div class="sig-divider"></div>
-                    <div class="sig-image-container">
-                        <img src="https://github.com/level-one-ai/Proposal-System/blob/main/Screenshot%202026-01-29%2012.12.00.png?raw=true" alt="Level One Signature">
-                    </div>
-                    <div class="sig-date-row" id="providerDate">Date: Not signed</div>
-                </div>
-            </div>
+.letter-content p {
+    margin-bottom: 12px;
+}
 
-            <!-- Client Signature Box -->
-            <div class="signature-box">
-                <h4 id="clientSignatureHeader">Cerka</h4>
-                
-                <!-- Client Form -->
-                <div class="client-signature-form" id="clientForm">
-                    <div class="form-group">
-                        <label for="clientFullName">Full Name *</label>
-                        <input type="text" id="clientFullName" placeholder="Enter your full name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="clientPosition">Position *</label>
-                        <select id="clientPosition" required>
-                            <option value="">Select position...</option>
-                            <option value="Owner">Owner</option>
-                            <option value="Co-Owner">Co-Owner</option>
-                            <option value="Founder">Founder</option>
-                            <option value="Co-Founder">Co-Founder</option>
-                            <option value="CEO">CEO</option>
-                            <option value="COO">COO</option>
-                            <option value="CFO">CFO</option>
-                            <option value="CTO">CTO</option>
-                            <option value="President">President</option>
-                            <option value="Vice President">Vice President</option>
-                            <option value="Managing Director">Managing Director</option>
-                            <option value="Director">Director</option>
-                            <option value="Partner">Partner</option>
-                            <option value="Manager">Manager</option>
-                            <option value="General Manager">General Manager</option>
-                            <option value="Operations Manager">Operations Manager</option>
-                        </select>
-                    </div>
-                    <div class="signature-upload-wrapper">
-                        <label>Digital Signature *</label>
-                        <button type="button" class="draw-signature-btn" onclick="openSignatureModal(1)">
-                            Draw Signature
-                        </button>
-                        <div class="signature-preview" id="clientSigPreview">
-                            <span class="signature-preview-text">No signature drawn</span>
-                        </div>
-                    </div>
-                    <button type="button" class="submit-signature-btn" id="submitClientSig" onclick="submitClientSignature()" disabled>
-                        Submit Signature
-                    </button>
-                </div>
+/* Problem List - Dark Theme */
+.problem-list {
+    list-style: none;
+    margin: 20px 0;
+}
 
-                <!-- Client Signature Display (hidden initially) -->
-                <div class="client-signature-display" id="clientSignatureDisplay">
-                    <div class="sig-info-row">
-                        <span class="sig-info-label">Name:</span>
-                        <span class="sig-info-value" id="clientNameDisplay"></span>
-                    </div>
-                    <div class="sig-info-row">
-                        <span class="sig-info-label">Position:</span>
-                        <span class="sig-info-value" id="clientPositionDisplay"></span>
-                    </div>
-                    <div class="sig-divider"></div>
-                    <div class="sig-image-container">
-                        <img id="clientSigImg" src="" alt="Client Signature">
-                    </div>
-                    <div class="sig-date-row" id="clientDate">Date: Not signed</div>
-                </div>
-            </div>
-        </div>
-    </div>
+.problem-list li {
+    padding: 18px 20px;
+    margin-bottom: 12px;
+    background: var(--card-bg);
+    border-left: 3px solid var(--primary-orange);
+    font-size: 13px;
+    line-height: 1.6;
+    border-radius: 0 8px 8px 0;
+}
 
-    <!-- Page 9: Service Agreement (Part 1) -->
-    <div class="page content-page">
-        <h2 class="page-header">Service Agreement</h2>
-        
-        <div class="terms-content">
-            <p>
-                This Service Agreement ("Agreement") is made effective as of the date of last signature below 
-                between Level One and <strong><span class="editable" id="agreementClientName">Cerka</span></strong>.
-            </p>
+.problem-list li strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: var(--text-light);
+    font-weight: 600;
+}
 
-            <h3>1. Services</h3>
-            <p>
-                The Service Provider agrees to provide e-commerce development and automation services as described in this proposal. Services will be performed in a professional manner in accordance with industry standards.
-            </p>
+.problem-list li span {
+    color: var(--text-muted);
+}
 
-            <h3>2. Intellectual Property</h3>
-            <p>
-                Upon full payment, all custom work products created specifically for this project become the property of the Client. The Service Provider retains rights to pre-existing materials, frameworks, or tools used in delivery. The Service Provider may showcase completed work in portfolios unless otherwise agreed in writing.
-            </p>
+/* Solution List - Dark Theme */
+.solution-list {
+    list-style: none;
+    margin: 20px 0;
+}
 
-            <h3>3. Confidentiality</h3>
-            <p>
-                Both parties agree to maintain confidentiality of proprietary or sensitive information shared during this project. This obligation survives termination of this Agreement. Neither party shall disclose confidential information to third parties without prior written consent, except as required by law.
-            </p>
+.solution-list li {
+    padding: 18px 20px;
+    margin-bottom: 12px;
+    background: var(--card-bg);
+    border-left: 3px solid var(--primary-orange);
+    font-size: 13px;
+    line-height: 1.6;
+    border-radius: 0 8px 8px 0;
+}
 
-            <h3>4. Warranties and Disclaimers</h3>
-            <p>
-                The Service Provider warrants that services will be performed with reasonable care and skill and that deliverables will be free from material defects for 30 days following delivery. The Service Provider makes no warranties regarding third-party integrations, services, or platforms beyond its control.
-            </p>
+.solution-list li strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: var(--text-light);
+    font-weight: 600;
+}
 
-            <h3>5. Limitation of Liability</h3>
-            <p>
-                The Service Provider's total liability under this Agreement shall not exceed the total amount paid by the Client. Neither party shall be liable for indirect, incidental, consequential, or punitive damages.
-            </p>
+.solution-list li span {
+    color: var(--text-muted);
+}
 
-            <h3>6. Support and Maintenance</h3>
-            <p>
-                The Service Provider will provide support as outlined in the scope of work. Post-launch support periods are specified in the investment section. Additional support may be provided at standard hourly rates or through a separate maintenance agreement.
-            </p>
+.closing-statement {
+    margin-top: 25px;
+    padding: 18px 20px;
+    background: rgba(230, 126, 34, 0.1);
+    border-left: 3px solid var(--primary-orange);
+    font-style: italic;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--text-muted);
+    border-radius: 0 8px 8px 0;
+}
 
-            <h3>7. Termination</h3>
-            <p>
-                Either party may terminate this Agreement with written notice if the other party breaches any material term and fails to remedy such breach within 15 days of written notice. Upon termination, the Client shall pay for all services rendered to date. The Service Provider will deliver all completed work upon receipt of payment.
-            </p>
+.dark-page .closing-statement {
+    background: rgba(230, 126, 34, 0.15);
+}
 
-            <h3>8. Force Majeure</h3>
-            <p>
-                Neither party shall be liable for failure or delay in performance due to circumstances beyond their reasonable control, including acts of God, natural disasters, war, terrorism, labor disputes, government actions, or technical failures of third-party services.
-            </p>
-        </div>
-    </div>
+.signature-line {
+    margin-top: 25px;
+    font-size: 13px;
+    color: var(--text-light);
+}
 
-    <!-- Page 10: Service Agreement (Part 2) & Signatures -->
-    <div class="page content-page">
-        <div class="terms-content" style="margin-top: 0;">
-            <h3>9. Dispute Resolution</h3>
-            <p>
-                Any disputes arising from this Agreement shall first be attempted to be resolved through good faith negotiation. If negotiation fails within 30 days, the parties agree to pursue mediation before resorting to litigation.
-            </p>
+/* =========================================
+   TIMELINE SECTION - Circular Hexagon Design
+   ========================================= */
+.timeline-section {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 100px);
+    position: relative;
+    flex: 1;
+}
 
-            <h3>10. Independent Contractor</h3>
-            <p>
-                The Service Provider is an independent contractor and not an employee, partner, or joint venturer of the Client. The Service Provider is responsible for all taxes, insurance, and other obligations related to its business operations.
-            </p>
+#hexagon-timeline-container {
+    position: relative;
+    width: 720px;
+    height: 450px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-            <h3>11. Amendments</h3>
-            <p>
-                This Agreement may only be amended by a written document signed by both parties. No oral modifications shall be valid.
-            </p>
+/* Hexagon Base Styles */
+.hexagon {
+    position: absolute;
+    width: 90px;
+    height: 104px;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    z-index: 10;
+}
 
-            <h3>12. Entire Agreement</h3>
-            <p>
-                This Agreement, together with the proposal pages, constitutes the entire agreement between the parties and supersedes all prior negotiations and agreements, whether written or oral.
-            </p>
+.hexagon-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-origin: center;
+}
 
-            <h3>13. Governing Law</h3>
-            <p>
-                This Agreement shall be governed by and construed in accordance with the laws of the United Kingdom.
-            </p>
-        </div>
+/* 3D grey hexagon underneath (shadow/depth layer) */
+.hex-3d-base {
+    fill: rgba(80, 90, 100, 0.15);
+    stroke: rgba(100, 110, 120, 0.3);
+    stroke-width: 2;
+    transition: all 0.4s ease;
+}
 
-        <div class="signature-section" style="margin-top: 20px;">
-            <!-- Level One Signature Box -->
-            <div class="signature-box">
-                <h4>Level One</h4>
-                <div class="signature-display" id="providerSignatureDisplay2">
-                    <div class="sig-info-row">
-                        <span class="sig-info-label">Name:</span>
-                        <span class="sig-info-value">Dean Finlayson</span>
-                    </div>
-                    <div class="sig-info-row">
-                        <span class="sig-info-label">Position:</span>
-                        <span class="sig-info-value">CEO</span>
-                    </div>
-                    <div class="sig-divider"></div>
-                    <div class="sig-image-container">
-                        <img src="https://github.com/level-one-ai/Proposal-System/blob/main/Screenshot%202026-01-29%2012.12.00.png?raw=true" alt="Level One Signature">
-                    </div>
-                    <div class="sig-date-row" id="providerDate2">Date: Not signed</div>
-                </div>
-            </div>
+.hexagon:hover .hex-3d-base,
+.hexagon.active .hex-3d-base {
+    fill: rgba(80, 90, 100, 0.25);
+    stroke: rgba(100, 110, 120, 0.5);
+}
 
-            <!-- Client Signature Box -->
-            <div class="signature-box">
-                <h4 id="clientSignatureHeader2">Cerka</h4>
-                
-                <!-- Client Form -->
-                <div class="client-signature-form" id="clientForm2">
-                    <div class="form-group">
-                        <label for="clientFullName2">Full Name *</label>
-                        <input type="text" id="clientFullName2" placeholder="Enter your full name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="clientPosition2">Position *</label>
-                        <select id="clientPosition2" required>
-                            <option value="">Select position...</option>
-                            <option value="Owner">Owner</option>
-                            <option value="Co-Owner">Co-Owner</option>
-                            <option value="Founder">Founder</option>
-                            <option value="Co-Founder">Co-Founder</option>
-                            <option value="CEO">CEO</option>
-                            <option value="COO">COO</option>
-                            <option value="CFO">CFO</option>
-                            <option value="CTO">CTO</option>
-                            <option value="President">President</option>
-                            <option value="Vice President">Vice President</option>
-                            <option value="Managing Director">Managing Director</option>
-                            <option value="Director">Director</option>
-                            <option value="Partner">Partner</option>
-                            <option value="Manager">Manager</option>
-                            <option value="General Manager">General Manager</option>
-                            <option value="Operations Manager">Operations Manager</option>
-                        </select>
-                    </div>
-                    <div class="signature-upload-wrapper">
-                        <label>Digital Signature *</label>
-                        <button type="button" class="draw-signature-btn" onclick="openSignatureModal(2)">
-                            Draw Signature
-                        </button>
-                        <div class="signature-preview" id="clientSigPreview2">
-                            <span class="signature-preview-text">No signature drawn</span>
-                        </div>
-                    </div>
-                    <button type="button" class="submit-signature-btn" id="submitClientSig2" onclick="submitClientSignature2()" disabled>
-                        Submit Signature
-                    </button>
-                </div>
+/* Main hexagon segments (solid thick lines with breaks) */
+.hex-segment {
+    fill: none;
+    stroke: #ff8c00;
+    stroke-width: 3;
+    stroke-linecap: round;
+    transition: stroke 0.4s ease, stroke-width 0.4s ease;
+}
 
-                <!-- Client Signature Display (hidden initially) -->
-                <div class="client-signature-display" id="clientSignatureDisplay2">
-                    <div class="sig-info-row">
-                        <span class="sig-info-label">Name:</span>
-                        <span class="sig-info-value" id="clientNameDisplay2"></span>
-                    </div>
-                    <div class="sig-info-row">
-                        <span class="sig-info-label">Position:</span>
-                        <span class="sig-info-value" id="clientPositionDisplay2"></span>
-                    </div>
-                    <div class="sig-divider"></div>
-                    <div class="sig-image-container">
-                        <img id="clientSigImg2" src="" alt="Client Signature">
-                    </div>
-                    <div class="sig-date-row" id="clientDate2">Date: Not signed</div>
-                </div>
-            </div>
-        </div>
+.hexagon:hover .hex-segment,
+.hexagon.active .hex-segment {
+    stroke: #ff9933;
+    stroke-width: 4;
+}
 
-        <div class="download-section">
-            <button class="btn-preview" onclick="openPreview()">
-                Preview Proposal
-            </button>
-            <p class="download-note">
-                Review the proposal before agreeing to the terms
-            </p>
-        </div>
-    </div>
+.hexagon.pulsing .hex-segment {
+    stroke: #ff9933;
+    stroke-width: 4;
+}
 
-    <!-- Signature Drawing Modal -->
-    <div class="signature-modal" id="signatureModal">
-        <div class="signature-modal-content">
-            <div class="signature-modal-header">Draw Your Signature</div>
-            <div class="signature-canvas-wrapper">
-                <canvas class="signature-canvas" id="signatureCanvas" width="450" height="150"></canvas>
-            </div>
-            <div class="signature-modal-actions">
-                <button class="modal-btn modal-btn-clear" onclick="clearCanvas()">Clear</button>
-                <button class="modal-btn modal-btn-cancel" onclick="closeSignatureModal()">Cancel</button>
-                <button class="modal-btn modal-btn-submit" onclick="saveSignature()">Submit</button>
-            </div>
-        </div>
-    </div>
+/* Glow elements - separate paths for the glow effect */
+.hex-segment-glow {
+    fill: none;
+    stroke: #ff9933;
+    stroke-width: 6;
+    stroke-linecap: round;
+    opacity: 0;
+    filter: blur(6px);
+    transition: opacity 0.6s ease;
+}
 
-    <!-- Preview Modal -->
-    <div class="preview-modal" id="previewModal">
-        <div class="preview-modal-content">
-            <div class="preview-modal-header">
-                <div class="preview-modal-title">Preview Proposal</div>
-                <button class="preview-close-btn" onclick="closePreview()">Close Preview</button>
-            </div>
-            <div class="preview-pages" id="previewPages">
-                <!-- Pages will be cloned here -->
-            </div>
-            <div class="preview-footer">
-                <button class="btn-agree" onclick="agreeToProposal()">I Agree to the Terms</button>
-            </div>
-        </div>
-    </div>
+.hexagon:hover .hex-segment-glow,
+.hexagon.active .hex-segment-glow {
+    opacity: 0.8;
+}
 
-    <!-- Thank You Modal -->
-    <div class="thankyou-modal" id="thankyouModal">
-        <div class="thankyou-content">
-            <div class="thankyou-icon">✓</div>
-            <h2 class="thankyou-title">Thank You!</h2>
-            <p class="thankyou-message">
-                We're thrilled to partner with you on this exciting journey. Your agreement has been received and we'll be in touch shortly to begin the onboarding process. We're committed to delivering exceptional results and look forward to exceeding your expectations.
-            </p>
-            <button class="btn-download-final" onclick="downloadProposal()">
-                Download Your Copy
-            </button>
-        </div>
-    </div>
+.hexagon.pulsing .hex-segment-glow {
+    opacity: 0.8;
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+/* Corner brackets */
+.corner-bracket {
+    stroke: #ff8c00;
+    stroke-width: 2;
+    stroke-linecap: square;
+    fill: none;
+    opacity: 1;
+    transition: stroke 0.4s ease, stroke-width 0.4s ease;
+}
+
+.hexagon:hover .corner-bracket,
+.hexagon.active .corner-bracket {
+    stroke: #ff9933;
+    stroke-width: 3;
+}
+
+.hexagon.pulsing .corner-bracket {
+    stroke: #ff9933;
+    stroke-width: 3;
+}
+
+.corner-bracket-glow {
+    stroke: #ff9933;
+    stroke-width: 5;
+    stroke-linecap: square;
+    fill: none;
+    opacity: 0;
+    filter: blur(5px);
+    transition: opacity 0.6s ease;
+}
+
+.hexagon:hover .corner-bracket-glow,
+.hexagon.active .corner-bracket-glow {
+    opacity: 0.7;
+}
+
+.hexagon.pulsing .corner-bracket-glow {
+    opacity: 0.7;
+}
+
+/* Circuit nodes */
+.circuit-node {
+    fill: #ff8c00;
+    transition: fill 0.4s ease;
+}
+
+.hexagon:hover .circuit-node,
+.hexagon.active .circuit-node {
+    fill: #ff9933;
+}
+
+.hexagon.pulsing .circuit-node {
+    fill: #ff9933;
+}
+
+.circuit-node-glow {
+    fill: #ff9933;
+    opacity: 0;
+    filter: blur(3px);
+    transition: opacity 0.6s ease;
+}
+
+.hexagon:hover .circuit-node-glow,
+.hexagon.active .circuit-node-glow {
+    opacity: 0.8;
+}
+
+.hexagon.pulsing .circuit-node-glow {
+    opacity: 0.8;
+}
+
+/* Inner hexagon lines following the same path */
+.hex-inner-line {
+    fill: none;
+    stroke: #ff8c00;
+    stroke-width: 1;
+    stroke-linecap: square;
+    opacity: 0.4;
+    transition: all 0.4s ease;
+}
+
+.hex-inner-line-faint {
+    fill: none;
+    stroke: #ff8c00;
+    stroke-width: 0.75;
+    stroke-linecap: square;
+    opacity: 0.2;
+    transition: all 0.4s ease;
+}
+
+/* Thick external lines */
+.thick-external {
+    stroke: #ff8c00;
+    stroke-width: 3;
+    stroke-linecap: square;
+    fill: none;
+    opacity: 0.8;
+    transition: all 0.4s ease;
+}
+
+.thick-external-faded {
+    stroke: #ff8c00;
+    stroke-width: 2;
+    stroke-linecap: square;
+    fill: none;
+    opacity: 0.3;
+    transition: all 0.4s ease;
+}
+
+/* Accent lines - varying brightness levels */
+.accent-line-bright {
+    stroke: #ff8c00;
+    stroke-width: 1.5;
+    stroke-linecap: square;
+    fill: none;
+    opacity: 0.7;
+    transition: all 0.4s ease;
+}
+
+.accent-line-medium {
+    stroke: #ff8c00;
+    stroke-width: 1;
+    stroke-linecap: square;
+    fill: none;
+    opacity: 0.4;
+    transition: all 0.4s ease;
+}
+
+.accent-line-dim {
+    stroke: #ff8c00;
+    stroke-width: 0.75;
+    stroke-linecap: square;
+    fill: none;
+    opacity: 0.2;
+    transition: all 0.4s ease;
+}
+
+/* Orange dots between hexagons */
+.dot {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: #ff8c00;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(255, 140, 0, 0.8),
+                0 0 14px rgba(255, 140, 0, 0.4);
+    opacity: 0.9;
+    z-index: 5;
+}
+
+/* Roman numeral labels */
+.hex-number {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff8c00;
+    opacity: 0;
+    pointer-events: none;
+    text-shadow: 0 0 8px rgba(255, 140, 0, 0.5);
+    transition: opacity 0.6s ease, color 0.4s ease, text-shadow 0.4s ease;
+}
+
+.hexagon:hover .hex-number {
+    opacity: 0.3;
+}
+
+.hexagon.active .hex-number {
+    opacity: 1;
+    color: #ff9933;
+    text-shadow: 0 0 12px rgba(255, 140, 0, 0.9),
+                0 0 20px rgba(255, 140, 0, 0.6),
+                0 0 28px rgba(255, 140, 0, 0.4);
+}
+
+.hexagon.pulsing .hex-number {
+    opacity: 0.5;
+    color: #ff9933;
+    text-shadow: 0 0 12px rgba(255, 140, 0, 0.9),
+                0 0 20px rgba(255, 140, 0, 0.6),
+                0 0 28px rgba(255, 140, 0, 0.4);
+}
+
+/* Milestone connecting lines */
+.milestone-line {
+    position: absolute;
+    height: 2px;
+    background: var(--primary-orange);
+    box-shadow: 0 0 8px rgba(255, 140, 0, 0.6);
+    opacity: 0;
+    transform-origin: left center;
+    transition: opacity 0.4s ease, width 0.6s ease;
+    z-index: 1;
+}
+
+.milestone-line.active {
+    opacity: 1;
+}
+
+/* Milestone text cards */
+.milestone-card {
+    position: absolute;
+    width: 220px;
+    padding: 14px 16px;
+    background: var(--card-bg);
+    border-radius: 6px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 20;
+    pointer-events: none;
+}
+
+.milestone-card.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Card on right side - border on left */
+.milestone-card.card-right {
+    border-left: 3px solid var(--primary-orange);
+}
+
+/* Card on left side - border on right */
+.milestone-card.card-left {
+    border-right: 3px solid var(--primary-orange);
+    text-align: right;
+}
+
+.milestone-card .milestone-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary-orange);
+    margin-bottom: 5px;
+    line-height: 1.3;
+}
+
+.milestone-card .milestone-date {
+    font-size: 9px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.milestone-card .milestone-desc {
+    font-size: 10px;
+    line-height: 1.5;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+}
+
+.milestone-card .milestone-tasks {
+    margin-top: 8px;
+    list-style: none;
+    padding-left: 0;
+}
+
+.milestone-card.card-left .milestone-tasks {
+    padding-right: 0;
+}
+
+.milestone-card .milestone-tasks li {
+    font-size: 9px;
+    color: var(--text-muted);
+    padding: 3px 0;
+    padding-left: 12px;
+    position: relative;
+    line-height: 1.4;
+}
+
+.milestone-card.card-left .milestone-tasks li {
+    padding-left: 0;
+    padding-right: 12px;
+}
+
+.milestone-card .milestone-tasks li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-orange);
+    font-size: 9px;
+}
+
+.milestone-card.card-left .milestone-tasks li::before {
+    left: auto;
+    right: 0;
+    content: '←';
+}
+
+.timeline-footer {
+    margin-top: 15px;
+    padding: 12px 16px;
+    background: rgba(230, 126, 34, 0.1);
+    border-left: 3px solid var(--primary-orange);
+    font-size: 11px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    border-radius: 0 6px 6px 0;
+    text-align: left;
+}
+
+/* =========================================
+   PREVIEW/PDF MODE - Show all timeline elements
+   ========================================= */
+.preview-pages #hexagon-timeline-container .milestone-line,
+.preview-pages #hexagon-timeline-container .milestone-card {
+    opacity: 1 !important;
+    pointer-events: none;
+}
+
+.preview-pages #hexagon-timeline-container .milestone-line {
+    transition: none !important;
+}
+
+.preview-pages #hexagon-timeline-container .milestone-card {
+    transition: none !important;
+}
+
+.preview-pages #hexagon-timeline-container .hexagon .hex-number {
+    opacity: 1 !important;
+    color: #ff9933;
+    text-shadow: 0 0 12px rgba(255, 140, 0, 0.9),
+                0 0 20px rgba(255, 140, 0, 0.6),
+                0 0 28px rgba(255, 140, 0, 0.4);
+}
+
+.preview-pages #hexagon-timeline-container .hexagon {
+    pointer-events: none;
+}
+
+/* Print/PDF styles for timeline */
+@media print {
+    #hexagon-timeline-container .milestone-line,
+    #hexagon-timeline-container .milestone-card {
+        opacity: 1 !important;
+    }
+    
+    #hexagon-timeline-container .hexagon .hex-number {
+        opacity: 1 !important;
+        color: #ff9933;
+    }
+    
+    #hexagon-timeline-container .hexagon {
+        pointer-events: none;
+    }
+}
+
+/* =========================================
+   RESPONSIVE TIMELINE
+   ========================================= */
+
+/* Tablet and smaller desktop */
+@media (max-width: 900px) {
+    #hexagon-timeline-container {
+        max-width: 600px;
+        height: 400px;
+    }
+    
+    .milestone-card {
+        width: 170px;
+        padding: 10px 12px;
+    }
+    
+    .milestone-card .milestone-title {
+        font-size: 10px;
+    }
+    
+    .milestone-card .milestone-desc {
+        font-size: 8px;
+    }
+    
+    .milestone-card .milestone-tasks li {
+        font-size: 7px;
+    }
+}
+
+/* Mobile landscape and small tablets */
+@media (max-width: 768px) {
+    .timeline-section {
+        padding: 5px 0;
+    }
+    
+    #hexagon-timeline-container {
+        max-width: 100%;
+        height: 350px;
+        transform: scale(0.85);
+        transform-origin: center top;
+    }
+    
+    .milestone-card {
+        width: 150px;
+        padding: 8px 10px;
+    }
+    
+    .hexagon {
+        width: 75px;
+        height: 87px;
+    }
+    
+    .hex-number {
+        font-size: 20px;
+    }
+}
+
+/* Mobile portrait */
+@media (max-width: 480px) {
+    #hexagon-timeline-container {
+        height: 300px;
+        transform: scale(0.7);
+    }
+    
+    .milestone-card {
+        width: 130px;
+        padding: 6px 8px;
+    }
+    
+    .milestone-card .milestone-title {
+        font-size: 9px;
+    }
+    
+    .milestone-card .milestone-date {
+        font-size: 7px;
+    }
+    
+    .milestone-card .milestone-desc {
+        font-size: 7px;
+    }
+    
+    .milestone-card .milestone-tasks li {
+        font-size: 6px;
+        padding: 1px 0;
+    }
+    
+    .timeline-footer {
+        font-size: 10px;
+        padding: 10px 12px;
+    }
+}
+
+/* Samsung Galaxy Fold (closed) */
+@media (max-width: 320px) {
+    #hexagon-timeline-container {
+        transform: scale(0.55);
+        height: 250px;
+    }
+    
+    .milestone-card {
+        width: 110px;
+    }
+}
+
+/* Samsung Galaxy Fold (open) - unusual aspect ratio */
+@media (min-width: 717px) and (max-width: 720px) {
+    #hexagon-timeline-container {
+        transform: scale(0.9);
+        height: 420px;
+    }
+}
+
+/* Preview Timeline - Vertical Layout with Lines */
+.preview-pages .timeline-section {
+    padding: 30px 0;
+}
+
+.preview-pages .timeline-wrapper {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0;
+}
+
+.preview-pages .hexagon-container {
+    flex-direction: column;
+    gap: 30px;
+    width: 100px;
+    flex-shrink: 0;
+}
+
+.preview-pages .hex-row {
+    flex-direction: column;
+    margin-top: 0;
+    gap: 0;
+}
+
+.preview-pages .hexagon {
+    cursor: default;
+    width: 80px;
+    height: 92px;
+}
+
+.preview-pages .hexagon .hex-border {
+    opacity: 1;
+}
+
+.preview-pages .hexagon .hex-bg {
+    stroke: var(--primary-orange);
+}
+
+.preview-pages .timeline-details {
+    flex: 1;
+    margin-top: 0;
+    margin-left: 0;
+    text-align: left;
+    position: relative;
+}
+
+.preview-pages .milestone-placeholder {
+    display: none;
+}
+
+.preview-pages .milestone-content {
+    display: block;
+    position: relative;
+    margin-bottom: 0;
+    padding: 12px 15px;
+    background: var(--card-bg);
+    border-radius: 8px;
+    border-left: 3px solid var(--primary-orange);
+    font-size: 10px;
+}
+
+/* Position each milestone with different left margins and connect with lines */
+.preview-pages .milestone-content:nth-child(1) {
+    margin-left: 60px;
+    margin-top: 0;
+}
+
+.preview-pages .milestone-content:nth-child(2) {
+    margin-left: 100px;
+    margin-top: 20px;
+}
+
+.preview-pages .milestone-content:nth-child(3) {
+    margin-left: 80px;
+    margin-top: 20px;
+}
+
+.preview-pages .milestone-content:nth-child(4) {
+    margin-left: 120px;
+    margin-top: 20px;
+}
+
+.preview-pages .milestone-content:nth-child(5) {
+    margin-left: 90px;
+    margin-top: 20px;
+}
+
+.preview-pages .milestone-content:nth-child(6) {
+    margin-left: 110px;
+    margin-top: 20px;
+}
+
+/* Connecting lines from hexagons to milestone content */
+.preview-pages .milestone-content::before {
+    content: '';
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    height: 2px;
+    background: var(--primary-orange);
+    transform: translateY(-50%);
+}
+
+.preview-pages .milestone-content:nth-child(1)::before {
+    width: 60px;
+}
+
+.preview-pages .milestone-content:nth-child(2)::before {
+    width: 100px;
+}
+
+.preview-pages .milestone-content:nth-child(3)::before {
+    width: 80px;
+}
+
+.preview-pages .milestone-content:nth-child(4)::before {
+    width: 120px;
+}
+
+.preview-pages .milestone-content:nth-child(5)::before {
+    width: 90px;
+}
+
+.preview-pages .milestone-content:nth-child(6)::before {
+    width: 110px;
+}
+
+.preview-pages .milestone-title {
+    text-align: left;
+    font-size: 11px;
+    margin-bottom: 4px;
+}
+
+.preview-pages .milestone-date {
+    text-align: left;
+    font-size: 9px;
+    margin-bottom: 6px;
+}
+
+.preview-pages .milestone-desc {
+    text-align: left;
+    font-size: 9px;
+    line-height: 1.5;
+    margin-bottom: 6px;
+}
+
+.preview-pages .milestone-tasks {
+    display: block;
+    width: 100%;
+    margin-top: 6px;
+}
+
+.preview-pages .milestone-tasks li {
+    font-size: 8px;
+    padding: 3px 0;
+    padding-left: 12px;
+}
+
+.preview-pages .milestone-tasks li::before {
+    font-size: 8px;
+}
+
+/* Related Systems - Box Design with Hover */
+.systems-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.system-box {
+    background: #fafafa;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 18px;
+    position: relative;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.system-box::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--primary-orange), rgba(230, 126, 34, 0.3));
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+
+.system-box:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1), -4px 0 20px rgba(230, 126, 34, 0.15);
+    border-color: var(--primary-orange);
+}
+
+.system-box:hover::before {
+    opacity: 1;
+    width: 5px;
+    box-shadow: 0 0 15px rgba(230, 126, 34, 0.4);
+}
+
+.system-box h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #000;
+}
+
+.system-box p {
+    font-size: 11px;
+    line-height: 1.6;
+    color: #666;
+}
+
+/* Investment Page - Simplified */
+.investment-section {
+    margin: 20px 0;
+}
+
+.investment-block {
+    background: #fafafa;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 20px 25px;
+    margin-bottom: 20px;
+}
+
+.investment-block-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.investment-block-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    margin: 0;
+}
+
+.investment-percentage {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary-orange);
+    background: rgba(230, 126, 34, 0.1);
+    padding: 4px 12px;
+    border-radius: 20px;
+}
+
+.investment-block-desc {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.investment-includes {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+}
+
+.investment-includes-title {
+    font-size: 11px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.investment-includes-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.investment-includes-list li {
+    font-size: 11px;
+    color: #555;
+    padding: 4px 0;
+    padding-left: 15px;
+    position: relative;
+    line-height: 1.4;
+}
+
+.investment-includes-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--primary-orange);
+    font-size: 10px;
+}
+
+.investment-milestone-breakdown {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.milestone-payment-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    font-size: 11px;
+    border-bottom: 1px solid #eee;
+}
+
+.milestone-payment-row:last-child {
+    border-bottom: none;
+}
+
+.milestone-payment-row span:first-child {
+    color: #555;
+}
+
+.milestone-payment-row span:last-child {
+    font-weight: 600;
+    color: #333;
+}
+
+.investment-block-amount {
+    font-size: 28px;
+    font-weight: 700;
+    color: #000;
+    text-align: right;
+}
+
+.investment-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    background: #000;
+    color: #fff;
+    border-radius: 8px;
+    margin: 30px 0;
+}
+
+.investment-total-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.investment-total-amount {
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.investment-notes {
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 18px 22px;
+    margin-bottom: 25px;
+}
+
+.investment-notes p {
+    font-size: 12px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.investment-notes p:last-child {
+    margin-bottom: 0;
+}
+
+.investment-notes strong {
+    color: #333;
+}
+
+/* Platform Fees Section - Simplified */
+.platform-section {
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 1px solid #ddd;
+}
+
+.platform-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.platform-fees-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.platform-fee-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 18px;
+    background: #fafafa;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+}
+
+.platform-fee-name {
+    font-size: 13px;
+    color: #333;
+}
+
+.platform-fee-price {
+    font-size: 13px;
+    font-weight: 600;
+    color: #000;
+}
+
+/* Terms and Service Agreement */
+.terms-content {
+    font-size: 11px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.terms-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 18px 0 8px 0;
+    color: #000;
+}
+
+.terms-content p {
+    margin-bottom: 10px;
+    text-align: justify;
+    color: #444;
+}
+
+/* PROFESSIONAL SIGNATURE CARD STYLES */
+.signature-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 30px;
+    align-items: start;
+}
+
+.signature-box {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+    background: white;
+}
+
+.signature-box h4 {
+    font-family: 'Playfair Display', serif;
+    padding: 10px 15px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    background: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+    margin: 0;
+}
+
+/* Level One Signature Display - Fixed size, always compact */
+.signature-display {
+    padding: 0;
+}
+
+.sig-info-row {
+    display: flex;
+    padding: 8px 15px;
+    background: #fafafa;
+    border-bottom: 1px solid #eee;
+    font-size: 10px;
+}
+
+.sig-info-label {
+    font-weight: 600;
+    color: #666;
+    width: 60px;
+}
+
+.sig-info-value {
+    color: #333;
+    flex: 1;
+}
+
+.sig-divider {
+    height: 1px;
+    background: #eee;
+    margin: 0;
+}
+
+.sig-image-container {
+    padding: 15px;
+    background: white;
+    border: 1px solid #eee;
+    margin: 10px;
+    border-radius: 4px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signature-display img {
+    max-width: 100%;
+    height: auto;
+    max-height: 60px;
+    display: block;
+}
+
+.sig-date-row {
+    padding: 8px 15px;
+    background: #fafafa;
+    border-top: 1px solid #eee;
+    font-size: 9px;
+    color: #666;
+    text-align: center;
+}
+
+/* Client Signature Form */
+.client-signature-form {
+    display: block;
+    padding: 18px;
+}
+
+.client-signature-form.hidden {
+    display: none;
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 11px;
+    margin-bottom: 4px;
+    color: #333;
+    font-weight: 600;
+}
+
+.form-group input[type="text"],
+.form-group select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 11px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.form-group input[type="text"]:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #000;
+}
+
+.form-group select {
+    cursor: pointer;
+}
+
+.signature-upload-wrapper {
+    margin-bottom: 12px;
+}
+
+.signature-upload-wrapper label {
+    display: block;
+    font-size: 11px;
+    margin-bottom: 4px;
+    color: #333;
+    font-weight: 600;
+}
+
+.draw-signature-btn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #000;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 11px;
+    font-family: 'Source Sans Pro', sans-serif;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.draw-signature-btn:hover {
+    background: #333;
+}
+
+/* Signature Drawing Modal */
+.signature-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.signature-modal.active {
+    display: flex;
+}
+
+.signature-modal-content {
+    background: white;
+    border-radius: 8px;
+    padding: 25px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.signature-modal-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.signature-canvas-wrapper {
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    background: white;
+}
+
+.signature-canvas {
+    display: block;
+    width: 100%;
+    height: 150px;
+    cursor: crosshair;
+}
+
+.signature-modal-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.modal-btn {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'Source Sans Pro', sans-serif;
+    transition: all 0.3s;
+}
+
+.modal-btn-clear {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.modal-btn-clear:hover {
+    background: #e0e0e0;
+}
+
+.modal-btn-cancel {
+    background: #999;
+    color: white;
+}
+
+.modal-btn-cancel:hover {
+    background: #777;
+}
+
+.modal-btn-submit {
+    background: var(--primary-orange);
+    color: white;
+}
+
+.modal-btn-submit:hover {
+    background: #d35400;
+}
+
+.signature-preview {
+    margin-top: 10px;
+    text-align: center;
+    padding: 10px;
+    border: 2px dashed #ddd;
+    border-radius: 4px;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signature-preview img {
+    max-width: 100%;
+    max-height: 80px;
+}
+
+.signature-preview-text {
+    font-size: 10px;
+    color: #999;
+    font-style: italic;
+}
+
+.submit-signature-btn {
+    width: 100%;
+    padding: 10px;
+    background: var(--primary-orange);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'Source Sans Pro', sans-serif;
+    transition: all 0.3s;
+    margin-top: 10px;
+}
+
+.submit-signature-btn:hover:not(:disabled) {
+    background: #d35400;
+    transform: translateY(-2px);
+}
+
+.submit-signature-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Client Signature Display (after submission) */
+.client-signature-display {
+    display: none;
+    padding: 0;
+}
+
+.client-signature-display.show {
+    display: block;
+}
+
+.client-signature-display img {
+    max-width: 100%;
+    height: auto;
+    max-height: 60px;
+    display: block;
+}
+
+.download-section {
+    margin-top: 25px;
+    text-align: center;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.btn-preview {
+    background: #000;
+    color: white;
+    padding: 12px 35px;
+    font-size: 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    margin: 5px;
+}
+
+.btn-preview:hover:not(:disabled) {
+    background: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.download-note {
+    margin-top: 10px;
+    font-size: 11px;
+    color: #666;
+}
+
+/* Preview Modal Styles */
+.preview-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 10000;
+    overflow-y: auto;
+}
+
+.preview-modal.active {
+    display: block;
+}
+
+.preview-modal-content {
+    max-width: 8.5in;
+    margin: 40px auto;
+    background: white;
+    position: relative;
+}
+
+.preview-modal-header {
+    position: sticky;
+    top: 0;
+    background: #000;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10001;
+}
+
+.preview-modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+}
+
+.preview-close-btn {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.3s;
+}
+
+.preview-close-btn:hover {
+    background: white;
+    color: #000;
+}
+
+.preview-pages {
+    background: #f5f5f5;
+    padding: 20px 0;
+}
+
+/* Hide download section in preview */
+.preview-pages .download-section {
+    display: none;
+}
+
+.preview-footer {
+    position: sticky;
+    bottom: 0;
+    background: #000;
+    padding: 20px;
+    text-align: center;
+    z-index: 10001;
+}
+
+.btn-agree {
+    background: var(--primary-orange);
+    color: white;
+    padding: 15px 50px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-agree:hover {
+    background: #d35400;
+    transform: scale(1.05);
+}
+
+/* Thank You Modal */
+.thankyou-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10002;
+    align-items: center;
+    justify-content: center;
+}
+
+.thankyou-modal.active {
+    display: flex;
+}
+
+.thankyou-content {
+    background: white;
+    border-radius: 12px;
+    padding: 50px 40px;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.thankyou-icon {
+    font-size: 60px;
+    color: var(--primary-orange);
+    margin-bottom: 20px;
+}
+
+.thankyou-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    margin-bottom: 15px;
+    color: #000;
+}
+
+.thankyou-message {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.btn-download-final {
+    background: var(--primary-orange);
+    color: white;
+    padding: 15px 40px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-download-final:hover {
+    background: #d35400;
+    transform: scale(1.05);
+}
+
+.no-highlights .editable,
+.no-highlights .editable-subtitle {
+    background: none !important;
+    padding: 0 !important;
+}
+
+@media print {
+    body {
+        background: white;
+    }
+    .page {
+        margin: 0;
+        box-shadow: none;
+    }
+    .download-section {
+        display: none;
+    }
+}
