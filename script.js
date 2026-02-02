@@ -733,6 +733,65 @@ function saveSignature() {
     closeSignatureModal();
 }
 
+// ===================================================
+// SEND SIGNATURE TO MAKE.COM WEBHOOK
+// ===================================================
+
+async function sendSignatureToWebhook(signatureData, clientName, clientPosition) {
+    const webhookUrl = 'https://hook.eu1.make.com/hk2iss31bustvql7q5np87532d48hqst';
+    
+    try {
+        // Create a clean filename for the signature
+        const cleanName = clientName.replace(/[^a-z0-9]/gi, '_');
+        const timestamp = Date.now();
+        const filename = `signature_${cleanName}_${timestamp}.png`;
+        
+        // Create HTML versions of the signature for easy insertion in Make.com
+        const signatureHTML = `<img src="${signatureData}" alt="Client Signature" style="max-width: 300px; height: auto; display: block;">`;
+        
+        const signatureHTMLCentered = `<div style="text-align: center;"><img src="${signatureData}" alt="Client Signature" style="max-width: 300px; height: auto;"></div>`;
+        
+        const signatureHTMLInBox = `<div style="border: 2px solid #333; padding: 15px; background: white; display: inline-block;"><img src="${signatureData}" alt="Client Signature" style="max-width: 250px; height: auto;"></div>`;
+        
+        const payload = {
+            signature_image: signatureData,
+            client_name: clientName,
+            client_position: clientPosition,
+            signed_date: new Date().toISOString(),
+            company_name: document.getElementById('clientNameCover')?.textContent || 'N/A',
+            
+            // Format signature for Airtable attachment field
+            signatureAttachment: [
+                {
+                    url: signatureData,
+                    filename: filename
+                }
+            ],
+            
+            // HTML versions of signature - ready to insert in Make.com
+            signatureHTML: signatureHTML,
+            signatureHTMLCentered: signatureHTMLCentered,
+            signatureHTMLInBox: signatureHTMLInBox
+        };
+        
+        const response = await fetch(webhookUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+        });
+        
+        if (!response.ok) {
+            console.error('Webhook error:', response.status);
+        } else {
+            console.log('Signature sent to webhook successfully');
+        }
+    } catch (error) {
+        console.error('Error sending to webhook:', error);
+    }
+}
+
 function submitClientSignature() {
     const name = document.getElementById('clientFullName').value;
     const position = document.getElementById('clientPosition').value;
@@ -741,6 +800,9 @@ function submitClientSignature() {
         alert('Please fill in all required fields');
         return;
     }
+    
+    // Send to Make.com webhook
+    sendSignatureToWebhook(signatureData1, name, position);
     
     document.getElementById('clientForm').classList.add('hidden');
     
@@ -762,6 +824,9 @@ function submitClientSignature2() {
         alert('Please fill in all required fields');
         return;
     }
+    
+    // Send to Make.com webhook
+    sendSignatureToWebhook(signatureData2, name, position);
     
     document.getElementById('clientForm2').classList.add('hidden');
     
@@ -813,8 +878,71 @@ function agreeToProposal() {
     thankyouModal.classList.add('active');
 }
 
-function downloadProposal() {
-    window.print();
+// ===================================================
+// PDF DOWNLOAD WITH PDFSHIFT
+// ===================================================
+
+async function downloadProposal() {
+    // Show loading state
+    const downloadBtn = document.querySelector('.btn-download-final');
+    const originalText = downloadBtn.textContent;
+    downloadBtn.textContent = 'Generating PDF...';
+    downloadBtn.disabled = true;
+    
+    try {
+        // Get the full HTML of the document
+        const htmlContent = document.documentElement.outerHTML;
+        
+        // PDFShift API configuration
+        const pdfShiftApiKey = 'sk_de4b0b3aab6d9de23ff4c753c2156e993d9ed62b';
+        const apiUrl = 'https://api.pdfshift.io/v3/convert/pdf';
+        
+        // Convert to PDF using PDFShift
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Authorization': 'Basic ' + btoa('api:' + pdfShiftApiKey),
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                source: htmlContent,
+                sandbox: false,
+                format: 'Letter',
+                margin: '0mm',
+                landscape: false,
+                use_print: true
+            })
+        });
+        
+        if (!response.ok) {
+            throw new Error('PDF generation failed');
+        }
+        
+        // Get the PDF as a blob
+        const pdfBlob = await response.blob();
+        
+        // Create download link
+        const url = window.URL.createObjectURL(pdfBlob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Level_One_Proposal.pdf';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+        
+        // Reset button
+        downloadBtn.textContent = originalText;
+        downloadBtn.disabled = false;
+        
+    } catch (error) {
+        console.error('Error generating PDF:', error);
+        alert('There was an error generating the PDF. Please try again or use your browser\'s print function.');
+        
+        // Reset button
+        downloadBtn.textContent = originalText;
+        downloadBtn.disabled = false;
+    }
 }
 
 // ===================================================
