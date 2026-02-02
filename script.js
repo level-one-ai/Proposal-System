@@ -1,4 +1,176 @@
-// Milestone data
+// ===================================================
+// URL PARAMETER CONFIGURATION AND HANDLER
+// ===================================================
+
+// Map URL parameters to element IDs and content
+const urlParamConfig = {
+    // Page 1 - Cover
+    'proposalTitlePrefix': { id: 'proposalTitlePrefix', type: 'text' },
+    'companyName': { ids: ['clientNameCover', 'clientSignatureHeader', 'clientSignatureHeader2', 'termsClientName', 'agreementClientName'], type: 'text' },
+    'proposalSubtitle': { id: 'proposalSubtitle', type: 'text' },
+    
+    // Page 2 - Introduction
+    'clientName': { id: 'clientName', type: 'text' },
+    'problem1': { id: 'problem1', type: 'text' },
+    'problem2': { id: 'problem2', type: 'text' },
+    'problem3': { id: 'problem3', type: 'text' },
+    'problem4': { id: 'problem4', type: 'text' },
+    
+    // Page 3 - Problem Details
+    'detailProblem1Title': { id: 'detailProblem1Title', type: 'text' },
+    'detailProblem1Desc': { id: 'detailProblem1Desc', type: 'text' },
+    'detailProblem2Title': { id: 'detailProblem2Title', type: 'text' },
+    'detailProblem2Desc': { id: 'detailProblem2Desc', type: 'text' },
+    'detailProblem3Title': { id: 'detailProblem3Title', type: 'text' },
+    'detailProblem3Desc': { id: 'detailProblem3Desc', type: 'text' },
+    'detailProblem4Title': { id: 'detailProblem4Title', type: 'text' },
+    'detailProblem4Desc': { id: 'detailProblem4Desc', type: 'text' },
+    
+    // Page 4 - Solutions
+    'solution0Title': { id: 'solution0Title', type: 'text' },
+    'solution0Desc': { id: 'solution0Desc', type: 'text' },
+    'solution1Title': { id: 'solution1Title', type: 'text' },
+    'solution1Desc': { id: 'solution1Desc', type: 'text' },
+    'solution2Title': { id: 'solution2Title', type: 'text' },
+    'solution2Desc': { id: 'solution2Desc', type: 'text' },
+    'solution3Title': { id: 'solution3Title', type: 'text' },
+    'solution3Desc': { id: 'solution3Desc', type: 'text' },
+    'solution4Title': { id: 'solution4Title', type: 'text' },
+    'solution4Desc': { id: 'solution4Desc', type: 'text' },
+    'solution5Title': { id: 'solution5Title', type: 'text' },
+    'solution5Desc': { id: 'solution5Desc', type: 'text' },
+    
+    // Page 5 - Timeline Milestones
+    'milestone1Title': { index: 0, field: 'title', type: 'milestone' },
+    'milestone1Date': { index: 0, field: 'date', type: 'milestone' },
+    'milestone1Desc': { index: 0, field: 'desc', type: 'milestone' },
+    'milestone1Tasks': { index: 0, field: 'tasks', type: 'milestone' },
+    
+    'milestone2Title': { index: 1, field: 'title', type: 'milestone' },
+    'milestone2Date': { index: 1, field: 'date', type: 'milestone' },
+    'milestone2Desc': { index: 1, field: 'desc', type: 'milestone' },
+    'milestone2Tasks': { index: 1, field: 'tasks', type: 'milestone' },
+    
+    'milestone3Title': { index: 2, field: 'title', type: 'milestone' },
+    'milestone3Date': { index: 2, field: 'date', type: 'milestone' },
+    'milestone3Desc': { index: 2, field: 'desc', type: 'milestone' },
+    'milestone3Tasks': { index: 2, field: 'tasks', type: 'milestone' },
+    
+    'milestone4Title': { index: 3, field: 'title', type: 'milestone' },
+    'milestone4Date': { index: 3, field: 'date', type: 'milestone' },
+    'milestone4Desc': { index: 3, field: 'desc', type: 'milestone' },
+    'milestone4Tasks': { index: 3, field: 'tasks', type: 'milestone' },
+    
+    'milestone5Title': { index: 4, field: 'title', type: 'milestone' },
+    'milestone5Date': { index: 4, field: 'date', type: 'milestone' },
+    'milestone5Desc': { index: 4, field: 'desc', type: 'milestone' },
+    'milestone5Tasks': { index: 4, field: 'tasks', type: 'milestone' },
+    
+    'milestone6Title': { index: 5, field: 'title', type: 'milestone' },
+    'milestone6Date': { index: 5, field: 'date', type: 'milestone' },
+    'milestone6Desc': { index: 5, field: 'desc', type: 'milestone' },
+    'milestone6Tasks': { index: 5, field: 'tasks', type: 'milestone' },
+    
+    // Page 6 - Related Systems
+    'system1Desc': { id: 'system1Desc', type: 'text' },
+    'system2Desc': { id: 'system2Desc', type: 'text' },
+    'system3Desc': { id: 'system3Desc', type: 'text' },
+    'system4Desc': { id: 'system4Desc', type: 'text' },
+    'system5Desc': { id: 'system5Desc', type: 'text' },
+    'system6Desc': { id: 'system6Desc', type: 'text' },
+    
+    // Page 7 - Investment
+    'depositTitle': { id: 'depositTitle', type: 'text' },
+    'depositPercentage': { id: 'depositPercentage', type: 'text' },
+    'depositDesc': { id: 'depositDesc', type: 'text' },
+    'depositCoversTitle': { id: 'depositCoversTitle', type: 'text' },
+    'depositInclude1': { id: 'depositInclude1', type: 'text' },
+    'depositInclude2': { id: 'depositInclude2', type: 'text' },
+    'depositInclude3': { id: 'depositInclude3', type: 'text' },
+    'depositInclude4': { id: 'depositInclude4', type: 'text' },
+    'depositInclude5': { id: 'depositInclude5', type: 'text' },
+    'depositAmount': { id: 'depositAmount', type: 'text' },
+    
+    'remainingTitle': { id: 'remainingTitle', type: 'text' },
+    'remainingPercentage': { id: 'remainingPercentage', type: 'text' },
+    'remainingDesc': { id: 'remainingDesc', type: 'text' },
+    'remainingCoversTitle': { id: 'remainingCoversTitle', type: 'text' },
+    'remainingInclude1': { id: 'remainingInclude1', type: 'text' },
+    'remainingInclude2': { id: 'remainingInclude2', type: 'text' },
+    'remainingInclude3': { id: 'remainingInclude3', type: 'text' },
+    'remainingInclude4': { id: 'remainingInclude4', type: 'text' },
+    
+    'milestone3Payment': { id: 'milestone3Payment', type: 'text' },
+    'milestone3Amount': { id: 'milestone3Amount', type: 'text' },
+    'milestone4Payment': { id: 'milestone4Payment', type: 'text' },
+    'milestone4Amount': { id: 'milestone4Amount', type: 'text' },
+    'milestone56Payment': { id: 'milestone56Payment', type: 'text' },
+    'milestone56Amount': { id: 'milestone56Amount', type: 'text' },
+    'remainingAmount': { id: 'remainingAmount', type: 'text' },
+    
+    'projectTotal': { id: 'projectTotal', type: 'text' },
+    'paymentStructure': { id: 'paymentStructure', type: 'text' },
+    'milestoneSignoff': { id: 'milestoneSignoff', type: 'text' },
+    
+    'platform1Name': { id: 'platform1Name', type: 'text' },
+    'platform1Price': { id: 'platform1Price', type: 'text' },
+    'platform2Name': { id: 'platform2Name', type: 'text' },
+    'platform2Price': { id: 'platform2Price', type: 'text' }
+};
+
+// Function to get URL parameters
+function getUrlParams() {
+    const params = new URLSearchParams(window.location.search);
+    const paramObject = {};
+    for (const [key, value] of params) {
+        paramObject[key] = decodeURIComponent(value);
+    }
+    return paramObject;
+}
+
+// Function to apply URL parameters to the page
+function applyUrlParams() {
+    const params = getUrlParams();
+    
+    for (const [paramName, config] of Object.entries(urlParamConfig)) {
+        if (params[paramName]) {
+            const value = params[paramName];
+            
+            if (config.type === 'text') {
+                // Handle single ID or multiple IDs
+                if (config.id) {
+                    const element = document.getElementById(config.id);
+                    if (element) {
+                        element.textContent = value;
+                    }
+                } else if (config.ids) {
+                    // Apply to multiple elements (like company name)
+                    config.ids.forEach(id => {
+                        const element = document.getElementById(id);
+                        if (element) {
+                            element.textContent = value;
+                        }
+                    });
+                }
+            } else if (config.type === 'milestone') {
+                // Update milestone data
+                if (milestoneData[config.index]) {
+                    if (config.field === 'tasks') {
+                        // Tasks should be passed as comma-separated or pipe-separated
+                        milestoneData[config.index][config.field] = value.split('|');
+                    } else {
+                        milestoneData[config.index][config.field] = value;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ===================================================
+// MILESTONE DATA
+// ===================================================
+
 const milestoneData = [
     {
         title: "Core Foundation & Content Automation",
@@ -73,31 +245,32 @@ const milestoneData = [
 const timelineConfig = {
     containerWidth: 720,
     containerHeight: 450,
-    hexagonRadius: 100, // 25% smaller than 133
-    hexagonSize: 90, // Width of each hexagon (25% smaller than 120)
-    hexagonHeight: 104, // Height of each hexagon (25% smaller than 138)
-    cardWidth: 220, // Increased from 200
+    hexagonRadius: 100,
+    hexagonSize: 90,
+    hexagonHeight: 104,
+    cardWidth: 220,
     lineLength: 60,
-    lineLengthShort: 30, // Half length for steps 2 and 5
-    cardGap: 15 // Gap between line end and card
+    lineLengthShort: 30,
+    cardGap: 15
 };
 
 let currentActiveMilestone = null;
 let isAnimating = false;
+
+// ===================================================
+// HEXAGON TIMELINE FUNCTIONS
+// ===================================================
 
 // Create hexagon timeline
 function initHexagonTimeline() {
     const container = document.getElementById('hexagon-timeline-container');
     if (!container) return;
 
-    // Center point of the hexagon arrangement within the container
-    // Move up vertically by reducing centerY
     const centerX = timelineConfig.containerWidth / 2;
-    const centerY = (timelineConfig.containerHeight / 2) - 40; // Moved up by 40px
+    const centerY = (timelineConfig.containerHeight / 2) - 40;
     const numHexagons = 6;
     const radius = timelineConfig.hexagonRadius;
 
-    // Hexagon vertices (points of a regular hexagon) - scaled down
     const hexPoints = [
         {x: 68, y: 9},
         {x: 126, y: 44},
@@ -107,7 +280,6 @@ function initHexagonTimeline() {
         {x: 9, y: 44}
     ];
 
-    // Function to create segment paths with small gaps
     function createHexagonSegments(pattern) {
         const segments = [];
         
@@ -142,7 +314,6 @@ function initHexagonTimeline() {
         return segments;
     }
 
-    // Different gap patterns for each hexagon
     const gapPatterns = [
         [1, 0, 1, 0, 1, 0],
         [0, 1, 0, 1, 0, 1],
@@ -152,7 +323,6 @@ function initHexagonTimeline() {
         [1, 1, 1, 0, 0, 0]
     ];
 
-    // Create hexagons
     for (let i = 0; i < numHexagons; i++) {
         const angle = (i * 60 - 60) * Math.PI / 180;
         const x = centerX + radius * Math.cos(angle);
@@ -258,14 +428,12 @@ function initHexagonTimeline() {
 
         container.appendChild(hexagon);
 
-        // Click event listener
         hexagon.addEventListener('click', function(e) {
             e.stopPropagation();
             if (isAnimating) return;
             
             const milestoneIndex = parseInt(this.getAttribute('data-milestone'));
             
-            // If clicking the same hexagon, do nothing
             if (currentActiveMilestone === milestoneIndex) return;
             
             document.querySelectorAll('.hexagon').forEach(hex => hex.classList.remove('active'));
@@ -277,7 +445,6 @@ function initHexagonTimeline() {
             showMilestoneWithAnimation(milestoneIndex);
         });
 
-        // Hover pause
         hexagon.addEventListener('mouseenter', () => {
             isPaused = true;
             document.querySelectorAll('.hexagon').forEach(h => h.classList.remove('pulsing'));
@@ -287,7 +454,6 @@ function initHexagonTimeline() {
             isPaused = false;
         });
 
-        // Create dots between hexagons
         const nextI = (i + 1) % numHexagons;
         const nextAngle = (nextI * 60 - 60) * Math.PI / 180;
         const nextX = centerX + radius * Math.cos(nextAngle);
@@ -301,17 +467,15 @@ function initHexagonTimeline() {
             const dx = nextX - x;
             const dy = nextY - y;
             const length = Math.sqrt(dx * dx + dy * dy);
-            const offset = (j - 1) * 10; // Slightly smaller spacing
+            const offset = (j - 1) * 10;
             dot.style.left = (midX + (dx / length) * offset - 2.5) + 'px';
             dot.style.top = (midY + (dy / length) * offset - 2.5) + 'px';
             container.appendChild(dot);
         }
     }
 
-    // Create milestone lines and cards for each hexagon
     createMilestoneElements(container, centerX, centerY, radius);
 
-    // Click outside to hide
     document.addEventListener('click', function(e) {
         if (!e.target.closest('.hexagon') && !e.target.closest('.milestone-card')) {
             if (currentActiveMilestone !== null && !isAnimating) {
@@ -322,48 +486,34 @@ function initHexagonTimeline() {
         }
     });
 
-    // Start pulsing animation
     startPulsing();
 }
 
 function createMilestoneElements(container, centerX, centerY, radius) {
-    // Define positions for each milestone
-    // Hexagons are positioned at angles: -60, 0, 60, 120, 180, 240 degrees
-    // Index 0: top-right (angle -60°) -> card on RIGHT
-    // Index 1: right (angle 0°) -> card on RIGHT (shorter line, closer)
-    // Index 2: bottom-right (angle 60°) -> card on RIGHT
-    // Index 3: bottom-left (angle 120°) -> card on LEFT
-    // Index 4: left (angle 180°) -> card on LEFT (shorter line, closer)
-    // Index 5: top-left (angle 240°) -> card on LEFT
-
     const milestonePositions = [
-        { side: 'right', lineAngle: -45, verticalOffset: -120, useShortLine: false },  // I - top-right
-        { side: 'right', lineAngle: 0, verticalOffset: -45, useShortLine: true },      // II - right (closer with short line)
-        { side: 'right', lineAngle: 30, verticalOffset: -20, useShortLine: false },    // III - bottom-right (original)
-        { side: 'left', lineAngle: 150, verticalOffset: -20, useShortLine: false },    // IV - bottom-left (original)
-        { side: 'left', lineAngle: 180, verticalOffset: -45, useShortLine: true },     // V - left (closer with short line)
-        { side: 'left', lineAngle: -150, verticalOffset: -70, useShortLine: false }    // VI - top-left (original)
+        { side: 'right', lineAngle: -45, verticalOffset: -120, useShortLine: false },
+        { side: 'right', lineAngle: 0, verticalOffset: -45, useShortLine: true },
+        { side: 'right', lineAngle: 30, verticalOffset: -20, useShortLine: false },
+        { side: 'left', lineAngle: 150, verticalOffset: -20, useShortLine: false },
+        { side: 'left', lineAngle: 180, verticalOffset: -45, useShortLine: true },
+        { side: 'left', lineAngle: -150, verticalOffset: -70, useShortLine: false }
     ];
 
     milestoneData.forEach((milestone, index) => {
         const position = milestonePositions[index];
         const hexAngle = (index * 60 - 60) * Math.PI / 180;
         
-        // Calculate hexagon center position
         const hexCenterX = centerX + radius * Math.cos(hexAngle);
         const hexCenterY = centerY + radius * Math.sin(hexAngle);
         
-        // Calculate line start point (at the edge of the hexagon)
         const lineAngleRad = position.lineAngle * Math.PI / 180;
-        const hexEdgeDistance = timelineConfig.hexagonSize / 2 + 5; // Start just outside hexagon
+        const hexEdgeDistance = timelineConfig.hexagonSize / 2 + 5;
         
         const lineStartX = hexCenterX + hexEdgeDistance * Math.cos(lineAngleRad);
         const lineStartY = hexCenterY + hexEdgeDistance * Math.sin(lineAngleRad);
         
-        // Use shorter line for steps 2 and 5
         const lineLength = position.useShortLine ? timelineConfig.lineLengthShort : timelineConfig.lineLength;
         
-        // Create line element
         const line = document.createElement('div');
         line.className = 'milestone-line';
         line.id = `milestone-line-${index}`;
@@ -372,11 +522,10 @@ function createMilestoneElements(container, centerX, centerY, radius) {
         line.style.width = '0px';
         line.style.transform = `rotate(${position.lineAngle}deg)`;
         line.style.transformOrigin = 'left center';
-        line.setAttribute('data-line-length', lineLength); // Store line length for animation
+        line.setAttribute('data-line-length', lineLength);
         
         container.appendChild(line);
         
-        // Create card element
         const card = document.createElement('div');
         card.className = 'milestone-card';
         card.id = `milestone-card-${index}`;
@@ -390,22 +539,18 @@ function createMilestoneElements(container, centerX, centerY, radius) {
             <ul class="milestone-tasks">${tasksHTML}</ul>
         `;
         
-        // Position card at end of line
         const cardGap = timelineConfig.cardGap;
         
-        // Calculate line end point
         const lineEndX = lineStartX + lineLength * Math.cos(lineAngleRad);
         const lineEndY = lineStartY + lineLength * Math.sin(lineAngleRad);
         
         if (position.side === 'right') {
-            // Card on the right side of the hexagon ring
             const cardX = lineEndX + cardGap;
             const cardY = lineEndY + position.verticalOffset;
             card.style.left = cardX + 'px';
             card.style.top = cardY + 'px';
             card.classList.add('card-right');
         } else {
-            // Card on the left side - position so card's right edge meets the line
             const cardX = lineEndX - cardGap - timelineConfig.cardWidth;
             const cardY = lineEndY + position.verticalOffset;
             card.style.left = cardX + 'px';
@@ -420,28 +565,23 @@ function createMilestoneElements(container, centerX, centerY, radius) {
 async function showMilestoneWithAnimation(index) {
     isAnimating = true;
     
-    // Step 1: Fade out current milestone if exists (1 second)
     if (currentActiveMilestone !== null && currentActiveMilestone !== index) {
         await hideCurrentMilestone();
     }
     
-    // Step 2: Fade in and extend new line (1 second)
     const line = document.getElementById(`milestone-line-${index}`);
     const lineLength = line.getAttribute('data-line-length') || timelineConfig.lineLength;
     
     line.classList.add('active');
     line.style.width = lineLength + 'px';
     
-    // Wait for line animation to complete
     await new Promise(resolve => setTimeout(resolve, 600));
     
-    // Step 3: Fade in card (0.6 seconds)
     const card = document.getElementById(`milestone-card-${index}`);
     card.classList.add('active');
     
     currentActiveMilestone = index;
     
-    // Wait for card fade in to complete
     await new Promise(resolve => setTimeout(resolve, 400));
     
     isAnimating = false;
@@ -453,11 +593,9 @@ async function hideCurrentMilestone() {
     const line = document.getElementById(`milestone-line-${currentActiveMilestone}`);
     const card = document.getElementById(`milestone-card-${currentActiveMilestone}`);
     
-    // Fade out card first
     card.classList.remove('active');
     await new Promise(resolve => setTimeout(resolve, 400));
     
-    // Then retract line
     line.style.width = '0px';
     await new Promise(resolve => setTimeout(resolve, 600));
     
@@ -467,11 +605,13 @@ async function hideCurrentMilestone() {
 }
 
 function showMilestone(index) {
-    // Legacy function - now handled by showMilestoneWithAnimation
     showMilestoneWithAnimation(index);
 }
 
-// Pulsing animation variables
+// ===================================================
+// PULSING ANIMATION
+// ===================================================
+
 let currentPulse = 0;
 let pulseInterval;
 let isPaused = false;
@@ -495,12 +635,10 @@ function startPulsing() {
     }, 3000);
 }
 
-// Initialize timeline when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    initHexagonTimeline();
-});
+// ===================================================
+// SIGNATURE FUNCTIONALITY
+// ===================================================
 
-// Signature functionality
 let currentSignatureInstance = null;
 let canvas, ctx;
 let isDrawing = false;
@@ -637,6 +775,10 @@ function submitClientSignature2() {
     document.getElementById('providerDate2').textContent = `Date: ${new Date().toLocaleDateString()}`;
 }
 
+// ===================================================
+// PREVIEW AND DOWNLOAD FUNCTIONALITY
+// ===================================================
+
 function openPreview() {
     const modal = document.getElementById('previewModal');
     const previewContainer = document.getElementById('previewPages');
@@ -649,7 +791,6 @@ function openPreview() {
         previewContainer.appendChild(clone);
     });
     
-    // Set line widths for preview timeline
     const previewLines = previewContainer.querySelectorAll('.milestone-line');
     previewLines.forEach(line => {
         const lineLength = line.getAttribute('data-line-length') || 60;
@@ -675,3 +816,15 @@ function agreeToProposal() {
 function downloadProposal() {
     window.print();
 }
+
+// ===================================================
+// INITIALIZATION
+// ===================================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Apply URL parameters first
+    applyUrlParams();
+    
+    // Then initialize timeline
+    initHexagonTimeline();
+});
