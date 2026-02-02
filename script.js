@@ -644,6 +644,13 @@ function openPreview() {
         previewContainer.appendChild(clone);
     });
     
+    // Set line widths for preview timeline
+    const previewLines = previewContainer.querySelectorAll('.milestone-line');
+    previewLines.forEach(line => {
+        const lineLength = line.getAttribute('data-line-length') || 60;
+        line.style.width = lineLength + 'px';
+    });
+    
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
