@@ -91,8 +91,9 @@ function initHexagonTimeline() {
     if (!container) return;
 
     // Center point of the hexagon arrangement within the container
+    // Move up vertically by reducing centerY
     const centerX = timelineConfig.containerWidth / 2;
-    const centerY = timelineConfig.containerHeight / 2;
+    const centerY = (timelineConfig.containerHeight / 2) - 40; // Moved up by 40px
     const numHexagons = 6;
     const radius = timelineConfig.hexagonRadius;
 
@@ -329,19 +330,19 @@ function createMilestoneElements(container, centerX, centerY, radius) {
     // Define positions for each milestone
     // Hexagons are positioned at angles: -60, 0, 60, 120, 180, 240 degrees
     // Index 0: top-right (angle -60°) -> card on RIGHT
-    // Index 1: right (angle 0°) -> card on RIGHT (shorter line)
+    // Index 1: right (angle 0°) -> card on RIGHT (shorter line, closer)
     // Index 2: bottom-right (angle 60°) -> card on RIGHT
     // Index 3: bottom-left (angle 120°) -> card on LEFT
-    // Index 4: left (angle 180°) -> card on LEFT (shorter line)
+    // Index 4: left (angle 180°) -> card on LEFT (shorter line, closer)
     // Index 5: top-left (angle 240°) -> card on LEFT
 
     const milestonePositions = [
-        { side: 'right', lineAngle: -45, verticalOffset: -120, useShortLine: false },  // I - top-right (moved up more)
-        { side: 'right', lineAngle: 0, verticalOffset: -45, useShortLine: true },      // II - right (closer, shorter line)
-        { side: 'right', lineAngle: 45, verticalOffset: 10, useShortLine: false },     // III - bottom-right (moved down)
-        { side: 'left', lineAngle: 135, verticalOffset: 10, useShortLine: false },     // IV - bottom-left
-        { side: 'left', lineAngle: 180, verticalOffset: -45, useShortLine: true },     // V - left (closer, shorter line)
-        { side: 'left', lineAngle: -135, verticalOffset: -100, useShortLine: false }   // VI - top-left
+        { side: 'right', lineAngle: -45, verticalOffset: -120, useShortLine: false },  // I - top-right
+        { side: 'right', lineAngle: 0, verticalOffset: -45, useShortLine: true },      // II - right (closer with short line)
+        { side: 'right', lineAngle: 30, verticalOffset: -20, useShortLine: false },    // III - bottom-right (original)
+        { side: 'left', lineAngle: 150, verticalOffset: -20, useShortLine: false },    // IV - bottom-left (original)
+        { side: 'left', lineAngle: 180, verticalOffset: -45, useShortLine: true },     // V - left (closer with short line)
+        { side: 'left', lineAngle: -150, verticalOffset: -70, useShortLine: false }    // VI - top-left (original)
     ];
 
     milestoneData.forEach((milestone, index) => {
