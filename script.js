@@ -76,8 +76,9 @@ const timelineConfig = {
     hexagonRadius: 100, // 25% smaller than 133
     hexagonSize: 90, // Width of each hexagon (25% smaller than 120)
     hexagonHeight: 104, // Height of each hexagon (25% smaller than 138)
-    cardWidth: 200,
+    cardWidth: 220, // Increased from 200
     lineLength: 60,
+    lineLengthShort: 30, // Half length for steps 2 and 5
     cardGap: 15 // Gap between line end and card
 };
 
@@ -328,19 +329,19 @@ function createMilestoneElements(container, centerX, centerY, radius) {
     // Define positions for each milestone
     // Hexagons are positioned at angles: -60, 0, 60, 120, 180, 240 degrees
     // Index 0: top-right (angle -60°) -> card on RIGHT
-    // Index 1: right (angle 0°) -> card on RIGHT
+    // Index 1: right (angle 0°) -> card on RIGHT (shorter line)
     // Index 2: bottom-right (angle 60°) -> card on RIGHT
     // Index 3: bottom-left (angle 120°) -> card on LEFT
-    // Index 4: left (angle 180°) -> card on LEFT
+    // Index 4: left (angle 180°) -> card on LEFT (shorter line)
     // Index 5: top-left (angle 240°) -> card on LEFT
 
     const milestonePositions = [
-        { side: 'right', lineAngle: -30, verticalOffset: -40 },   // I - top-right
-        { side: 'right', lineAngle: 0, verticalOffset: 0 },       // II - right
-        { side: 'right', lineAngle: 30, verticalOffset: 40 },     // III - bottom-right
-        { side: 'left', lineAngle: 150, verticalOffset: 40 },     // IV - bottom-left
-        { side: 'left', lineAngle: 180, verticalOffset: 0 },      // V - left
-        { side: 'left', lineAngle: -150, verticalOffset: -40 }    // VI - top-left
+        { side: 'right', lineAngle: -30, verticalOffset: -60, useShortLine: false },   // I - top-right (moved up)
+        { side: 'right', lineAngle: 0, verticalOffset: 0, useShortLine: true },        // II - right (short line)
+        { side: 'right', lineAngle: 30, verticalOffset: 40, useShortLine: false },     // III - bottom-right
+        { side: 'left', lineAngle: 150, verticalOffset: 40, useShortLine: false },     // IV - bottom-left
+        { side: 'left', lineAngle: 180, verticalOffset: 0, useShortLine: true },       // V - left (short line)
+        { side: 'left', lineAngle: -150, verticalOffset: -40, useShortLine: false }    // VI - top-left
     ];
 
     milestoneData.forEach((milestone, index) => {
@@ -358,6 +359,9 @@ function createMilestoneElements(container, centerX, centerY, radius) {
         const lineStartX = hexCenterX + hexEdgeDistance * Math.cos(lineAngleRad);
         const lineStartY = hexCenterY + hexEdgeDistance * Math.sin(lineAngleRad);
         
+        // Use shorter line for steps 2 and 5
+        const lineLength = position.useShortLine ? timelineConfig.lineLengthShort : timelineConfig.lineLength;
+        
         // Create line element
         const line = document.createElement('div');
         line.className = 'milestone-line';
@@ -367,6 +371,7 @@ function createMilestoneElements(container, centerX, centerY, radius) {
         line.style.width = '0px';
         line.style.transform = `rotate(${position.lineAngle}deg)`;
         line.style.transformOrigin = 'left center';
+        line.setAttribute('data-line-length', lineLength); // Store line length for animation
         
         container.appendChild(line);
         
@@ -385,20 +390,19 @@ function createMilestoneElements(container, centerX, centerY, radius) {
         `;
         
         // Position card at end of line
-        const lineLength = timelineConfig.lineLength;
         const cardGap = timelineConfig.cardGap;
         
         if (position.side === 'right') {
             // Card on the right side of the hexagon ring
             const cardX = lineStartX + (lineLength + cardGap) * Math.cos(lineAngleRad);
-            const cardY = lineStartY + (lineLength + cardGap) * Math.sin(lineAngleRad) - 40; // Adjust for card height
+            const cardY = lineStartY + (lineLength + cardGap) * Math.sin(lineAngleRad) + position.verticalOffset;
             card.style.left = cardX + 'px';
             card.style.top = cardY + 'px';
             card.classList.add('card-right');
         } else {
             // Card on the left side - position so card's right edge meets the line
             const cardX = lineStartX + (lineLength + cardGap) * Math.cos(lineAngleRad) - timelineConfig.cardWidth;
-            const cardY = lineStartY + (lineLength + cardGap) * Math.sin(lineAngleRad) - 40;
+            const cardY = lineStartY + (lineLength + cardGap) * Math.sin(lineAngleRad) + position.verticalOffset;
             card.style.left = cardX + 'px';
             card.style.top = cardY + 'px';
             card.classList.add('card-left');
@@ -418,9 +422,10 @@ async function showMilestoneWithAnimation(index) {
     
     // Step 2: Fade in and extend new line (1 second)
     const line = document.getElementById(`milestone-line-${index}`);
+    const lineLength = line.getAttribute('data-line-length') || timelineConfig.lineLength;
     
     line.classList.add('active');
-    line.style.width = timelineConfig.lineLength + 'px';
+    line.style.width = lineLength + 'px';
     
     // Wait for line animation to complete
     await new Promise(resolve => setTimeout(resolve, 600));
