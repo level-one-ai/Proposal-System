@@ -212,18 +212,18 @@
             <!-- Deposit Section -->
             <div class="investment-block">
                 <div class="investment-block-header">
-                    <h3>Deposit — Project Initiation</h3>
-                    <span class="investment-percentage">50%</span>
+                    <h3><span class="editable" id="depositTitle">Deposit — Project Initiation</span></h3>
+                    <span class="investment-percentage"><span class="editable" id="depositPercentage">50%</span></span>
                 </div>
-                <p class="investment-block-desc">Due upon agreement signing to commence work</p>
+                <p class="investment-block-desc"><span class="editable" id="depositDesc">Due upon agreement signing to commence work</span></p>
                 <div class="investment-includes">
-                    <div class="investment-includes-title">This covers Milestones 1 & 2:</div>
+                    <div class="investment-includes-title"><span class="editable" id="depositCoversTitle">This covers Milestones 1 & 2:</span></div>
                     <ul class="investment-includes-list">
-                        <li>Core platform foundation, hosting & infrastructure setup</li>
-                        <li>Product Information Management (PIM) system</li>
-                        <li>AI-powered content generation & catalog automation</li>
-                        <li>Shopping cart, checkout & payment integration</li>
-                        <li>Fraud detection & smart search functionality</li>
+                        <li><span class="editable" id="depositInclude1">Core platform foundation, hosting & infrastructure setup</span></li>
+                        <li><span class="editable" id="depositInclude2">Product Information Management (PIM) system</span></li>
+                        <li><span class="editable" id="depositInclude3">AI-powered content generation & catalog automation</span></li>
+                        <li><span class="editable" id="depositInclude4">Shopping cart, checkout & payment integration</span></li>
+                        <li><span class="editable" id="depositInclude5">Fraud detection & smart search functionality</span></li>
                     </ul>
                 </div>
                 <div class="investment-block-amount">
@@ -234,35 +234,35 @@
             <!-- Remaining Balance Section -->
             <div class="investment-block">
                 <div class="investment-block-header">
-                    <h3>Remaining Balance</h3>
-                    <span class="investment-percentage">50%</span>
+                    <h3><span class="editable" id="remainingTitle">Remaining Balance</span></h3>
+                    <span class="investment-percentage"><span class="editable" id="remainingPercentage">50%</span></span>
                 </div>
-                <p class="investment-block-desc">Paid in installments upon completion of each milestone</p>
+                <p class="investment-block-desc"><span class="editable" id="remainingDesc">Paid in installments upon completion of each milestone</span></p>
                 <div class="investment-includes">
-                    <div class="investment-includes-title">This covers Milestones 3, 4, 5 & 6:</div>
+                    <div class="investment-includes-title"><span class="editable" id="remainingCoversTitle">This covers Milestones 3, 4, 5 & 6:</span></div>
                     <ul class="investment-includes-list">
-                        <li>Customer accounts, order management & AI support chatbot</li>
-                        <li>Loyalty program, analytics & predictive recommendations</li>
-                        <li>Visual search, dynamic pricing & A/B testing</li>
-                        <li>Final deployment, training & 30-day support</li>
+                        <li><span class="editable" id="remainingInclude1">Customer accounts, order management & AI support chatbot</span></li>
+                        <li><span class="editable" id="remainingInclude2">Loyalty program, analytics & predictive recommendations</span></li>
+                        <li><span class="editable" id="remainingInclude3">Visual search, dynamic pricing & A/B testing</span></li>
+                        <li><span class="editable" id="remainingInclude4">Final deployment, training & 30-day support</span></li>
                     </ul>
                 </div>
                 <div class="investment-milestone-breakdown">
                     <div class="milestone-payment-row">
-                        <span>Milestone 3 — Support & CX</span>
-                        <span>£3,748</span>
+                        <span><span class="editable" id="milestone3Payment">Milestone 3 — Support & CX</span></span>
+                        <span><span class="editable" id="milestone3Amount">£3,748</span></span>
                     </div>
                     <div class="milestone-payment-row">
-                        <span>Milestone 4 — Personalisation</span>
-                        <span>£2,811</span>
+                        <span><span class="editable" id="milestone4Payment">Milestone 4 — Personalisation</span></span>
+                        <span><span class="editable" id="milestone4Amount">£2,811</span></span>
                     </div>
                     <div class="milestone-payment-row">
-                        <span>Milestones 5 & 6 — Launch</span>
-                        <span>£2,811</span>
+                        <span><span class="editable" id="milestone56Payment">Milestones 5 & 6 — Launch</span></span>
+                        <span><span class="editable" id="milestone56Amount">£2,811</span></span>
                     </div>
                 </div>
                 <div class="investment-block-amount">
-                    <span>£9,370</span>
+                    <span class="editable" id="remainingAmount">£9,370</span>
                 </div>
             </div>
 
@@ -274,8 +274,8 @@
 
             <!-- Payment Notes -->
             <div class="investment-notes">
-                <p><strong>Payment Structure:</strong> A 50% deposit is required to begin work. The remaining 50% is divided across milestone completions, ensuring you only pay for delivered results.</p>
-                <p><strong>Milestone Sign-off:</strong> Each phase requires your approval before proceeding to the next, keeping you in control throughout the project.</p>
+                <p><strong>Payment Structure:</strong> <span class="editable" id="paymentStructure">A 50% deposit is required to begin work. The remaining 50% is divided across milestone completions, ensuring you only pay for delivered results.</span></p>
+                <p><strong>Milestone Sign-off:</strong> <span class="editable" id="milestoneSignoff">Each phase requires your approval before proceeding to the next, keeping you in control throughout the project.</span></p>
             </div>
 
             <!-- Platform Fees -->
@@ -287,8 +287,8 @@
                         <span class="platform-fee-price editable" id="platform1Price">£25/mo</span>
                     </div>
                     <div class="platform-fee-item">
-                        <span class="platform-fee-name">AI API Usage (est.)</span>
-                        <span class="platform-fee-price">£50-150/mo</span>
+                        <span class="platform-fee-name editable" id="platform2Name">AI API Usage (est.)</span>
+                        <span class="platform-fee-price editable" id="platform2Price">£50-150/mo</span>
                     </div>
                 </div>
             </div>
