@@ -1081,63 +1081,63 @@ body {
     color: #666;
 }
 
-/* Investment Page - Simplified */
+/* Investment Page - Simplified & Compact */
 .investment-section {
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 .investment-block {
     background: #fafafa;
     border: 1px solid #e5e5e5;
-    border-radius: 8px;
-    padding: 20px 25px;
-    margin-bottom: 20px;
+    border-radius: 6px;
+    padding: 12px 15px;
+    margin-bottom: 12px;
 }
 
 .investment-block-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
 }
 
 .investment-block-header h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 600;
     color: #000;
     margin: 0;
 }
 
 .investment-percentage {
-    font-size: 14px;
+    font-size: 11px;
     font-weight: 600;
     color: var(--primary-orange);
     background: rgba(230, 126, 34, 0.1);
-    padding: 4px 12px;
-    border-radius: 20px;
+    padding: 2px 8px;
+    border-radius: 12px;
 }
 
 .investment-block-desc {
-    font-size: 12px;
+    font-size: 10px;
     color: #666;
-    margin-bottom: 15px;
-    line-height: 1.5;
+    margin-bottom: 8px;
+    line-height: 1.4;
 }
 
 .investment-includes {
     background: #fff;
     border: 1px solid #e5e5e5;
-    border-radius: 6px;
-    padding: 12px 15px;
-    margin-bottom: 15px;
+    border-radius: 4px;
+    padding: 8px 10px;
+    margin-bottom: 8px;
 }
 
 .investment-includes-title {
-    font-size: 11px;
+    font-size: 9px;
     font-weight: 600;
     color: #333;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
 }
 
 .investment-includes-list {
@@ -1147,12 +1147,12 @@ body {
 }
 
 .investment-includes-list li {
-    font-size: 11px;
+    font-size: 9px;
     color: #555;
-    padding: 4px 0;
-    padding-left: 15px;
+    padding: 2px 0;
+    padding-left: 12px;
     position: relative;
-    line-height: 1.4;
+    line-height: 1.3;
 }
 
 .investment-includes-list li::before {
@@ -1160,14 +1160,14 @@ body {
     position: absolute;
     left: 0;
     color: var(--primary-orange);
-    font-size: 10px;
+    font-size: 8px;
 }
 
 .investment-milestone-breakdown {
     background: #fff;
     border: 1px solid #e5e5e5;
-    border-radius: 6px;
-    margin-bottom: 15px;
+    border-radius: 4px;
+    margin-bottom: 8px;
     overflow: hidden;
 }
 
@@ -1175,8 +1175,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 15px;
-    font-size: 11px;
+    padding: 6px 10px;
+    font-size: 9px;
     border-bottom: 1px solid #eee;
 }
 
@@ -1194,7 +1194,7 @@ body {
 }
 
 .investment-block-amount {
-    font-size: 28px;
+    font-size: 20px;
     font-weight: 700;
     color: #000;
     text-align: right;
@@ -1204,37 +1204,37 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 25px 30px;
+    padding: 15px 20px;
     background: #000;
     color: #fff;
-    border-radius: 8px;
-    margin: 30px 0;
+    border-radius: 6px;
+    margin: 15px 0;
 }
 
 .investment-total-label {
     font-family: 'Playfair Display', serif;
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 600;
 }
 
 .investment-total-amount {
-    font-size: 32px;
+    font-size: 22px;
     font-weight: 700;
 }
 
 .investment-notes {
     background: #f9f9f9;
     border: 1px solid #e0e0e0;
-    border-radius: 6px;
-    padding: 18px 22px;
-    margin-bottom: 25px;
+    border-radius: 4px;
+    padding: 10px 12px;
+    margin-bottom: 12px;
 }
 
 .investment-notes p {
-    font-size: 12px;
-    line-height: 1.6;
+    font-size: 9px;
+    line-height: 1.5;
     color: #555;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .investment-notes p:last-child {
@@ -1245,44 +1245,44 @@ body {
     color: #333;
 }
 
-/* Platform Fees Section - Simplified */
+/* Platform Fees Section - Compact */
 .platform-section {
-    margin-top: 25px;
-    padding-top: 25px;
+    margin-top: 12px;
+    padding-top: 12px;
     border-top: 1px solid #ddd;
 }
 
 .platform-header {
     font-family: 'Playfair Display', serif;
-    font-size: 14px;
+    font-size: 11px;
     font-weight: 600;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
     color: #000;
 }
 
 .platform-fees-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 15px;
+    gap: 10px;
 }
 
 .platform-fee-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 18px;
+    padding: 10px 12px;
     background: #fafafa;
     border: 1px solid #e5e5e5;
-    border-radius: 6px;
+    border-radius: 4px;
 }
 
 .platform-fee-name {
-    font-size: 13px;
+    font-size: 10px;
     color: #333;
 }
 
 .platform-fee-price {
-    font-size: 13px;
+    font-size: 10px;
     font-weight: 600;
     color: #000;
 }
