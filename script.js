@@ -841,7 +841,7 @@ function submitClientSignature2() {
 }
 
 // ===================================================
-// PREVIEW AND DOWNLOAD FUNCTIONALITY
+// PREVIEW AND AGREEMENT FUNCTIONALITY
 // ===================================================
 
 function openPreview() {
@@ -872,76 +872,344 @@ function closePreview() {
     document.body.style.overflow = 'auto';
 }
 
-function agreeToProposal() {
-    closePreview();
-    const thankyouModal = document.getElementById('thankyouModal');
-    thankyouModal.classList.add('active');
+// ===================================================
+// AGREE TO PROPOSAL - WITH WEBHOOK AND PDF GENERATION
+// ===================================================
+
+async function agreeToProposal() {
+    try {
+        // Close preview modal
+        closePreview();
+        
+        // Show loading screen
+        showLoadingScreen();
+        
+        // Send agreement data to webhook
+        await sendAgreementToWebhook();
+        
+        // Generate PDF
+        const pdfBlob = await generateProposalPDF();
+        
+        // Store PDF for download
+        window.generatedProposalPDF = pdfBlob;
+        
+        // Hide loading screen
+        hideLoadingScreen();
+        
+        // Show thank you modal
+        const thankyouModal = document.getElementById('thankyouModal');
+        thankyouModal.classList.add('active');
+        
+    } catch (error) {
+        console.error('Error in agreement process:', error);
+        hideLoadingScreen();
+        alert('There was an error processing your agreement. Please try again or contact support.');
+    }
 }
 
 // ===================================================
-// PDF DOWNLOAD WITH PDFSHIFT
+// LOADING SCREEN
 // ===================================================
 
-async function downloadProposal() {
-    // Show loading state
-    const downloadBtn = document.querySelector('.btn-download-final');
-    const originalText = downloadBtn.textContent;
-    downloadBtn.textContent = 'Generating PDF...';
-    downloadBtn.disabled = true;
+function showLoadingScreen() {
+    const loadingScreen = document.getElementById('loadingScreen');
+    if (loadingScreen) {
+        loadingScreen.classList.add('active');
+    }
+}
+
+function hideLoadingScreen() {
+    const loadingScreen = document.getElementById('loadingScreen');
+    if (loadingScreen) {
+        loadingScreen.classList.remove('active');
+    }
+}
+
+// ===================================================
+// SEND AGREEMENT TO WEBHOOK
+// ===================================================
+
+async function sendAgreementToWebhook() {
+    const webhookUrl = 'https://hook.eu1.make.com/hk2iss31bustvql7q5np87532d48hqst';
     
     try {
-        // Get the full HTML of the document
-        const htmlContent = document.documentElement.outerHTML;
+        const payload = {
+            event_type: 'proposal_agreement',
+            agreed_date: new Date().toISOString(),
+            company_name: document.getElementById('clientNameCover')?.textContent || 'N/A',
+            client_name_page1: document.getElementById('clientFullName')?.value || 'N/A',
+            client_position_page1: document.getElementById('clientPosition')?.value || 'N/A',
+            client_name_page2: document.getElementById('clientFullName2')?.value || 'N/A',
+            client_position_page2: document.getElementById('clientPosition2')?.value || 'N/A',
+            project_total: document.getElementById('projectTotal')?.textContent || 'N/A',
+            has_signature_1: !!signatureData1,
+            has_signature_2: !!signatureData2
+        };
         
-        // PDFShift API configuration
-        const pdfShiftApiKey = 'sk_de4b0b3aab6d9de23ff4c753c2156e993d9ed62b';
-        const apiUrl = 'https://api.pdfshift.io/v3/convert/pdf';
-        
-        // Convert to PDF using PDFShift
-        const response = await fetch(apiUrl, {
+        const response = await fetch(webhookUrl, {
             method: 'POST',
             headers: {
-                'Authorization': 'Basic ' + btoa('api:' + pdfShiftApiKey),
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                source: htmlContent,
-                sandbox: false,
-                format: 'Letter',
-                margin: '0mm',
-                landscape: false,
-                use_print: true
-            })
+            body: JSON.stringify(payload)
         });
         
         if (!response.ok) {
-            throw new Error('PDF generation failed');
+            console.error('Agreement webhook error:', response.status);
+        } else {
+            console.log('Agreement sent to webhook successfully');
+        }
+    } catch (error) {
+        console.error('Error sending agreement to webhook:', error);
+    }
+}
+
+// ===================================================
+// PDF GENERATION USING PDFSHIFT
+// ===================================================
+
+const PDFSHIFT_API_KEY = 'sk_b620db3746ace840fc2030d7ff07e49153afbde0';
+const PDFSHIFT_API_URL = 'https://api.pdfshift.io/v3/convert/pdf';
+
+/**
+ * Generate PDF of the complete proposal using PDFShift
+ */
+async function generateProposalPDF() {
+    try {
+        console.log('Starting PDF generation with PDFShift...');
+        
+        // Get the complete HTML content
+        const htmlContent = generateProposalPDFContent();
+        console.log('HTML content generated, length:', htmlContent.length, 'characters');
+        
+        const requestBody = {
+            source: htmlContent,
+            sandbox: false,
+            landscape: false,
+            use_print: false,
+            format: 'Letter',
+            margin: '0mm'
+        };
+
+        console.log('Sending request to PDFShift...');
+        const response = await fetch(PDFSHIFT_API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Basic ' + btoa('api:' + PDFSHIFT_API_KEY)
+            },
+            body: JSON.stringify(requestBody)
+        });
+
+        console.log('PDFShift response status:', response.status);
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error('PDFShift error response:', errorText);
+            let errorData = {};
+            try {
+                errorData = JSON.parse(errorText);
+            } catch (e) {
+                errorData = { message: errorText };
+            }
+            throw new Error(`PDFShift API error: ${response.status} - ${errorData.message || 'Unknown error'}`);
+        }
+
+        const arrayBuffer = await response.arrayBuffer();
+        console.log('PDF received, size:', arrayBuffer.byteLength, 'bytes');
+        
+        if (arrayBuffer.byteLength < 1000) {
+            console.warn('Warning: PDF file size is very small, may be corrupted');
+            throw new Error('Received invalid PDF data (file too small)');
         }
         
-        // Get the PDF as a blob
-        const pdfBlob = await response.blob();
+        const pdfBlob = new Blob([arrayBuffer], { type: 'application/pdf' });
+        console.log('PDF blob created successfully');
         
-        // Create download link
-        const url = window.URL.createObjectURL(pdfBlob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'Level_One_Proposal.pdf';
-        document.body.appendChild(a);
-        a.click();
-        window.URL.revokeObjectURL(url);
-        document.body.removeChild(a);
+        return pdfBlob;
+
+    } catch (error) {
+        console.error('Error generating PDF:', error);
+        throw error;
+    }
+}
+
+/**
+ * Generate complete HTML content for the proposal PDF
+ */
+function generateProposalPDFContent() {
+    // Get all the pages
+    const pages = document.querySelectorAll('.page');
+    let pagesHTML = '';
+    
+    pages.forEach((page, index) => {
+        const pageClone = page.cloneNode(true);
+        
+        // Remove download section if present
+        const downloadSection = pageClone.querySelector('.download-section');
+        if (downloadSection) {
+            downloadSection.remove();
+        }
+        
+        // Make all timeline elements visible for PDF
+        const milestoneLines = pageClone.querySelectorAll('.milestone-line');
+        milestoneLines.forEach(line => {
+            const lineLength = line.getAttribute('data-line-length') || '60';
+            line.style.width = lineLength + 'px';
+            line.style.opacity = '1';
+        });
+        
+        const milestoneCards = pageClone.querySelectorAll('.milestone-card');
+        milestoneCards.forEach(card => {
+            card.style.opacity = '1';
+        });
+        
+        const hexNumbers = pageClone.querySelectorAll('.hex-number');
+        hexNumbers.forEach(num => {
+            num.style.opacity = '1';
+            num.style.color = '#ff9933';
+        });
+        
+        pagesHTML += pageClone.outerHTML;
+    });
+    
+    // Get the external CSS
+    const stylesLink = document.querySelector('link[href="styles.css"]');
+    let cssContent = '';
+    
+    // Since we can't fetch the CSS file directly in this context, we'll inline critical styles
+    const htmlContent = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level One - Proposal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        ${getInlineStyles()}
+    </style>
+</head>
+<body>
+    ${pagesHTML}
+</body>
+</html>
+    `;
+
+    return htmlContent;
+}
+
+/**
+ * Get inline styles for PDF - includes all critical CSS
+ */
+function getInlineStyles() {
+    // This should contain all the CSS from styles.css
+    // For now, we'll return a minimal set - ideally you'd inline the full stylesheet
+    return `
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-orange: #e67e22;
+            --primary-orange-glow: rgba(230, 126, 34, 0.6);
+            --dark-bg: #0a0a0a;
+            --card-bg: #141414;
+            --text-light: #ffffff;
+            --text-muted: #a0a0a0;
+            --highlight-yellow: rgba(255, 236, 153, 0.35);
+            --highlight-yellow-subtle: rgba(255, 236, 153, 0.20);
+            --border-light: #333;
+        }
+        body { font-family: 'Source Sans Pro', sans-serif; background: #f5f5f5; color: #333; line-height: 1.6; }
+        .page { width: 8.5in; height: 11in; margin: 20px auto; background: white; box-shadow: 0 0 20px rgba(0,0,0,0.1); page-break-after: always; position: relative; overflow: hidden; }
+        .editable { background: none !important; padding: 0 !important; }
+        .editable-subtitle { background: none !important; padding: 0 !important; }
+        .no-highlights .editable, .no-highlights .editable-subtitle { background: none !important; padding: 0 !important; }
+        
+        /* Timeline elements must be visible in PDF */
+        .milestone-line { opacity: 1 !important; }
+        .milestone-card { opacity: 1 !important; }
+        .hex-number { opacity: 1 !important; color: #ff9933 !important; }
+        
+        @page { margin: 15mm; }
+    `;
+}
+
+/**
+ * Download the generated PDF
+ */
+async function downloadProposal() {
+    try {
+        const downloadBtn = document.querySelector('.btn-download-final');
+        const originalText = downloadBtn.textContent;
+        downloadBtn.textContent = 'Preparing Download...';
+        downloadBtn.disabled = true;
+        
+        // Use the already generated PDF or generate a new one
+        let pdfBlob = window.generatedProposalPDF;
+        
+        if (!pdfBlob) {
+            console.log('No pre-generated PDF found, generating new one...');
+            pdfBlob = await generateProposalPDF();
+        }
+        
+        // Download the PDF
+        const companyName = document.getElementById('clientNameCover')?.textContent || 'Client';
+        const cleanName = companyName.replace(/[^a-z0-9]/gi, '_');
+        const filename = `Level_One_Proposal_${cleanName}_${Date.now()}.pdf`;
+        
+        downloadPDF(pdfBlob, filename);
         
         // Reset button
         downloadBtn.textContent = originalText;
         downloadBtn.disabled = false;
         
     } catch (error) {
-        console.error('Error generating PDF:', error);
-        alert('There was an error generating the PDF. Please try again or use your browser\'s print function.');
+        console.error('Error downloading PDF:', error);
+        alert('There was an error downloading the PDF. Please try again or contact support.');
         
-        // Reset button
-        downloadBtn.textContent = originalText;
-        downloadBtn.disabled = false;
+        const downloadBtn = document.querySelector('.btn-download-final');
+        if (downloadBtn) {
+            downloadBtn.textContent = 'Download Your Copy';
+            downloadBtn.disabled = false;
+        }
+    }
+}
+
+/**
+ * Download the PDF blob
+ */
+function downloadPDF(pdfBlob, filename) {
+    try {
+        console.log('Starting PDF download, blob size:', pdfBlob.size);
+        
+        if (!pdfBlob || pdfBlob.size === 0) {
+            throw new Error('PDF blob is empty or invalid');
+        }
+        
+        const url = window.URL.createObjectURL(pdfBlob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = filename || `Level_One_Proposal_${Date.now()}.pdf`;
+        link.style.display = 'none';
+        
+        document.body.appendChild(link);
+        
+        console.log('Triggering download for:', link.download);
+        
+        setTimeout(() => {
+            link.click();
+            
+            setTimeout(() => {
+                if (document.body.contains(link)) {
+                    document.body.removeChild(link);
+                }
+                window.URL.revokeObjectURL(url);
+                console.log('PDF download cleanup complete');
+            }, 250);
+        }, 100);
+        
+    } catch (error) {
+        console.error('Error in downloadPDF:', error);
+        throw error;
     }
 }
 
