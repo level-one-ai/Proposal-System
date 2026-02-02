@@ -336,12 +336,12 @@ function createMilestoneElements(container, centerX, centerY, radius) {
     // Index 5: top-left (angle 240°) -> card on LEFT
 
     const milestonePositions = [
-        { side: 'right', lineAngle: -30, verticalOffset: -95, useShortLine: false },   // I - top-right (moved up significantly, align bottom with VI)
-        { side: 'right', lineAngle: 0, verticalOffset: -50, useShortLine: true },      // II - right (center aligned with hexagon)
-        { side: 'right', lineAngle: 30, verticalOffset: -20, useShortLine: false },    // III - bottom-right (moved up)
-        { side: 'left', lineAngle: 150, verticalOffset: -20, useShortLine: false },    // IV - bottom-left (moved up)
-        { side: 'left', lineAngle: 180, verticalOffset: -50, useShortLine: true },     // V - left (center aligned with hexagon)
-        { side: 'left', lineAngle: -150, verticalOffset: -70, useShortLine: false }    // VI - top-left (moved up, align bottom with I)
+        { side: 'right', lineAngle: -45, verticalOffset: -120, useShortLine: false },  // I - top-right (moved up more)
+        { side: 'right', lineAngle: 0, verticalOffset: -45, useShortLine: true },      // II - right (closer, shorter line)
+        { side: 'right', lineAngle: 45, verticalOffset: 10, useShortLine: false },     // III - bottom-right (moved down)
+        { side: 'left', lineAngle: 135, verticalOffset: 10, useShortLine: false },     // IV - bottom-left
+        { side: 'left', lineAngle: 180, verticalOffset: -45, useShortLine: true },     // V - left (closer, shorter line)
+        { side: 'left', lineAngle: -135, verticalOffset: -100, useShortLine: false }   // VI - top-left
     ];
 
     milestoneData.forEach((milestone, index) => {
