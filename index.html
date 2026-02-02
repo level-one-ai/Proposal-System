@@ -206,144 +206,58 @@
 
     <!-- Page 7: Investment -->
     <div class="page content-page">
-        <h2 class="page-header" style="margin-bottom: 15px;">Investment Required</h2>
+        <h2 class="page-header" style="margin-bottom: 20px;">Investment Required</h2>
 
         <div class="investment-section">
             <!-- Deposit Section -->
-            <div class="milestone-payment-section" style="margin-bottom: 12px;">
-                <div class="milestone-payment-header" style="padding: 8px 12px;">
-                    <h3 style="font-size: 12px;">DEPOSIT — Project Initiation</h3>
-                    <span class="percentage" style="font-size: 11px;">50%</span>
+            <div class="investment-block">
+                <div class="investment-block-header">
+                    <h3>Deposit — Project Initiation</h3>
+                    <span class="investment-percentage">50%</span>
                 </div>
-                <div class="milestone-subheader" style="padding: 6px 12px; font-size: 10px;">Due upon agreement signing to begin Milestones 1 & 2</div>
-                <div class="line-items">
-                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
-                        <span class="line-item-name">Core Foundation, PIM & Content Automation</span>
-                        <span class="line-item-price">£4,685</span>
-                    </div>
-                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
-                        <span class="line-item-name">Transactional MVP, Security & Smart Search</span>
-                        <span class="line-item-price">£4,685</span>
-                    </div>
-                </div>
-                <div class="milestone-subtotal" style="padding: 8px 12px; font-size: 11px;">
-                    <span>Deposit Total</span>
+                <p class="investment-block-desc">Due upon agreement signing to commence work on Milestones 1 & 2</p>
+                <div class="investment-block-amount">
                     <span class="editable" id="depositAmount">£9,370</span>
                 </div>
             </div>
 
-            <!-- Milestone 3 Payment -->
-            <div class="milestone-payment-section" style="margin-bottom: 12px;">
-                <div class="milestone-payment-header" style="padding: 8px 12px;">
-                    <h3 style="font-size: 12px;">MILESTONE 3 — Support Automation & CX</h3>
-                    <span class="percentage" style="font-size: 11px;">20%</span>
+            <!-- Remaining Balance Section -->
+            <div class="investment-block">
+                <div class="investment-block-header">
+                    <h3>Remaining Balance</h3>
+                    <span class="investment-percentage">50%</span>
                 </div>
-                <div class="milestone-subheader" style="padding: 6px 12px; font-size: 10px;">Due upon completion of AI support agent and customer features</div>
-                <div class="line-items">
-                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
-                        <span class="line-item-name">Customer Account Features & OMS</span>
-                        <span class="line-item-price">£1,874</span>
-                    </div>
-                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
-                        <span class="line-item-name">AI Support Agent Chatbot Deployment</span>
-                        <span class="line-item-price">£1,874</span>
-                    </div>
-                </div>
-                <div class="milestone-subtotal" style="padding: 8px 12px; font-size: 11px;">
-                    <span>Milestone 3 Total</span>
-                    <span>£3,748</span>
+                <p class="investment-block-desc">Paid in installments upon completion of Milestones 3, 4, 5 & 6</p>
+                <div class="investment-block-amount">
+                    <span>£9,370</span>
                 </div>
             </div>
 
-            <!-- Milestone 4 Payment -->
-            <div class="milestone-payment-section" style="margin-bottom: 12px;">
-                <div class="milestone-payment-header" style="padding: 8px 12px;">
-                    <h3 style="font-size: 12px;">MILESTONE 4 — Personalisation & Predictive</h3>
-                    <span class="percentage" style="font-size: 11px;">15%</span>
-                </div>
-                <div class="milestone-subheader" style="padding: 6px 12px; font-size: 10px;">Due upon completion of recommendation engine and analytics</div>
-                <div class="line-items">
-                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
-                        <span class="line-item-name">Loyalty Program & Analytics Dashboard</span>
-                        <span class="line-item-price">£1,405</span>
-                    </div>
-                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
-                        <span class="line-item-name">Predictive Recommendations & Demand Forecasting</span>
-                        <span class="line-item-price">£1,406</span>
-                    </div>
-                </div>
-                <div class="milestone-subtotal" style="padding: 8px 12px; font-size: 11px;">
-                    <span>Milestone 4 Total</span>
-                    <span>£2,811</span>
-                </div>
+            <!-- Project Total -->
+            <div class="investment-total">
+                <span class="investment-total-label">Project Total</span>
+                <span class="investment-total-amount editable" id="projectTotal">£18,740</span>
             </div>
 
-            <!-- Milestone 5 & 6 Payment -->
-            <div class="milestone-payment-section" style="margin-bottom: 12px;">
-                <div class="milestone-payment-header" style="padding: 8px 12px;">
-                    <h3 style="font-size: 12px;">MILESTONE 5 & 6 — Advanced Features & Launch</h3>
-                    <span class="percentage" style="font-size: 11px;">15%</span>
-                </div>
-                <div class="milestone-subheader" style="padding: 6px 12px; font-size: 10px;">Due upon final deployment, training, and handover</div>
-                <div class="line-items">
-                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
-                        <span class="line-item-name">Visual Search, Dynamic Pricing & A/B Testing</span>
-                        <span class="line-item-price">£1,874</span>
-                    </div>
-                    <div class="line-item" style="padding: 8px 12px; font-size: 11px;">
-                        <span class="line-item-name">Launch, Training & 30-Day Support</span>
-                        <span class="line-item-price">£937</span>
-                    </div>
-                </div>
-                <div class="milestone-subtotal" style="padding: 8px 12px; font-size: 11px;">
-                    <span>Milestone 5 & 6 Total</span>
-                    <span>£2,811</span>
-                </div>
-            </div>
-
-            <!-- Payment Summary -->
-            <div class="payment-summary" style="margin-top: 15px; padding-top: 12px;">
-                <div class="summary-row" style="padding: 6px 0; font-size: 11px;">
-                    <span class="label">Deposit (50%)</span>
-                    <span class="amount">£9,370</span>
-                </div>
-                <div class="summary-row" style="padding: 6px 0; font-size: 11px;">
-                    <span class="label">Milestone 3 (20%)</span>
-                    <span class="amount">£3,748</span>
-                </div>
-                <div class="summary-row" style="padding: 6px 0; font-size: 11px;">
-                    <span class="label">Milestone 4 (15%)</span>
-                    <span class="amount">£2,811</span>
-                </div>
-                <div class="summary-row" style="padding: 6px 0; font-size: 11px;">
-                    <span class="label">Milestone 5 & 6 (15%)</span>
-                    <span class="amount">£2,811</span>
-                </div>
-                <div class="summary-row total" style="font-size: 14px; padding-top: 10px; margin-top: 6px;">
-                    <span class="label">Project Total</span>
-                    <span class="amount editable" id="projectTotal">£18,740</span>
-                </div>
+            <!-- Payment Notes -->
+            <div class="investment-notes">
+                <p><strong>Payment Structure:</strong> A 50% deposit is required to begin work. The remaining 50% is divided across milestone completions, ensuring you only pay for delivered results.</p>
+                <p><strong>Milestone Sign-off:</strong> Each phase requires your approval before proceeding to the next, keeping you in control throughout the project.</p>
             </div>
 
             <!-- Platform Fees -->
-            <div class="platform-section" style="margin-top: 15px; padding-top: 12px;">
-                <h3 class="platform-header" style="font-size: 12px; margin-bottom: 10px;">ONGOING PLATFORM FEES</h3>
-                <div style="display: flex; gap: 15px;">
-                    <div class="platform-item" style="flex: 1; padding: 10px 12px; font-size: 11px;">
-                        <span class="editable" id="platform1Name">Make.com (monthly)</span>
-                        <span class="editable" id="platform1Price">£25/mo</span>
+            <div class="platform-section">
+                <h3 class="platform-header">Ongoing Platform Fees</h3>
+                <div class="platform-fees-grid">
+                    <div class="platform-fee-item">
+                        <span class="platform-fee-name editable" id="platform1Name">Make.com</span>
+                        <span class="platform-fee-price editable" id="platform1Price">£25/mo</span>
                     </div>
-                    <div class="platform-item" style="flex: 1; padding: 10px 12px; font-size: 11px;">
-                        <span>AI API Usage (est.)</span>
-                        <span>£50-150/mo</span>
+                    <div class="platform-fee-item">
+                        <span class="platform-fee-name">AI API Usage (est.)</span>
+                        <span class="platform-fee-price">£50-150/mo</span>
                     </div>
                 </div>
-            </div>
-
-            <!-- Notes Box -->
-            <div class="payment-notes-compact">
-                <p><strong>Payment Structure:</strong> A 50% deposit is required to begin work. The remaining balance is paid upon completion of each milestone, ensuring you only pay for delivered results.</p>
-                <p><strong>"Delivery"</strong> is defined as the successful completion of scope items outlined for each milestone, with your sign-off confirming satisfaction before the next phase begins.</p>
             </div>
         </div>
     </div>
