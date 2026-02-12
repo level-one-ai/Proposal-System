@@ -13,18 +13,14 @@
     <div class="page page-1">
         <div class="cover-content">
             <div class="logo-section">
-                <img src="https://github.com/level-one-ai/Proposal-System/blob/main/Whisk_cc3ea92b36cae7aaaf5425d64468a20ceg.png?raw=true" alt="Level One Logo" class="logo-image">
-                <img src="https://github.com/level-one-ai/Proposal-System/blob/main/Screenshot%202026-01-29%2020.36.28.png?raw=true" alt="Level One Text" class="logo-text">
+                <img src="https://github.com/level-one-ai/Proposal-System/blob/main/level-one-logo.png?raw=true" alt="Level One Logo" class="logo-main">
             </div>
             
             <div class="cover-center">
                 <div class="proposal-label">Project Proposal</div>
-                <h1 class="proposal-title" id="proposalTitle"><span class="editable" id="proposalTitlePrefix">E-Commerce Platform & Automation System for</span> <span class="editable" id="clientNameCover">Cekra</span></h1>
+                <h1 class="proposal-title"><span id="proposalTitlePrefix">{{proposalTitlePrefix}}</span> <span id="clientNameCover">{{companyName}}</span></h1>
                 <p class="proposal-subtitle">
-                   <span class="editable-subtitle" id="proposalSubtitle">This comprehensive proposal outlines our approach to building a fully automated, 
-                       AI-powered e-commerce platform. Inside, you'll find detailed scope of work, 
-                    milestone-based timelines, and transparent investment breakdowns. We look forward 
-                    to partnering with you on this transformative project.</span>
+                   <span id="proposalSubtitle">{{proposalSubtitle}}</span>
                  </p>
             </div>
 
@@ -51,7 +47,7 @@
         <p class="page-subheader">Before we can solve a problem, we need to understand it. This section outlines the key challenges we've identified through our discussions, and why addressing them is crucial for your business growth.</p>
         
         <div class="letter-content">
-            <p>Dear <span class="editable" id="clientName">Rafal</span>,</p>
+            <p>Dear <span id="clientName">{{clientName}}</span>,</p>
             
             <p style="margin-top: 15px;">
                 Thank you for taking the time to discuss your business needs with us. After our conversations, 
@@ -67,10 +63,10 @@
         </div>
 
         <ul class="bullet-list">
-            <li><span class="editable" id="problem1">Creating product descriptions, categorizing items, and managing inventory consumes hours of staff time daily—time that could be spent on growth activities.</span></li>
-            <li><span class="editable" id="problem2">Customers frequently contact support for basic inquiries like order status and returns, overwhelming your team with repetitive tasks.</span></li>
-            <li><span class="editable" id="problem3">Without data-driven insights, you're making inventory and marketing decisions based on intuition rather than actionable intelligence.</span></li>
-            <li><span class="editable" id="problem4">Every visitor sees the same products and content, missing opportunities for personalization that drives conversions and loyalty.</span></li>
+            <li><span id="problem1">{{problem1}}</span></li>
+            <li><span id="problem2">{{problem2}}</span></li>
+            <li><span id="problem3">{{problem3}}</span></li>
+            <li><span id="problem4">{{problem4}}</span></li>
         </ul>
 
         <div class="letter-content" style="margin-top: 25px;">
@@ -94,20 +90,20 @@
 
         <ul class="problem-list">
             <li>
-                <strong class="editable" id="detailProblem1Title">Manual Content Creation Bottleneck</strong>
-                <span class="editable" id="detailProblem1Desc">Writing unique, SEO-optimized product descriptions for hundreds or thousands of items is time-consuming and inconsistent. AI-powered content generation will create compelling descriptions in seconds, not hours.</span>
+                <strong id="detailProblem1Title">{{detailProblem1Title}}</strong>
+                <span id="detailProblem1Desc">{{detailProblem1Desc}}</span>
             </li>
             <li>
-                <strong class="editable" id="detailProblem2Title">Fraud Vulnerability</strong>
-                <span class="editable" id="detailProblem2Desc">Without real-time fraud detection, you're exposed to chargebacks and fraudulent orders. AI monitoring can analyze transaction patterns instantly and block high-risk orders before they're processed.</span>
+                <strong id="detailProblem2Title">{{detailProblem2Title}}</strong>
+                <span id="detailProblem2Desc">{{detailProblem2Desc}}</span>
             </li>
             <li>
-                <strong class="editable" id="detailProblem3Title">Support Team Overload</strong>
-                <span class="editable" id="detailProblem3Desc">Your team spends valuable time answering repetitive questions that could be handled automatically. An AI chatbot can resolve 80% of common inquiries 24/7, freeing your team for complex issues.</span>
+                <strong id="detailProblem3Title">{{detailProblem3Title}}</strong>
+                <span id="detailProblem3Desc">{{detailProblem3Desc}}</span>
             </li>
             <li>
-                <strong class="editable" id="detailProblem4Title">Missed Personalization Opportunities</strong>
-                <span class="editable" id="detailProblem4Desc">Static product displays and one-size-fits-all recommendations leave conversion potential on the table. Predictive AI can deliver personalized experiences that dramatically increase engagement.</span>
+                <strong id="detailProblem4Title">{{detailProblem4Title}}</strong>
+                <span id="detailProblem4Desc">{{detailProblem4Desc}}</span>
             </li>
         </ul>
 
@@ -123,28 +119,28 @@
 
         <ul class="solution-list">
             <li>
-                <strong class="editable" id="solution0Title">Custom E-Commerce Platform</strong>
-                <span class="editable" id="solution0Desc">A fully bespoke, high-performance online store built from the ground up using modern technologies. Includes responsive design, intuitive navigation, product management, shopping cart, secure checkout, and seamless payment integration.</span>
+                <strong id="solution0Title">{{solution0Title}}</strong>
+                <span id="solution0Desc">{{solution0Desc}}</span>
             </li>
             <li>
-                <strong class="editable" id="solution1Title">AI-Powered Content Engine</strong>
-                <span class="editable" id="solution1Desc">Automatically generate SEO-optimized product descriptions, meta-tags, and marketing copy using advanced AI tools. New products go from upload to fully-described in minutes, not days.</span>
+                <strong id="solution1Title">{{solution1Title}}</strong>
+                <span id="solution1Desc">{{solution1Desc}}</span>
             </li>
             <li>
-                <strong class="editable" id="solution2Title">Intelligent Fraud Prevention</strong>
-                <span class="editable" id="solution2Desc">Real-time transaction monitoring using machine learning to identify and block fraudulent orders before they cost you money. Integrated seamlessly into your checkout flow.</span>
+                <strong id="solution2Title">{{solution2Title}}</strong>
+                <span id="solution2Desc">{{solution2Desc}}</span>
             </li>
             <li>
-                <strong class="editable" id="solution3Title">24/7 AI Support Agent</strong>
-                <span class="editable" id="solution3Desc">A sophisticated chatbot that handles order tracking, FAQs, and simple returns automatically. When human help is needed, it seamlessly hands off with full context.</span>
+                <strong id="solution3Title">{{solution3Title}}</strong>
+                <span id="solution3Desc">{{solution3Desc}}</span>
             </li>
             <li>
-                <strong class="editable" id="solution4Title">Predictive Personalization</strong>
-                <span class="editable" id="solution4Desc">Dynamic product recommendations, personalized search results, and demand forecasting that learns from every customer interaction to continuously improve.</span>
+                <strong id="solution4Title">{{solution4Title}}</strong>
+                <span id="solution4Desc">{{solution4Desc}}</span>
             </li>
             <li>
-                <strong class="editable" id="solution5Title">Visual Search & Dynamic Pricing</strong>
-                <span class="editable" id="solution5Desc">Allow customers to upload images to find similar products, plus automated pricing that responds to market conditions and competitor data.</span>
+                <strong id="solution5Title">{{solution5Title}}</strong>
+                <span id="solution5Desc">{{solution5Desc}}</span>
             </li>
         </ul>
 
@@ -153,17 +149,75 @@
         </div>
     </div>
 
-    <!-- Page 5: Timeline (Dark Theme with Circular Hexagons) -->
+    <!-- Page 5: Timeline (Modern List Design) -->
     <div class="page dark-page">
         <h2 class="page-header">Project Timeline</h2>
-        <p class="page-subheader">We've structured this project into six clear milestones, each building upon the last. Click on any hexagon to see the detailed breakdown of what we'll accomplish in that phase.</p>
+        <p class="page-subheader">We've structured this project into clear milestones, each building upon the last. Every phase includes built-in review points and your approval before we proceed.</p>
 
-        <div class="timeline-section">
-            <div id="hexagon-timeline-container"></div>
-            
-            <div class="timeline-footer">
-                Each milestone includes built-in review points and your approval before we proceed. This ensures you're never surprised and always in control of the project's direction. We've structured this timeline to ensure smooth project execution while maintaining flexibility for your team's availability.
+        <div class="timeline-list-container">
+            <div class="timeline-item">
+                <div class="timeline-number">01</div>
+                <div class="timeline-content">
+                    <h3 id="milestone1Title">{{milestone1Title}}</h3>
+                    <p class="timeline-date" id="milestone1Date">{{milestone1Date}}</p>
+                    <p class="timeline-desc" id="milestone1Desc">{{milestone1Desc}}</p>
+                    <ul class="timeline-tasks" id="milestone1Tasks"></ul>
+                </div>
             </div>
+
+            <div class="timeline-item">
+                <div class="timeline-number">02</div>
+                <div class="timeline-content">
+                    <h3 id="milestone2Title">{{milestone2Title}}</h3>
+                    <p class="timeline-date" id="milestone2Date">{{milestone2Date}}</p>
+                    <p class="timeline-desc" id="milestone2Desc">{{milestone2Desc}}</p>
+                    <ul class="timeline-tasks" id="milestone2Tasks"></ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-number">03</div>
+                <div class="timeline-content">
+                    <h3 id="milestone3Title">{{milestone3Title}}</h3>
+                    <p class="timeline-date" id="milestone3Date">{{milestone3Date}}</p>
+                    <p class="timeline-desc" id="milestone3Desc">{{milestone3Desc}}</p>
+                    <ul class="timeline-tasks" id="milestone3Tasks"></ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-number">04</div>
+                <div class="timeline-content">
+                    <h3 id="milestone4Title">{{milestone4Title}}</h3>
+                    <p class="timeline-date" id="milestone4Date">{{milestone4Date}}</p>
+                    <p class="timeline-desc" id="milestone4Desc">{{milestone4Desc}}</p>
+                    <ul class="timeline-tasks" id="milestone4Tasks"></ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-number">05</div>
+                <div class="timeline-content">
+                    <h3 id="milestone5Title">{{milestone5Title}}</h3>
+                    <p class="timeline-date" id="milestone5Date">{{milestone5Date}}</p>
+                    <p class="timeline-desc" id="milestone5Desc">{{milestone5Desc}}</p>
+                    <ul class="timeline-tasks" id="milestone5Tasks"></ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-number">06</div>
+                <div class="timeline-content">
+                    <h3 id="milestone6Title">{{milestone6Title}}</h3>
+                    <p class="timeline-date" id="milestone6Date">{{milestone6Date}}</p>
+                    <p class="timeline-desc" id="milestone6Desc">{{milestone6Desc}}</p>
+                    <ul class="timeline-tasks" id="milestone6Tasks"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline-footer">
+            Each milestone includes built-in review points and your approval before we proceed. This ensures you're never surprised and always in control of the project's direction. We've structured this timeline to ensure smooth project execution while maintaining flexibility for your team's availability.
         </div>
     </div>
 
@@ -175,27 +229,27 @@
         <div class="systems-grid">
             <div class="system-box">
                 <h4>Lead Sourcing & Cold Outreach</h4>
-                <p class="editable" id="system1Desc">Automated prospecting, data enrichment, and personalized outreach campaigns that scale your business development without scaling your team.</p>
+                <p id="system1Desc">{{system1Desc}}</p>
             </div>
             <div class="system-box">
                 <h4>Client Onboarding System</h4>
-                <p class="editable" id="system2Desc">Streamlined onboarding workflows with automated document collection, welcome sequences, and task management—reducing time-to-value significantly.</p>
+                <p id="system2Desc">{{system2Desc}}</p>
             </div>
             <div class="system-box">
                 <h4>Data Entry Integration</h4>
-                <p class="editable" id="system3Desc">Connect all your systems and eliminate manual data transfer between platforms. Ensures data consistency across your entire tech stack.</p>
+                <p id="system3Desc">{{system3Desc}}</p>
             </div>
             <div class="system-box">
                 <h4>Contract Creation & Auto-Reply</h4>
-                <p class="editable" id="system4Desc">Generate customized contracts from templates and automate responses to common inquiries, freeing your team for high-value conversations.</p>
+                <p id="system4Desc">{{system4Desc}}</p>
             </div>
             <div class="system-box">
                 <h4>Customer Support Automation</h4>
-                <p class="editable" id="system5Desc">AI-powered chatbots and intelligent ticket routing that provide instant responses and ensure every inquiry reaches the right person.</p>
+                <p id="system5Desc">{{system5Desc}}</p>
             </div>
             <div class="system-box">
                 <h4>Reporting & Analytics Dashboard</h4>
-                <p class="editable" id="system6Desc">Custom dashboards aggregating data from multiple sources, providing real-time insights into the metrics that matter most to your business.</p>
+                <p id="system6Desc">{{system6Desc}}</p>
             </div>
         </div>
 
@@ -212,70 +266,70 @@
             <!-- Deposit Section -->
             <div class="investment-block">
                 <div class="investment-block-header">
-                    <h3><span class="editable" id="depositTitle">Deposit — Project Initiation</span></h3>
-                    <span class="investment-percentage"><span class="editable" id="depositPercentage">50%</span></span>
+                    <h3><span id="depositTitle">{{depositTitle}}</span></h3>
+                    <span class="investment-percentage"><span id="depositPercentage">{{depositPercentage}}</span></span>
                 </div>
-                <p class="investment-block-desc"><span class="editable" id="depositDesc">Due upon agreement signing to commence work</span></p>
+                <p class="investment-block-desc"><span id="depositDesc">{{depositDesc}}</span></p>
                 <div class="investment-includes">
-                    <div class="investment-includes-title"><span class="editable" id="depositCoversTitle">This covers Milestones 1 & 2:</span></div>
+                    <div class="investment-includes-title"><span id="depositCoversTitle">{{depositCoversTitle}}</span></div>
                     <ul class="investment-includes-list">
-                        <li><span class="editable" id="depositInclude1">Core platform foundation, hosting & infrastructure setup</span></li>
-                        <li><span class="editable" id="depositInclude2">Product Information Management (PIM) system</span></li>
-                        <li><span class="editable" id="depositInclude3">AI-powered content generation & catalog automation</span></li>
-                        <li><span class="editable" id="depositInclude4">Shopping cart, checkout & payment integration</span></li>
-                        <li><span class="editable" id="depositInclude5">Fraud detection & smart search functionality</span></li>
+                        <li><span id="depositInclude1">{{depositInclude1}}</span></li>
+                        <li><span id="depositInclude2">{{depositInclude2}}</span></li>
+                        <li><span id="depositInclude3">{{depositInclude3}}</span></li>
+                        <li><span id="depositInclude4">{{depositInclude4}}</span></li>
+                        <li><span id="depositInclude5">{{depositInclude5}}</span></li>
                     </ul>
                 </div>
                 <div class="investment-block-amount">
-                    <span class="editable" id="depositAmount">£9,370</span>
+                    <span id="depositAmount">{{depositAmount}}</span>
                 </div>
             </div>
 
             <!-- Remaining Balance Section -->
             <div class="investment-block">
                 <div class="investment-block-header">
-                    <h3><span class="editable" id="remainingTitle">Remaining Balance</span></h3>
-                    <span class="investment-percentage"><span class="editable" id="remainingPercentage">50%</span></span>
+                    <h3><span id="remainingTitle">{{remainingTitle}}</span></h3>
+                    <span class="investment-percentage"><span id="remainingPercentage">{{remainingPercentage}}</span></span>
                 </div>
-                <p class="investment-block-desc"><span class="editable" id="remainingDesc">Paid in installments upon completion of each milestone</span></p>
+                <p class="investment-block-desc"><span id="remainingDesc">{{remainingDesc}}</span></p>
                 <div class="investment-includes">
-                    <div class="investment-includes-title"><span class="editable" id="remainingCoversTitle">This covers Milestones 3, 4, 5 & 6:</span></div>
+                    <div class="investment-includes-title"><span id="remainingCoversTitle">{{remainingCoversTitle}}</span></div>
                     <ul class="investment-includes-list">
-                        <li><span class="editable" id="remainingInclude1">Customer accounts, order management & AI support chatbot</span></li>
-                        <li><span class="editable" id="remainingInclude2">Loyalty program, analytics & predictive recommendations</span></li>
-                        <li><span class="editable" id="remainingInclude3">Visual search, dynamic pricing & A/B testing</span></li>
-                        <li><span class="editable" id="remainingInclude4">Final deployment, training & 30-day support</span></li>
+                        <li><span id="remainingInclude1">{{remainingInclude1}}</span></li>
+                        <li><span id="remainingInclude2">{{remainingInclude2}}</span></li>
+                        <li><span id="remainingInclude3">{{remainingInclude3}}</span></li>
+                        <li><span id="remainingInclude4">{{remainingInclude4}}</span></li>
                     </ul>
                 </div>
                 <div class="investment-milestone-breakdown">
                     <div class="milestone-payment-row">
-                        <span><span class="editable" id="milestone3Payment">Milestone 3 — Support & CX</span></span>
-                        <span><span class="editable" id="milestone3Amount">£3,748</span></span>
+                        <span><span id="milestone3Payment">{{milestone3Payment}}</span></span>
+                        <span><span id="milestone3Amount">{{milestone3Amount}}</span></span>
                     </div>
                     <div class="milestone-payment-row">
-                        <span><span class="editable" id="milestone4Payment">Milestone 4 — Personalisation</span></span>
-                        <span><span class="editable" id="milestone4Amount">£2,811</span></span>
+                        <span><span id="milestone4Payment">{{milestone4Payment}}</span></span>
+                        <span><span id="milestone4Amount">{{milestone4Amount}}</span></span>
                     </div>
                     <div class="milestone-payment-row">
-                        <span><span class="editable" id="milestone56Payment">Milestones 5 & 6 — Launch</span></span>
-                        <span><span class="editable" id="milestone56Amount">£2,811</span></span>
+                        <span><span id="milestone56Payment">{{milestone56Payment}}</span></span>
+                        <span><span id="milestone56Amount">{{milestone56Amount}}</span></span>
                     </div>
                 </div>
                 <div class="investment-block-amount">
-                    <span class="editable" id="remainingAmount">£9,370</span>
+                    <span id="remainingAmount">{{remainingAmount}}</span>
                 </div>
             </div>
 
             <!-- Project Total -->
             <div class="investment-total">
                 <span class="investment-total-label">Project Total</span>
-                <span class="investment-total-amount editable" id="projectTotal">£18,740</span>
+                <span class="investment-total-amount" id="projectTotal">{{projectTotal}}</span>
             </div>
 
             <!-- Payment Notes -->
             <div class="investment-notes">
-                <p><strong>Payment Structure:</strong> <span class="editable" id="paymentStructure">A 50% deposit is required to begin work. The remaining 50% is divided across milestone completions, ensuring you only pay for delivered results.</span></p>
-                <p><strong>Milestone Sign-off:</strong> <span class="editable" id="milestoneSignoff">Each phase requires your approval before proceeding to the next, keeping you in control throughout the project.</span></p>
+                <p><strong>Payment Structure:</strong> <span id="paymentStructure">{{paymentStructure}}</span></p>
+                <p><strong>Milestone Sign-off:</strong> <span id="milestoneSignoff">{{milestoneSignoff}}</span></p>
             </div>
 
             <!-- Platform Fees -->
@@ -283,12 +337,12 @@
                 <h3 class="platform-header">Ongoing Platform Fees</h3>
                 <div class="platform-fees-grid">
                     <div class="platform-fee-item">
-                        <span class="platform-fee-name editable" id="platform1Name">Make.com</span>
-                        <span class="platform-fee-price editable" id="platform1Price">£25/mo</span>
+                        <span class="platform-fee-name" id="platform1Name">{{platform1Name}}</span>
+                        <span class="platform-fee-price" id="platform1Price">{{platform1Price}}</span>
                     </div>
                     <div class="platform-fee-item">
-                        <span class="platform-fee-name editable" id="platform2Name">AI API Usage (est.)</span>
-                        <span class="platform-fee-price editable" id="platform2Price">£50-150/mo</span>
+                        <span class="platform-fee-name" id="platform2Name">{{platform2Name}}</span>
+                        <span class="platform-fee-price" id="platform2Price">{{platform2Price}}</span>
                     </div>
                 </div>
             </div>
@@ -302,7 +356,7 @@
         <div class="terms-content">
             <p>
                 This agreement is entered into between <strong>Level One</strong> ("Service Provider") and 
-                <strong><span class="editable" id="termsClientName">Cekra</span></strong> ("Client") 
+                <strong><span id="termsClientName">{{companyName}}</span></strong> ("Client") 
                 for the services described in this proposal.
             </p>
 
@@ -355,7 +409,7 @@
 
             <!-- Client Signature Box -->
             <div class="signature-box">
-                <h4 id="clientSignatureHeader">Cekra</h4>
+                <h4 id="clientSignatureHeader">{{companyName}}</h4>
                 
                 <!-- Client Form -->
                 <div class="client-signature-form" id="clientForm">
@@ -426,7 +480,7 @@
         <div class="terms-content">
             <p>
                 This Service Agreement ("Agreement") is made effective as of the date of last signature below 
-                between Level One and <strong><span class="editable" id="agreementClientName">Cekra</span></strong>.
+                between Level One and <strong><span id="agreementClientName">{{companyName}}</span></strong>.
             </p>
 
             <h3>1. Services</h3>
@@ -523,7 +577,7 @@
 
             <!-- Client Signature Box -->
             <div class="signature-box">
-                <h4 id="clientSignatureHeader2">Cekra</h4>
+                <h4 id="clientSignatureHeader2">{{companyName}}</h4>
                 
                 <!-- Client Form -->
                 <div class="client-signature-form" id="clientForm2">
