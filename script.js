@@ -2,7 +2,7 @@
 // WEBHOOK CONFIGURATION
 // ===================================================
 const RETRIEVAL_WEBHOOK = 'https://hook.eu1.make.com/zwyqjvu4bxl35h3prmsd3milfci7dmps';
-const SIGNATURE_WEBHOOK = 'https://hook.eu1.make.com/hk2iss31bustvql7q5np87532d48hqst';
+const SIGNATURE_WEBHOOK = 'https://hook.eu1.make.com/zwyqjvu4bxl35h3prmsd3milfci7dmps';
 
 // ===================================================
 // LOAD PROPOSAL DATA FROM WEBHOOK
@@ -12,26 +12,55 @@ async function loadProposalData() {
     const configId = params.get('config');
     
     if (configId) {
+        // Show loading screen
+        const loadingScreen = document.getElementById('proposalLoadingScreen');
+        const loadingBar = document.getElementById('loadingBar');
+        
         try {
             console.log('Loading proposal config:', configId);
             
+            // Animate loading bar to 30%
+            loadingBar.style.width = '30%';
+            
             // Fetch from Make.com webhook
-            const response = await fetch(`${RETRIEVAL_WEBHOOK}?configId=${configId}`);
+            const response = await fetch(`${RETRIEVAL_WEBHOOK}?configId=${configId}&Opening=true`);
             
             if (!response.ok) {
                 throw new Error('Failed to load proposal');
             }
             
+            // Animate loading bar to 60%
+            loadingBar.style.width = '60%';
+            
             const config = await response.json();
             console.log('Proposal loaded:', config);
+            
+            // Animate loading bar to 90%
+            loadingBar.style.width = '90%';
             
             // Apply configuration to page
             applyConfigToPage(config);
             
+            // Complete loading bar
+            loadingBar.style.width = '100%';
+            
+            // Wait a moment before hiding loading screen
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            // Hide loading screen
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 300);
+            
         } catch (error) {
             console.error('Error loading proposal:', error);
+            loadingScreen.style.display = 'none';
             alert('Unable to load this proposal. Please contact Level One support.');
         }
+    } else {
+        // No config ID, hide loading screen immediately
+        document.getElementById('proposalLoadingScreen').style.display = 'none';
     }
 }
 
@@ -181,7 +210,8 @@ async function sendSignatureToWebhook(signatureData, clientName, clientPosition)
             client_position: clientPosition,
             signed_date: new Date().toISOString(),
             company_name: document.getElementById('clientNameCover')?.textContent || 'N/A',
-            filename: filename
+            filename: filename,
+            Signed: true
         };
         
         const response = await fetch(SIGNATURE_WEBHOOK, {
@@ -316,17 +346,14 @@ async function sendAgreementToWebhook() {
         const configId = params.get('config');
         
         const payload = {
-            event_type: 'proposal_agreement',
             configId: configId,
-            agreed_date: new Date().toISOString(),
+            signature_image: signatureData1 || signatureData2 || null,
+            client_name: document.getElementById('clientFullName')?.value || document.getElementById('clientFullName2')?.value || 'N/A',
+            client_position: document.getElementById('clientPosition')?.value || document.getElementById('clientPosition2')?.value || 'N/A',
+            signed_date: new Date().toISOString(),
             company_name: document.getElementById('clientNameCover')?.textContent || 'N/A',
-            client_name_page1: document.getElementById('clientFullName')?.value || 'N/A',
-            client_position_page1: document.getElementById('clientPosition')?.value || 'N/A',
-            client_name_page2: document.getElementById('clientFullName2')?.value || 'N/A',
-            client_position_page2: document.getElementById('clientPosition2')?.value || 'N/A',
-            project_total: document.getElementById('projectTotal')?.textContent || 'N/A',
-            has_signature_1: !!signatureData1,
-            has_signature_2: !!signatureData2
+            filename: `proposal_agreement_${Date.now()}.png`,
+            Signed: true
         };
         
         const response = await fetch(SIGNATURE_WEBHOOK, {
