@@ -487,6 +487,9 @@ function generateProposalPDFContent() {
         pagesHTML += pageClone.outerHTML;
     });
     
+    // Get the current page's base URL to properly reference the CSS file
+    const baseUrl = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+    
     const htmlContent = `
 <!DOCTYPE html>
 <html lang="en">
@@ -495,9 +498,7 @@ function generateProposalPDFContent() {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Level One - Proposal</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <style>
-        ${getInlineStyles()}
-    </style>
+    <link rel="stylesheet" href="${baseUrl}styles.css">
 </head>
 <body>
     ${pagesHTML}
@@ -509,25 +510,8 @@ function generateProposalPDFContent() {
 }
 
 function getInlineStyles() {
-    // Get all styles from the linked stylesheet
-    const styleSheets = document.styleSheets;
-    let allStyles = '';
-    
-    for (let i = 0; i < styleSheets.length; i++) {
-        try {
-            const rules = styleSheets[i].cssRules || styleSheets[i].rules;
-            if (rules) {
-                for (let j = 0; j < rules.length; j++) {
-                    allStyles += rules[j].cssText + '\n';
-                }
-            }
-        } catch (e) {
-            // Skip external stylesheets due to CORS
-            console.log('Skipping stylesheet due to CORS');
-        }
-    }
-    
-    return allStyles;
+    // This function is no longer needed but kept for compatibility
+    return '';
 }
 
 async function downloadProposal() {
