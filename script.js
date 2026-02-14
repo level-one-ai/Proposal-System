@@ -103,12 +103,8 @@ function applyConfigToPage(config) {
                 
                 let tasksArray = [];
                 
-                // Check if it's already an array
-                if (Array.isArray(config[tasksKey])) {
-                    tasksArray = config[tasksKey];
-                } 
                 // If it's a string with pipe separators, split it
-                else if (typeof config[tasksKey] === 'string') {
+                if (typeof config[tasksKey] === 'string') {
                     tasksArray = config[tasksKey].split('|').map(task => task.trim());
                 }
                 
