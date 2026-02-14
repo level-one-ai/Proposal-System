@@ -517,11 +517,11 @@ async function generateProposalPDFContent() {
         .cover-content { position: relative; z-index: 2; padding: 50px 55px; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
         .logo-section { display: flex; align-items: center; }
         .logo-main { height: 80px; width: auto; display: block; }
-        .cover-center { flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 85%; }
+        .cover-center { flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 85%; padding: 20px 0; }
         .proposal-label { font-size: 12px; text-transform: uppercase; letter-spacing: 3px; color: var(--primary-orange); margin-bottom: 15px; font-weight: 600; }
         .proposal-title { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700; line-height: 1.2; margin: 0 0 25px 0; color: var(--text-light); }
         .proposal-subtitle { font-size: 15px; color: rgba(255,255,255,0.85); max-width: 520px; line-height: 1.7; font-weight: 300; }
-        .cover-footer { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2); }
+        .cover-footer { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); }
         .cover-footer-item { font-size: 12px; color: rgba(255,255,255,0.7); }
         .cover-footer-item strong { display: block; color: var(--text-light); font-size: 13px; margin-top: 3px; }
         .dark-page { background: var(--dark-bg); color: var(--text-light); padding: 50px 55px; }
@@ -613,9 +613,9 @@ async function generateProposalPDFContent() {
                 <p class="proposal-subtitle">${getData('proposalSubtitle')}</p>
             </div>
             <div class="cover-footer">
-                <div class="cover-footer-item">Prepared by<strong>Dean</strong></div>
-                <div class="cover-footer-item">Date<strong>February 2026</strong></div>
-                <div class="cover-footer-item">Contact<strong>dean@levelone.digital</strong></div>
+                <div class="cover-footer-item">Prepared by <strong>Dean</strong></div>
+                <div class="cover-footer-item">Date <strong>February 2026</strong></div>
+                <div class="cover-footer-item">Contact <strong>dean@levelone.digital</strong></div>
             </div>
         </div>
     </div>
