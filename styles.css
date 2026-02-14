@@ -514,6 +514,30 @@ body {
     flex: 1;
 }
 
+.milestone-tasks {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.milestone-tasks li {
+    font-size: 9px;
+    color: var(--text-muted);
+    padding: 3px 0;
+    padding-left: 12px;
+    position: relative;
+    line-height: 1.4;
+}
+
+.milestone-tasks li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary-orange);
+    font-size: 9px;
+}
+
 .timeline-footer {
     margin-top: 15px;
     padding: 12px 16px;
