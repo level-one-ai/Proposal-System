@@ -36,7 +36,19 @@ async function loadProposalData() {
             // Animate loading bar to 60%
             loadingBar.style.width = '60%';
             
-            const config = await response.json();
+            // Get response text first for better error handling
+            const responseText = await response.text();
+            console.log('Raw response:', responseText);
+            
+            let config;
+            try {
+                config = JSON.parse(responseText);
+            } catch (jsonError) {
+                console.error('JSON parsing error:', jsonError);
+                console.error('Response text around error position:', responseText.substring(4000, 4100));
+                throw new Error('Invalid JSON response from webhook. Check Make.com scenario output format.');
+            }
+            
             console.log('Proposal loaded:', config);
             
             // Animate loading bar to 90%
@@ -462,10 +474,15 @@ function generateProposalPDFContent() {
     pages.forEach((page) => {
         const pageClone = page.cloneNode(true);
         
+        // Remove download section
         const downloadSection = pageClone.querySelector('.download-section');
         if (downloadSection) {
             downloadSection.remove();
         }
+        
+        // Remove client signature forms (keep only the display)
+        const clientForms = pageClone.querySelectorAll('.client-signature-form');
+        clientForms.forEach(form => form.remove());
         
         pagesHTML += pageClone.outerHTML;
     });
@@ -492,12 +509,25 @@ function generateProposalPDFContent() {
 }
 
 function getInlineStyles() {
-    return `
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Source Sans Pro', sans-serif; background: #f5f5f5; color: #333; line-height: 1.6; }
-        .page { width: 8.5in; height: 11in; margin: 20px auto; background: white; page-break-after: always; position: relative; overflow: hidden; }
-        @page { margin: 15mm; }
-    `;
+    // Get all styles from the linked stylesheet
+    const styleSheets = document.styleSheets;
+    let allStyles = '';
+    
+    for (let i = 0; i < styleSheets.length; i++) {
+        try {
+            const rules = styleSheets[i].cssRules || styleSheets[i].rules;
+            if (rules) {
+                for (let j = 0; j < rules.length; j++) {
+                    allStyles += rules[j].cssText + '\n';
+                }
+            }
+        } catch (e) {
+            // Skip external stylesheets due to CORS
+            console.log('Skipping stylesheet due to CORS');
+        }
+    }
+    
+    return allStyles;
 }
 
 async function downloadProposal() {
