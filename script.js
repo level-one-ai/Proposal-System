@@ -76,17 +76,49 @@ function applyConfigToPage(config) {
         }
     }
     
-    // Handle milestone tasks separately (they're arrays)
+    // Special handling for companyName (multiple locations)
+    if (config.companyName) {
+        const companyNameElements = [
+            'clientNameCover',
+            'termsClientName',
+            'agreementClientName',
+            'clientSignatureHeader',
+            'clientSignatureHeader2'
+        ];
+        companyNameElements.forEach(id => {
+            const elem = document.getElementById(id);
+            if (elem) {
+                elem.textContent = config.companyName;
+            }
+        });
+    }
+    
+    // Handle milestone tasks separately
     for (let i = 1; i <= 6; i++) {
         const tasksKey = `milestone${i}Tasks`;
-        if (config[tasksKey] && Array.isArray(config[tasksKey])) {
+        if (config[tasksKey]) {
             const tasksContainer = document.getElementById(tasksKey);
             if (tasksContainer) {
                 tasksContainer.innerHTML = '';
-                config[tasksKey].forEach(task => {
-                    const li = document.createElement('li');
-                    li.textContent = task;
-                    tasksContainer.appendChild(li);
+                
+                let tasksArray = [];
+                
+                // Check if it's already an array
+                if (Array.isArray(config[tasksKey])) {
+                    tasksArray = config[tasksKey];
+                } 
+                // If it's a string with pipe separators, split it
+                else if (typeof config[tasksKey] === 'string') {
+                    tasksArray = config[tasksKey].split('|').map(task => task.trim());
+                }
+                
+                // Create list items for each task
+                tasksArray.forEach(task => {
+                    if (task) {  // Only add non-empty tasks
+                        const li = document.createElement('li');
+                        li.textContent = task;
+                        tasksContainer.appendChild(li);
+                    }
                 });
             }
         }
