@@ -25,8 +25,12 @@ async function loadProposalData() {
             // Fetch from Make.com webhook
             const response = await fetch(`${RETRIEVAL_WEBHOOK}?configId=${configId}&Opening=true`);
             
+            console.log('Response status:', response.status);
+            
             if (!response.ok) {
-                throw new Error('Failed to load proposal');
+                const errorText = await response.text();
+                console.error('Webhook error response:', errorText);
+                throw new Error(`Failed to load proposal: ${response.status}`);
             }
             
             // Animate loading bar to 60%
@@ -56,7 +60,7 @@ async function loadProposalData() {
         } catch (error) {
             console.error('Error loading proposal:', error);
             loadingScreen.style.display = 'none';
-            alert('Unable to load this proposal. Please contact Level One support.');
+            alert('Unable to load this proposal. Please contact Level One support.\n\nError: ' + error.message);
         }
     } else {
         // No config ID, hide loading screen immediately
