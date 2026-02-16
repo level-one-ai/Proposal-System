@@ -512,7 +512,7 @@ async function generateProposalPDFContent() {
             --border-light: #333;
         }
         body { font-family: 'Source Sans Pro', sans-serif; background: #f5f5f5; color: #333; line-height: 1.6; }
-        .page { width: 8.5in; height: 11in; margin: 20px auto; background: white; box-shadow: 0 0 20px rgba(0,0,0,0.1); page-break-after: always; position: relative; overflow: hidden; }
+        .page { width: 8.5in; height: 11in; margin: 0; background: white; box-shadow: none; page-break-after: always; position: relative; overflow: hidden; }
         .page-1 { display: flex; flex-direction: column; padding: 0; position: relative; height: 11in; max-height: 11in; overflow: hidden; }
         .cover-content { background: url('https://github.com/level-one-ai/Proposal-System/blob/main/processed-image.png?raw=true') center center / cover no-repeat; color: var(--text-light); height: 10in; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; padding: 50px 55px; }
         .cover-content::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.8) 100%); z-index: 1; }
