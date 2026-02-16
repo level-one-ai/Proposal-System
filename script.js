@@ -512,18 +512,18 @@ async function generateProposalPDFContent() {
         }
         body { font-family: 'Source Sans Pro', sans-serif; background: #f5f5f5; color: #333; line-height: 1.6; }
         .page { width: 8.5in; height: 11in; margin: 20px auto; background: white; box-shadow: 0 0 20px rgba(0,0,0,0.1); page-break-after: always; position: relative; overflow: hidden; }
-        .page-1 { background: url('https://github.com/level-one-ai/Proposal-System/blob/main/processed-image.png?raw=true') center center / cover no-repeat; color: var(--text-light); display: flex; flex-direction: column; justify-content: space-between; padding: 0; position: relative; }
+        .page-1 { background: url('https://github.com/level-one-ai/Proposal-System/blob/main/processed-image.png?raw=true') center center / cover no-repeat; color: var(--text-light); display: flex; flex-direction: column; justify-content: space-between; padding: 0; position: relative; height: 11in; }
         .page-1::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.8) 100%); z-index: 1; }
-        .cover-content { position: relative; z-index: 2; padding: 30px 55px 25px 55px; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
-        .logo-section { display: flex; align-items: center; }
-        .logo-main { height: 60px; width: auto; display: block; }
-        .cover-center { flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 85%; padding: 10px 0; }
-        .proposal-label { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--primary-orange); margin-bottom: 10px; font-weight: 600; }
-        .proposal-title { font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 700; line-height: 1.1; margin: 0 0 15px 0; color: var(--text-light); }
-        .proposal-subtitle { font-size: 13px; color: rgba(255,255,255,0.85); max-width: 520px; line-height: 1.5; font-weight: 300; }
-        .cover-footer { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.2); }
-        .cover-footer-item { font-size: 10px; color: rgba(255,255,255,0.7); }
-        .cover-footer-item strong { display: block; color: var(--text-light); font-size: 11px; margin-top: 2px; }
+        .cover-content { position: relative; z-index: 2; padding: 35px 55px 30px 55px; height: 100%; display: flex; flex-direction: column; justify-content: space-between; max-height: 11in; }
+        .logo-section { display: flex; align-items: center; flex-shrink: 0; }
+        .logo-main { height: 65px; width: auto; display: block; }
+        .cover-center { flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 85%; min-height: 0; }
+        .proposal-label { font-size: 11px; text-transform: uppercase; letter-spacing: 3px; color: var(--primary-orange); margin-bottom: 12px; font-weight: 600; }
+        .proposal-title { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; line-height: 1.15; margin: 0 0 18px 0; color: var(--text-light); }
+        .proposal-subtitle { font-size: 13px; color: rgba(255,255,255,0.85); max-width: 520px; line-height: 1.55; font-weight: 300; }
+        .cover-footer { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.2); flex-shrink: 0; }
+        .cover-footer-item { font-size: 10px; color: rgba(255,255,255,0.7); line-height: 1.4; }
+        .cover-footer-item strong { display: block; color: var(--text-light); font-size: 11px; margin-top: 3px; }
         .dark-page { background: var(--dark-bg); color: var(--text-light); padding: 50px 55px; }
         .dark-page .page-header { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 600; color: var(--text-light); margin-bottom: 8px; border: none; padding-bottom: 0; }
         .dark-page .page-subheader { font-size: 13px; color: var(--text-muted); margin-bottom: 30px; line-height: 1.7; max-width: 90%; }
