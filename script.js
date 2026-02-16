@@ -437,7 +437,8 @@ async function generateProposalPDF() {
             landscape: false,
             use_print: false,
             format: 'Letter',
-            margin: '0mm'
+            margin: '0mm',
+            css: '@page:first { margin: 0; }'
         };
 
         const response = await fetch(PDFSHIFT_API_URL, {
